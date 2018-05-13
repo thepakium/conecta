@@ -7,6 +7,7 @@ import { LoginformComponent } from './loginform/loginform.component';
 import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
+import { MsjdirComponent } from './msjdir/msjdir.component';
 
 const appRoutes:Routes = [
   {
@@ -17,6 +18,10 @@ const appRoutes:Routes = [
     path: 'dashboard',
     component: DashboardComponent
   },  
+  {
+    path: 'msjdir',
+    component: MsjdirComponent
+  },  
 
 
 ]
@@ -26,7 +31,8 @@ const appRoutes:Routes = [
     HeaderComponent,
     LoginformComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    MsjdirComponent
   ],
   imports: [
     BrowserModule,

@@ -10,12 +10,8 @@ div.input {
 	position: relative;
 }
 
-div.input label {
-	position: absolute;
-	top: 0;
-	transform: translateY(-50%);
-	left: 10px;
-	background: white;
+div.form-group label {
+
     padding: 5px 2px;
     font-family: 'Ubuntu';
 }
