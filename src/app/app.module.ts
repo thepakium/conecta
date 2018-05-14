@@ -11,6 +11,10 @@ import { MsjdirComponent } from './msjdir/msjdir.component';
 import { PersonalComponent } from './personal/personal.component';
 import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
 import { MsjgrupalComponent } from './msjgrupal/msjgrupal.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { environment } from '../environments/environment';
+// AoT requires an exported function for factories
 
 const appRoutes:Routes = [
   {
@@ -45,12 +49,16 @@ const appRoutes:Routes = [
     MsjdirComponent,
     PersonalComponent,
     NoEncontradoComponent,
-    MsjgrupalComponent
+    MsjgrupalComponent,
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes),
+    
   ],
+  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })

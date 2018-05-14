@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  restUrl: 'ahoraconectados.cl/sms/dist/login/',
+  apiUrl: 'http://ahoraconectados.cl/sms/dist/login',
 };
