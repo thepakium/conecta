@@ -9,6 +9,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MsjdirComponent } from './msjdir/msjdir.component';
 import { PersonalComponent } from './personal/personal.component';
+import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
+import { MsjgrupalComponent } from './msjgrupal/msjgrupal.component';
 
 const appRoutes:Routes = [
   {
@@ -22,8 +24,15 @@ const appRoutes:Routes = [
   {
     path: 'msjdir',
     component: MsjdirComponent
+  },
+  {
+    path: 'msjgrupal',
+    component: MsjgrupalComponent
   },  
-
+  {
+    path: '**',
+    component: NoEncontradoComponent
+  }
 
 ]
 @NgModule({
@@ -34,7 +43,9 @@ const appRoutes:Routes = [
     FooterComponent,
     DashboardComponent,
     MsjdirComponent,
-    PersonalComponent
+    PersonalComponent,
+    NoEncontradoComponent,
+    MsjgrupalComponent
   ],
   imports: [
     BrowserModule,
