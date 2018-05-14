@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MsjdirComponent } from './msjdir/msjdir.component';
+import { PersonalComponent } from './personal/personal.component';
 
 const appRoutes:Routes = [
   {
@@ -32,7 +33,8 @@ const appRoutes:Routes = [
     LoginformComponent,
     FooterComponent,
     DashboardComponent,
-    MsjdirComponent
+    MsjdirComponent,
+    PersonalComponent
   ],
   imports: [
     BrowserModule,

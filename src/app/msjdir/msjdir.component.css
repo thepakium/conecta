@@ -6,9 +6,6 @@
 	align-items: center;
 }
 
-div.input {
-	position: relative;
-}
 
 div.form-group label {
 
@@ -16,12 +13,3 @@ div.form-group label {
     font-family: 'Ubuntu';
 }
 
-div.input input {
-	padding: 10px 20px;
-	font-size: 25px;
-	outline: 0;
-}
-
-div.input {
-	margin-top: 20px;
-}
