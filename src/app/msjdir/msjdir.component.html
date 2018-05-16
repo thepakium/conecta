@@ -4,13 +4,12 @@
     <label for="person">Seleccione Persona:</label>
     <ng-select [searchable]="true" 
               [items]="usuarios"
-              [groupBy]="organizacion"
               bindLabel="nombre"
               bindValue="telefono"
               [searchFn]="customSearchFn"
               [multiple]="true"
               placeholder="Seleccione Persona"
-              [(ngModel)]="selected"  [ngModelOptions]="{standalone: true}" >
+              [(ngModel)]="seleccionados"  [ngModelOptions]="{standalone: true}" >
               <!--ng-template ng-label-tmp let-item="item" let-search="searchTerm">
                   <div><span >{{item.nombre}} {{item.apellido}}</span></div>
                 </ng-template-->
@@ -26,5 +25,5 @@
   </div>
   <button type="submit" class="btn btn-default">enviar</button>
 </form>
-<pre>{{selected|json}}</pre>
+<pre>{{seleccionados|json}}</pre>
 <pre>{{mensaje|json}}</pre>
