@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -13,10 +14,12 @@ import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
 import { MsjgrupalComponent } from './msjgrupal/msjgrupal.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 import { environment } from '../environments/environment';
+
 // AoT requires an exported function for factories
 
-const appRoutes:Routes = [
+const appRoutes: Routes = [
   {
     path: '',
     component: LoginformComponent
@@ -24,7 +27,7 @@ const appRoutes:Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
-  },  
+  },
   {
     path: 'msjdir',
     component: MsjdirComponent
@@ -32,13 +35,14 @@ const appRoutes:Routes = [
   {
     path: 'msjgrupal',
     component: MsjgrupalComponent
-  },  
+  },
   {
     path: '**',
     component: NoEncontradoComponent
   }
 
-]
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,11 +59,22 @@ const appRoutes:Routes = [
     BrowserModule,
     HttpModule,
     HttpClientModule,
+    NgSelectModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes),
-    
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [
+    {
+        provide: NG_SELECT_DEFAULT_CONFIG,
+        useValue: {
+            notFoundText: 'Items not found',
+            addTagText: 'Add item',
+            typeToSearchText: 'Type to search',
+            loadingText: 'Loading...',
+            clearAllText: 'Clear all'
+        }
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
