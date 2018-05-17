@@ -15,6 +15,8 @@ import { MsjgrupalComponent } from './msjgrupal/msjgrupal.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { environment } from '../environments/environment';
 
 // AoT requires an exported function for factories
@@ -61,7 +63,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgSelectModule,
     FormsModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
+    ToastrModule.forRoot()
   ],
   exports: [RouterModule],
   providers: [

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BusquedaService } from '../share/busqueda.service';
 import {FormControl, FormGroup, ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {NgSelectModule, NgOption} from '@ng-select/ng-select';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-msjdir',
@@ -15,7 +16,8 @@ export class MsjdirComponent implements OnInit {
   mensaje: string;
   datos: any;
 
-  constructor( private busquedaService: BusquedaService ) { }
+  constructor(  private busquedaService: BusquedaService,
+                private toastr: ToastrService ) { }
 
   ngOnInit() {
     this.buscarUsuarios();
@@ -26,7 +28,21 @@ export class MsjdirComponent implements OnInit {
   }
 
   enviarMensaje(numero: string , mensaje: string ) {
-    this.busquedaService.enviarMsj( numero, mensaje ).subscribe( respuesta => console.log(respuesta) );
+      this.busquedaService.enviarMsj( numero, mensaje ).subscribe( respuesta => {
+        if (respuesta && !respuesta.errors) {
+          this.toastr.success( respuesta.body, 'Mensaje Enviado', {
+              timeOut: 3000,
+          });
+           this.seleccionados = null;
+           this.mensaje = null;
+      } else {
+          console.log( respuesta );
+          this.toastr.error('Mensajes no fueron enviados', 'ERROR', {
+              timeOut: 3000,
+          });
+      }
+
+    } );
   }
 
   customSearchFn(term: string, item: Usuario) {
