@@ -18,4 +18,13 @@ export class BusquedaService {
     .pipe(map((r: Response) => r.json() ));
   }
 
+  enviarMsj( fono: string , msj: string ): Observable<any> {
+    const apiURL = `${environment.apiUrl}/bulkSMS.php`;
+    const formData: FormData = new FormData();
+    formData.append('telefono', fono );
+    formData.append('mensaje', msj );
+    return this.http.post( apiURL , formData )
+    .pipe(map((r: Response) => r ));
+  }
+
 }

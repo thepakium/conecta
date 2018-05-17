@@ -23,7 +23,7 @@
     <label for="mensaje">Escriba su mensaje:</label>
     <input type="text" class="form-control" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" placeholder="Escriba Mensaje">
   </div>
-  <button type="submit" class="btn btn-default">enviar</button>
+  <button  (click)="enviarMensaje(seleccionados,mensaje)" class="btn btn-default">enviar</button>
 </form>
 <pre>{{seleccionados|json}}</pre>
 <pre>{{mensaje|json}}</pre>

@@ -25,6 +25,10 @@ export class MsjdirComponent implements OnInit {
     this.busquedaService.listadoUsuarios().subscribe( respuesta => this.usuarios = respuesta.data );
   }
 
+  enviarMensaje(numero: string , mensaje: string ) {
+    this.busquedaService.enviarMsj( numero, mensaje ).subscribe( respuesta => console.log(respuesta) );
+  }
+
   customSearchFn(term: string, item: Usuario) {
     term = term.toLocaleLowerCase();
     return item.nombre.toLocaleLowerCase().indexOf(term) > -1 || item.apellido.toLocaleLowerCase().indexOf(term) > -1;
