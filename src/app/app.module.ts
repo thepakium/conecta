@@ -39,6 +39,10 @@ const appRoutes: Routes = [
     component: MsjgrupalComponent
   },
   {
+    path: 'personal',
+    component: PersonalComponent
+  },
+  {
     path: '**',
     component: NoEncontradoComponent
   }

@@ -13,8 +13,20 @@ export class MsjdirComponent implements OnInit {
 
   usuarios: Usuario[];
   seleccionados: any;
-  mensaje: string;
+  categoria: any;
+  mensaje = '';
   datos: any;
+
+  categorias = ['Bienvenida a CONECTADOS',
+  'Convocatoria Actividades Informativas',
+  'Convocatoria Actividades Formativas',
+  'Convocatoria Actividades Culturales',
+  'Convocatoria Actividades Masivas',
+  'Recordatorio Acuerdos y Actividades',
+  'Cambios y/o Cancelación de Actividades',
+  'Urgencias e Imprevistos',
+  'Felicitaciones y Agradecimientos',
+  'Difundir y Promocionar'];
 
   constructor(  private busquedaService: BusquedaService,
                 private toastr: ToastrService ) { }
@@ -30,7 +42,7 @@ export class MsjdirComponent implements OnInit {
   enviarMensaje(numero: string , mensaje: string ) {
       this.busquedaService.enviarMsj( numero, mensaje ).subscribe( respuesta => {
         if (respuesta && !respuesta.errors) {
-          this.toastr.success( respuesta.body, 'Mensaje Enviado', {
+          this.toastr.success( respuesta, 'Mensaje Enviado', {
               timeOut: 3000,
           });
            this.seleccionados = null;
