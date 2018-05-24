@@ -44,8 +44,8 @@
   </div>
   <div class="form-group">
   
-  <select [(ngModel)]="categoria">
-    <option>Seleccione categoria</option>
+  <select [(ngModel)]="categoria"  [ngModelOptions]="{standalone: true}">
+    <option selected>Seleccione categoria</option>
     <option *ngFor="let c of categorias" >{{c}}</option>
   </select>
   </div>
