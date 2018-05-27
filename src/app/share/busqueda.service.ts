@@ -13,9 +13,9 @@ export class BusquedaService {
   constructor(private http: Http) { }
 
   listadoDatos( tipo: string): Observable<any> {
-    const apiURL = `${environment.apiUrl}/try.php`;
+    const apiURL = `${environment.apiUrl}/getData.php`;
     const formData: FormData = new FormData();
-    formData.append('tipo', tipo );
+    formData.append('data', tipo );
     return this.http.post( apiURL, formData )
     .pipe(map((r: Response) => r.json() ));
   }
@@ -30,7 +30,7 @@ export class BusquedaService {
       cb(JSON.parse(req.response));
     };
 
-    req.send('tipo=' + tipo);
+    req.send('data=' + tipo);
   }
 
   enviarMsj( fono: string , msj: string ): Observable<any> {

@@ -14,6 +14,7 @@ import { BusquedaService } from '../share/busqueda.service';
 export class MsjdirComponent implements OnInit {
 
   usuarios: Usuario[];
+  usuario: Usuario;
   seleccionados: any;
   categoria: any;
   mensaje = '';
@@ -32,7 +33,10 @@ export class MsjdirComponent implements OnInit {
 
                  }
 
-  ngOnInit() { }
+  ngOnInit() {
+  this.usuario = JSON.parse(localStorage.getItem('user'));
+  console.log( this.usuario);
+}
 
   enviarMensaje( ) {
 
@@ -60,11 +64,13 @@ export class MsjdirComponent implements OnInit {
   }
 
   buscarCategoria() {
-    this.busquedaService.obtenerDatos('categoria' , data => this.categorias = data );
+    const datos = { tipo: 'categoria'};
+    this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.categorias = data );
   }
 
   buscarUsuario() {
-    this.busquedaService.obtenerDatos('usuario' , data => this.usuarios = data );
+    const datos = { tipo: 'usuario'};
+    this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.usuarios = data );
   }
 
   onSelect({ selected }) {
