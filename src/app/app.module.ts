@@ -18,6 +18,7 @@ import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { environment } from '../environments/environment';
+import { IngresaPersonaComponent } from './ingresa-persona/ingresa-persona.component';
 
 // AoT requires an exported function for factories
 
@@ -43,6 +44,10 @@ const appRoutes: Routes = [
     component: PersonalComponent
   },
   {
+    path: 'ingresapersona',
+    component: IngresaPersonaComponent
+  },
+  {
     path: '**',
     component: NoEncontradoComponent
   }
@@ -60,6 +65,7 @@ const appRoutes: Routes = [
     PersonalComponent,
     NoEncontradoComponent,
     MsjgrupalComponent,
+    IngresaPersonaComponent,
   ],
   imports: [
     BrowserModule,
