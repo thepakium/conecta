@@ -18,6 +18,7 @@ import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { environment } from '../environments/environment';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 // AoT requires an exported function for factories
 
@@ -25,10 +26,6 @@ const appRoutes: Routes = [
   {
     path: '',
     component: LoginformComponent
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent
   },
   {
     path: 'msjdir',
@@ -67,6 +64,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgSelectModule,
     FormsModule,
+    NgxDatatableModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot()
