@@ -74,13 +74,13 @@
   </div>
   <div class="form-group">
     <label for="mensaje">Escriba su mensaje:</label>
-    <textarea rows="5" class="form-control" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" placeholder="Escriba Mensaje"></textarea>{{ mensaje.length }}
+    <textarea rows="5" class="form-control" maxlength="160" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" placeholder="Escriba Mensaje"></textarea>{{ 160 - mensaje.length }}
   </div>
   <div class="form-group">
   
   <select [(ngModel)]="categoria"  [ngModelOptions]="{standalone: true}">
     <option selected>Seleccione categoria</option>
-    <option *ngFor="let c of categorias" >{{c.nombre}}</option>
+    <option *ngFor="let c of categorias" >{{c.categoria}}</option>
   </select>
   </div>
   <button  (click)="enviarMensaje()" class="btn btn-default">enviar</button>

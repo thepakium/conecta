@@ -1,12 +1,12 @@
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-<form (submit)="loginUser($event)">
+<form (submit)="loginUser()">
   <div class="input">
       <label>Usuario</label>
-      <input type="text">
+      <input type="text" [(ngModel)]="ingreso.usuario" [ngModelOptions]="{standalone: true}" placeholder="Usuario">
     </div>  
   <div class="input">
         <label>Password</label>
-        <input type="current-password">
+        <input type="password" [(ngModel)]="ingreso.pass" [ngModelOptions]="{standalone: true}" placeholder="Password">
       </div>
   <div class ="input">
       <input type="submit" value="Ingresar">

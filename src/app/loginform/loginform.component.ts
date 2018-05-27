@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IngresoData } from 'src/app/share/models';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-loginform',
@@ -7,17 +9,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./loginform.component.css']
 })
 export class LoginformComponent implements OnInit {
+  constructor(private toastr: ToastrService,
+              private router: Router) { }
 
-  constructor(private router:Router) { }
+  ingreso: IngresoData = new IngresoData();
 
   ngOnInit() {
   }
-  loginUser(e){
-      e.preventDefault();
-      console.log(e);
-      var username = e.target.elements[0].value;
-      var password = e.target.elements[1].value;
-      if (username=='demo' && password=='demo')
+
+
+  loginUser() {
+
+    if ( this.ingreso.usuario === 'demo' && this.ingreso.pass === 'demo') {
+        this.toastr.success('', 'Acceso concedido', {
+          timeOut: 500,
+        });
+        localStorage.setItem('conecta2In', 'true');
         this.router.navigate(['msjdir']);
+      } else {
+        this.toastr.error('datos no fueron validados', 'Ingreso no válido', {
+                     timeOut: 3000,
+                 });
+      }
   }
 }
