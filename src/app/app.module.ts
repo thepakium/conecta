@@ -19,33 +19,38 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { environment } from '../environments/environment';
 import { IngresaPersonaComponent } from './ingresa-persona/ingresa-persona.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { AuthGuard } from './share';
+import { InformesComponent } from './informes/informes.component';
+
 
 // AoT requires an exported function for factories
 
 const appRoutes: Routes = [
   {
-    path: '',
+    path: 'login',
     component: LoginformComponent
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
-    path: 'msjdir',
+    path: 'msjdir',   canActivate: [AuthGuard],
     component: MsjdirComponent
   },
   {
-    path: 'msjgrupal',
+    path: 'msjgrupal',  canActivate: [AuthGuard],
     component: MsjgrupalComponent
   },
   {
-    path: 'personal',
+    path: 'personal',   canActivate: [AuthGuard],
     component: PersonalComponent
   },
+  { path: '', redirectTo: 'msjdir', pathMatch: 'full' },
   {
     path: 'ingresapersona',
     component: IngresaPersonaComponent
+  },
+  {
+    path: 'informe',
+    component: InformesComponent
   },
   {
     path: '**',
@@ -66,6 +71,8 @@ const appRoutes: Routes = [
     NoEncontradoComponent,
     MsjgrupalComponent,
     IngresaPersonaComponent,
+    InformesComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -73,12 +80,13 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgSelectModule,
     FormsModule,
+    NgxDatatableModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     ToastrModule.forRoot()
   ],
   exports: [RouterModule],
-  providers: [
+  providers: [AuthGuard,
     {
         provide: NG_SELECT_DEFAULT_CONFIG,
         useValue: {

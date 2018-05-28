@@ -23,7 +23,26 @@ export class BusquedaService {
   listadoUsuarios(): Observable<any> {
     const apiURL = `${environment.apiUrl}/try.php`;
     return this.http.get( apiURL )
+  }
+  listadoDatos( tipo: string): Observable<any> {
+    const apiURL = `${environment.apiUrl}/getData.php`;
+    const formData: FormData = new FormData();
+    formData.append('data', tipo );
+    return this.http.post( apiURL, formData )
     .pipe(map((r: Response) => r.json() ));
+  }
+
+
+  obtenerDatos( tipo , cb ) {
+    const req = new XMLHttpRequest();
+    req.open('POST', `${environment.apiUrl}/getData.php`, true);
+    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    req.onload = () => {
+      cb(JSON.parse(req.response));
+    };
+
+    req.send('data=' + tipo);
   }
 
   enviarMsj( fono: string , msj: string ): Observable<any> {

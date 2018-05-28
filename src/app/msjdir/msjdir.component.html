@@ -1,7 +1,7 @@
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Bienvenido Demo!</strong> ¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas! Con Conectados estás a un mensaje de distancia.
+  <strong>Bienvenid{{usuario.sexo == 'Mujer' ? 'a' : 'o'}} {{usuario.nombre}}!</strong> ¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas! Con Conectados estás a un mensaje de distancia.
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -16,7 +16,41 @@
   <br/>
   <br/>
 
+  <div style='float:left;width:75%'>
+      <ngx-datatable
+        style="width: 90%"
+        class="material"
+        [rows]="usuarios"
+        [columnMode]="'force'"
+        [headerHeight]="40"
+        [footerHeight]="50"
+        [rowHeight]="40"
+        [limit]="6"
+        [selected]="selected"
+        [selectionType]="'checkbox'"
+        (activate)="onActivate($event)"
+        (select)='onSelect($event)'>
+        <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+            <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
+              <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
+            </ng-template>
+            <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
+              <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Nombre">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{value}} <span [innerHTML]="row['apellido']"></span>
+              </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Genero"></ngx-datatable-column>
+        <ngx-datatable-column name="Barrio"></ngx-datatable-column>
+        <ngx-datatable-column name="Organizacion"></ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+
   <div class='row'>
+
 
   <div class="offset-1 col-10" >
 <form #msjForm="ngForm" novalidate >
@@ -41,16 +75,16 @@
   </div>
   <div class="form-group">
     <label for="mensaje">Escriba su mensaje:</label>
-    <textarea rows="5" class="form-control" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" placeholder="Escriba Mensaje"></textarea>{{ mensaje.length }}
+    <textarea rows="5" class="form-control" maxlength="160" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" placeholder="Escriba Mensaje"></textarea>{{ 160 - mensaje.length }}
   </div>
   <div class="form-group">
   
   <select [(ngModel)]="categoria"  [ngModelOptions]="{standalone: true}">
     <option selected>Seleccione categoria</option>
-    <option *ngFor="let c of categorias" >{{c}}</option>
+    <option *ngFor="let c of categorias" >{{c.categoria}}</option>
   </select>
   </div>
-  <button  (click)="enviarMensaje(seleccionados,mensaje)" class="btn btn-default">enviar</button>
+  <button  (click)="enviarMensaje()" class="btn btn-default">enviar</button>
 </form>
 </div>
 </div>
