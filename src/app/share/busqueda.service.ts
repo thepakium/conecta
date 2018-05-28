@@ -45,11 +45,10 @@ export class BusquedaService {
     req.send('data=' + tipo);
   }
 
-  enviarMsj( fono: string , msj: string ): Observable<any> {
+  enviarMsj( datos: string  ): Observable<any> {
     const apiURL = `${environment.apiUrl}/bulkSMS.php`;
     const formData: FormData = new FormData();
-    formData.append('telefono', fono );
-    formData.append('mensaje', msj );
+    formData.append('data', datos );
     return this.http.post( apiURL , formData )
     .pipe(map((r: Response) => r ));
   }

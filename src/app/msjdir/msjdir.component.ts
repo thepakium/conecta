@@ -35,13 +35,13 @@ export class MsjdirComponent implements OnInit {
 
   ngOnInit() {
   this.usuario = JSON.parse(localStorage.getItem('user'));
-  console.log( this.usuario);
 }
 
   enviarMensaje( ) {
+    const datos = { mensaje: this.mensaje , usuario: this.usuario, categoria: this.categoria, quienes: this.selected };
 
-    console.log( this.selected[1].telefono );
-    //   this.busquedaService.enviarMsj( numero, mensaje ).subscribe( respuesta => {
+    // console.log( this.selected[1].telefono );
+       this.busquedaService.enviarMsj( JSON.stringify(datos) ).subscribe( respuesta => {
     //     if (respuesta && !respuesta.errors) {
     //       this.toastr.success( respuesta, 'Mensaje Enviado', {
     //           timeOut: 3000,
@@ -54,8 +54,8 @@ export class MsjdirComponent implements OnInit {
     //           timeOut: 3000,
     //       });
     //   }
-
-    // } );
+console.log( respuesta );
+     } );
   }
 
   customSearchFn(term: string, item: Usuario) {
@@ -64,12 +64,12 @@ export class MsjdirComponent implements OnInit {
   }
 
   buscarCategoria() {
-    const datos = { tipo: 'categoria'};
+    const datos = { tipo: 'categoria', usuario: this.usuario};
     this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.categorias = data );
   }
 
   buscarUsuario() {
-    const datos = { tipo: 'usuario'};
+    const datos = { tipo: 'usuario', usuario: this.usuario};
     this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.usuarios = data );
   }
 
