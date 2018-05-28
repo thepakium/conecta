@@ -54,21 +54,13 @@
   <div class="offset-1 col-10" >
 <form #msjForm="ngForm" novalidate >
   <div class="form-group">
-    <label for="person">Seleccione Persona:</label>
+    <label for="person">Seleccione categoria:</label>
     <ng-select [searchable]="true" 
-              [items]="usuarios"
-              bindLabel="nombre"
-              bindValue="telefono"
-              [searchFn]="customSearchFn"
-              [multiple]="true"
-              placeholder="Seleccione Persona"
-              [(ngModel)]="seleccionados"  [ngModelOptions]="{standalone: true}" >
-              <!--ng-template ng-label-tmp let-item="item" let-search="searchTerm">
-                  <div><span >{{item.nombre}} {{item.apellido}}</span></div>
-                </ng-template-->
-              <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
-                <div><span [ngOptionHighlight]="search">{{item.nombre}} {{item.apellido}}</span></div>
-            </ng-template>
+              [items]="categorias"
+              bindLabel="categoria"
+              placeholder="Seleccione categoria"
+              [(ngModel)]="categoria"  [ngModelOptions]="{standalone: true}" >
+             
   </ng-select>
   
   </div>
@@ -78,11 +70,8 @@
   </div>
   <div class="form-group">
   
-  <select [(ngModel)]="categoria"  [ngModelOptions]="{standalone: true}">
-    <option selected>Seleccione categoria</option>
-    <option *ngFor="let c of categorias" >{{c.categoria}}</option>
-  </select>
   </div>
+  <input type="datetime-local" />
   <button  (click)="enviarMensaje()" class="btn btn-default">enviar</button>
 </form>
 </div>
