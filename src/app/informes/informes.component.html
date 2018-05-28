@@ -1,0 +1,21 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<div ng-app="informes" ng-controller="customersCtrl"> 
+  <div class="container">
+    <table>
+        <td><b>Emisor</b></td>
+        <td><b>Fecha Creación</b></td>
+        <td><b>Fecha Envio</b></td>
+        <td><b>Mensaje</b></td>
+        <td><b>Para</b></td>
+        <td><b>Estado</b></td>
+      <tr *ngFor="let dato of datarecibida">
+        <td>{{dato.nombre}}</td>
+        <td>{{dato.fecha_creacion}}</td>
+        <td>{{dato.fecha_envio}}</td>
+        <td>{{dato.body }}</td>
+        <td>{{dato.cliente }}</td>
+        <td>{{dato.estado }}</td>
+      </tr>
+    </table>    
+  </div>
+</div>
