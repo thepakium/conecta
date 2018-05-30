@@ -1,8 +1,7 @@
 
 <div class="container">
     <button type="button" class="btn btn-success" [routerLink]="['/msjdir']" >Mensajeria</button>&nbsp;
-    <button type="button" class="btn btn-primary" [routerLink]="['/msjgrupal']" >Reportes</button>&nbsp;
-    <button type="button" class="btn btn-secondary" [routerLink]="['/informe']" >Informe</button>&nbsp;
+    <button type="button" class="btn btn-primary" [routerLink]="['/informe']" >Reportes</button>&nbsp;
     <button type="button" class="btn btn-secondary" [routerLink]="['/ingresapersona']" >Personas</button>&nbsp;
     </div>
     <br/>
@@ -30,7 +29,6 @@
                             Sexo:
                             <ng-select [searchable]="false" 
                               [items]="generos"
-                              [searchFn]="customSearchFn"
                               [multiple]="false"
                               [(ngModel)]="genero"  
                               placeholder="Seleccione genero"
@@ -48,9 +46,8 @@
                       <div class="form-group">
                           <label for="organizacion">Seleccione Organizacion:</label>
                           <ng-select [searchable]="true" 
-                            [items]="organizaciones2"
+                            [items]="funds"
                             bindLabel="organizaciones"
-                            [searchFn]="customSearchFn"
                             [multiple]="false"
                             placeholder="Seleccione organizacion"
                             [(ngModel)]="seleccionados"  
@@ -68,7 +65,6 @@
                             <ng-select [searchable]="true" 
                               [items]="barrios"
                               bindLabel="barrios"
-                              [searchFn]="customSearchFn"
                               [multiple]="false"
                               placeholder="Seleccione barrio"
                               [(ngModel)]="seleccionadosb"  [ngModelOptions]="{standalone: true}" >

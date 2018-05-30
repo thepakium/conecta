@@ -2,8 +2,7 @@
 
 <div class="container">
   <button type="button" class="btn btn-success" [routerLink]="['/msjdir']" >Mensajeria</button>&nbsp;
-  <button type="button" class="btn btn-primary" [routerLink]="['/msjgrupal']" >Reportes</button>&nbsp;
-  <button type="button" class="btn btn-secondary" [routerLink]="['/informe']" >Informe</button>&nbsp;
+  <button type="button" class="btn btn-primary" [routerLink]="['/informe']" >Reportes</button>&nbsp;
   <button type="button" class="btn btn-secondary" [routerLink]="['/ingresapersona']" >Personas</button>&nbsp;
   </div>
   <br/>
@@ -23,7 +22,7 @@
     bindLabel="etiqueta"
     placeholder="Seleccione destinatarios"
     (change)='filtrar($event)'
-    [(ngModel)]="filtro"  [ngModelOptions]="{standalone: true}" >
+    [(ngModel)]="filtros"  [ngModelOptions]="{standalone: true}" >
 </ng-select>
 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#usersModal" >{{selected.length}} usuarios seleccionados</button>
 

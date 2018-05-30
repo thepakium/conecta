@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./ingresa-persona.component.css']
 })
 export class IngresaPersonaComponent implements OnInit {
+  funds=["Mi Parque","Fundación Test"]
   generos=["Hombre", "Mujer"]
   usuarios: Usuario[];
   seleccionados: any;
@@ -24,7 +25,8 @@ export class IngresaPersonaComponent implements OnInit {
   genero: string;
   mail: string;
   fecha_nacimiento="";
-  constructor(private busquedaService: BusquedaService) { }
+  constructor(private toastr: ToastrService,
+              private busquedaService: BusquedaService) { }
 
   ngOnInit()     { this.buscarUsuarios(); }
   private buscarUsuarios() {
@@ -39,9 +41,12 @@ export class IngresaPersonaComponent implements OnInit {
   }
   crear_Persona( nombre: string , apellido: string , telefono: string , genero :string, mail :string, fecha_nacimiento :string) {
       this.busquedaService.crearPersona(nombre,apellido,telefono,genero,mail,fecha_nacimiento).subscribe( respuesta => {
-      console.log("enviando a php : ",respuesta); } 
-    )
-  };
+        if (respuesta) {
+         this.toastr.success( respuesta, 'Persona Agregada', {timeOut: 3000,});
+          nombre = '';
+          fecha_nacimiento="";}
+        })
+  }
   buscaBarrio(organizacion: string) {
       console.log("entro a BuscaBarrio con valor : ",organizacion)
       this.busquedaService.listadoBarrios(organizacion).subscribe( respuesta => {
