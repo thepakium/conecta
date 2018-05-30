@@ -90,11 +90,11 @@ const appRoutes: Routes = [
     {
         provide: NG_SELECT_DEFAULT_CONFIG,
         useValue: {
-            notFoundText: 'Items not found',
-            addTagText: 'Add item',
-            typeToSearchText: 'Type to search',
-            loadingText: 'Loading...',
-            clearAllText: 'Clear all'
+            notFoundText: 'Elementos no encontrados',
+            addTagText: 'Ingrese elemento',
+            typeToSearchText: 'Escriba para buscar',
+            loadingText: 'Cargando...',
+            clearAllText: 'Limpiar todo'
         }
     }],
   bootstrap: [AppComponent]

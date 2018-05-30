@@ -10,38 +10,6 @@
   <br/>
   <br/>
 <!--
-  <div style='float:left;width:75%'>
-      <ngx-datatable
-        style="width: 90%"
-        class="material"
-        [rows]="usuarios"
-        [columnMode]="'force'"
-        [headerHeight]="40"
-        [footerHeight]="50"
-        [rowHeight]="40"
-        [limit]="6"
-        [selected]="selected"
-        [selectionType]="'checkbox'"
-        (activate)="onActivate($event)"
-        (select)='onSelect($event)'>
-        <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
-            <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
-              <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
-            </ng-template>
-            <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
-              <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Nombre">
-            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                {{value}} <span [innerHTML]="row['apellido']"></span>
-              </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Genero"></ngx-datatable-column>
-        <ngx-datatable-column name="Barrio"></ngx-datatable-column>
-        <ngx-datatable-column name="Organizacion"></ngx-datatable-column>
-      </ngx-datatable>
-    </div>
   -->
   <div class='row'>
 
@@ -58,13 +26,14 @@
     (change)='filtrar($event)'
     [(ngModel)]="filtro"  [ngModelOptions]="{standalone: true}" >
 </ng-select>
-{{selected?.length}} usuarios seleccionados
+<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#usersModal" >{{selected.length}} usuarios seleccionados</button>
+
   </div>
 
   <div class="form-group">
     <label for="categoria">Seleccione categoria:</label>
     <ng-select [searchable]="true" 
-              [items]="categorias"
+              [items]="categorias" required
               bindLabel="categoria"
               placeholder="Seleccione categoria"
               [(ngModel)]="categoria"  [ngModelOptions]="{standalone: true}" >
@@ -73,36 +42,67 @@
 
   <div class="form-group">
     <label for="mensaje">Escriba su mensaje:</label>
-    <textarea rows="5" class="form-control" maxlength="160" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" placeholder="Escriba Mensaje"></textarea>
+    <textarea rows="5" class="form-control" required maxlength="160" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" placeholder="Escriba Mensaje"></textarea>
       {{ 160 - mensaje.length }} carácteres restantes
-  </div>
-
-  <div class="form-group">
-    <input type="datetime-local" />
-    <button  (click)="enviarMensaje()" class="btn btn-default">enviar</button>
-  </div>
-</form>
+    </div>
+    
+    <div class="form-group">
+      <button  (click)="enviarMensaje()" class="btn btn-default" [disabled]="!((selected?.length>0)&&categoria&&mensaje)">Enviar</button> &nbsp; 
+      <label>Programar envío</label>
+      <input type="datetime-local"  [(ngModel)]="fecha" />
+    </div>
+    <div class="alert alert-danger" [hidden]="(selected?.length>0)&&categoria&&mensaje" >
+      <span [hidden]="selected?.length>0"> Debe seleccionar Destinatarios<br></span>
+      <span [hidden]="categoria"> Debe seleccionar Categoria<br></span>
+      <span [hidden]="mensaje"> Debe escribir mensaje</span>
+    </div>
+  </form>
 </div>
 </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-  </button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
+<div class="modal fade" id="usersModal" tabindex="-1" role="dialog" aria-labelledby="usersModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="usersModalLabel">Usuarios seleccionados</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ngx-datatable
+        class="material"
+        [rows]="usuarios"
+        [columnMode]="'force'"
+        [headerHeight]="40"
+        [footerHeight]="50"
+        [rowHeight]="40"
+        [limit]="6"
+        [selected]="selected"
+        [selectionType]="'checkbox'"
+        (activate)="onActivate($event)"
+                  (select)='onSelect($event)'>
+                  <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                      <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
+                        <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
+                      </ng-template>
+                      <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
+                        <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
+                      </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Nombre">
+                      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                          {{value}} <span [innerHTML]="row['apellido']"></span>
+                        </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Genero"></ngx-datatable-column>
+                  <ngx-datatable-column name="Barrio"></ngx-datatable-column>
+                  <ngx-datatable-column name="Organizacion"></ngx-datatable-column>
+                </ngx-datatable>
+            
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>

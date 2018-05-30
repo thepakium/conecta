@@ -18,6 +18,7 @@ export class MsjdirComponent implements OnInit {
   categoria: any;
   mensaje = '';
   datos: any;
+  fecha: string;
   filtros: Filtro[];
   selected: Usuario[] = [];
   timeout: any;
@@ -41,15 +42,21 @@ export class MsjdirComponent implements OnInit {
 }
 
   enviarMensaje( ) {
-    const datos = { mensaje: this.mensaje , usuario: this.usuario, categoria: this.categoria, quienes: this.selected };
+    const datos = { mensaje: this.mensaje ,
+                    usuario: this.usuario,
+                    categoria: this.categoria,
+                    quienes: this.selected,
+                    programar: this.fecha
+                  };
 
        this.busquedaService.enviarMsj( JSON.stringify(datos) ).subscribe( respuesta => {
          if (respuesta && !respuesta.errors) {
            this.toastr.success( respuesta, 'Mensaje Enviado', {
                timeOut: 3000,
            });
-            this.selected = null;
-            this.mensaje = null;
+            this.selected = [];
+            this.categoria = null;
+            this.mensaje = '';
        } else {
            this.toastr.error('Mensajes no fueron enviados', 'ERROR', {
                timeOut: 3000,
