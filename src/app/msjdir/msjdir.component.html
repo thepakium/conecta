@@ -1,11 +1,4 @@
-<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Bienvenid{{usuario.sexo == 'Mujer' ? 'a' : 'o'}} {{usuario.nombre}}!</strong> ¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas! Con Conectados estás a un mensaje de distancia.
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
 
 <div class="container">
   <button type="button" class="btn btn-success" [routerLink]="['/msjdir']" >Mensajeria</button>&nbsp;
@@ -16,7 +9,7 @@
   </div>
   <br/>
   <br/>
-
+<!--
   <div style='float:left;width:75%'>
       <ngx-datatable
         style="width: 90%"
@@ -49,32 +42,68 @@
         <ngx-datatable-column name="Organizacion"></ngx-datatable-column>
       </ngx-datatable>
     </div>
-
+  -->
   <div class='row'>
 
 
   <div class="offset-1 col-10" >
 <form #msjForm="ngForm" novalidate >
+
   <div class="form-group">
-    <label for="person">Seleccione categoria:</label>
+    <label for="destinatario">Seleccione agrupación destinatarios:</label>
+    <ng-select [searchable]="true" 
+    [items]="filtros"
+    bindLabel="etiqueta"
+    placeholder="Seleccione destinatarios"
+    (change)='filtrar($event)'
+    [(ngModel)]="filtro"  [ngModelOptions]="{standalone: true}" >
+</ng-select>
+{{selected?.length}} usuarios seleccionados
+  </div>
+
+  <div class="form-group">
+    <label for="categoria">Seleccione categoria:</label>
     <ng-select [searchable]="true" 
               [items]="categorias"
               bindLabel="categoria"
               placeholder="Seleccione categoria"
               [(ngModel)]="categoria"  [ngModelOptions]="{standalone: true}" >
-             
-  </ng-select>
-  
+    </ng-select>
   </div>
+
   <div class="form-group">
     <label for="mensaje">Escriba su mensaje:</label>
-    <textarea rows="5" class="form-control" maxlength="160" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" placeholder="Escriba Mensaje"></textarea>{{ 160 - mensaje.length }}
+    <textarea rows="5" class="form-control" maxlength="160" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" placeholder="Escriba Mensaje"></textarea>
+      {{ 160 - mensaje.length }} carácteres restantes
   </div>
+
   <div class="form-group">
-  
+    <input type="datetime-local" />
+    <button  (click)="enviarMensaje()" class="btn btn-default">enviar</button>
   </div>
-  <input type="datetime-local" />
-  <button  (click)="enviarMensaje()" class="btn btn-default">enviar</button>
 </form>
 </div>
 </div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

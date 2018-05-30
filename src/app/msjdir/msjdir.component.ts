@@ -15,12 +15,10 @@ export class MsjdirComponent implements OnInit {
 
   usuarios: Usuario[];
   usuario: Usuario;
-  seleccionados: any;
   categoria: any;
   mensaje = '';
   datos: any;
-
-  rows = [];
+  filtros: Filtro[];
   selected: Usuario[] = [];
   timeout: any;
 
@@ -30,31 +28,33 @@ export class MsjdirComponent implements OnInit {
                   private busquedaService: BusquedaService  ) {
                   this.buscarCategoria( );
                   this.buscarUsuario();
-
+                  this.buscarFiltros();
                  }
 
   ngOnInit() {
-  this.usuario = JSON.parse(localStorage.getItem('user'));
+    this.usuario = JSON.parse(localStorage.getItem('user'));
+
+    this.toastr.show(
+      '¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas!' +
+      ' Con Conectados estás a un mensaje de distancia.' ,
+      'Bienvenid' + (this.usuario.genero === 'Mujer' ? 'a ' : 'o ')  + this.usuario.nombre, { timeOut: 6000 });
 }
 
   enviarMensaje( ) {
     const datos = { mensaje: this.mensaje , usuario: this.usuario, categoria: this.categoria, quienes: this.selected };
 
-    // console.log( this.selected[1].telefono );
        this.busquedaService.enviarMsj( JSON.stringify(datos) ).subscribe( respuesta => {
-    //     if (respuesta && !respuesta.errors) {
-    //       this.toastr.success( respuesta, 'Mensaje Enviado', {
-    //           timeOut: 3000,
-    //       });
-    //        this.seleccionados = null;
-    //        this.mensaje = null;
-    //   } else {
-    //       console.log( respuesta );
-    //       this.toastr.error('Mensajes no fueron enviados', 'ERROR', {
-    //           timeOut: 3000,
-    //       });
-    //   }
-console.log( respuesta );
+         if (respuesta && !respuesta.errors) {
+           this.toastr.success( respuesta, 'Mensaje Enviado', {
+               timeOut: 3000,
+           });
+            this.selected = null;
+            this.mensaje = null;
+       } else {
+           this.toastr.error('Mensajes no fueron enviados', 'ERROR', {
+               timeOut: 3000,
+           });
+       }
      } );
   }
 
@@ -64,17 +64,45 @@ console.log( respuesta );
   }
 
   buscarCategoria() {
-    const datos = { tipo: 'categoria', usuario: this.usuario};
+    const datos = { tipo: 'categoria', usuario: this.usuario };
     this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.categorias = data );
   }
 
+  buscarFiltros() {
+    const datos = { tipo: 'filtroUsuario', usuario: this.usuario };
+    this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.filtros = data );
+  }
+
   buscarUsuario() {
-    const datos = { tipo: 'usuario', usuario: this.usuario};
+    const datos = { tipo: 'usuario', usuario: this.usuario };
     this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.usuarios = data );
   }
 
+
+  filtrar(event) {
+    this.selected.splice(0, this.selected.length);
+    this.usuarios.forEach( quien => {
+      switch (event.tipo) {
+        case 'organizacion':
+          if ( quien.organizacion === event.nombre ) {
+            this.selected.push( quien );
+          }
+          break;
+        case 'barrio':
+          if ( quien.barrio === event.nombre ) {
+            this.selected.push( quien );
+          }
+          break;
+        case 'sexo':
+          if ( quien.genero === event.nombre ) {
+            this.selected.push ( quien );
+          }
+          break;
+      }
+    } );
+  }
+
   onSelect({ selected }) {
-    // console.log('Select Event', selected, this.selected);
 
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
@@ -96,5 +124,18 @@ interface Usuario {
   nombre: string;
   apellido: string;
   telefono: number;
-  sexo: string;
+  genero: string;
+  barrio: string;
 }
+
+interface Filtro {
+  tipo: string;
+  nombre: string;
+  etiqueta: string;
+}
+
+
+
+
+
+
