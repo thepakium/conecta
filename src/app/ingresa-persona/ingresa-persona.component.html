@@ -1,3 +1,13 @@
+
+<div class="container">
+    <button type="button" class="btn btn-success" [routerLink]="['/msjdir']" >Mensajeria</button>&nbsp;
+    <button type="button" class="btn btn-primary" [routerLink]="['/msjgrupal']" >Reportes</button>&nbsp;
+    <button type="button" class="btn btn-secondary" [routerLink]="['/informe']" >Informe</button>&nbsp;
+    <button type="button" class="btn btn-secondary" [routerLink]="['/ingresapersona']" >Personas</button>&nbsp;
+    </div>
+    <br/>
+    <br/>
+
 <div class="row">
   <div class="col-md-12 col-centered">
       <div class="card mb-1">
@@ -7,10 +17,10 @@
                   Ingresar Persona<br>
                   <div class="row">
                     <div class="col-sm-4">
-                        Nombre <input  type="string" class="form-control"[(ngModel)]="nombre"/>
+                        Nombre <input  type="string" class="form-control"[(ngModel)]="nombre" placeholder="Ingrese nombre"/>
                     </div>
                     <div class="col-md-5">
-                        Apellidos<input  type="string" class="form-control"[(ngModel)]="apellido"/> 
+                        Apellidos<input  type="string" class="form-control"[(ngModel)]="apellido" placeholder="Ingrese Apellido"/> 
                     </div>
                   </div>
                   <div class="row">
@@ -71,10 +81,10 @@
                   </div>
                   <div class="row">
                     <div class="col-md-2">
-                     Teléfono <input  type="string" class="form-control"[(ngModel)]="telefono"/>
+                     Teléfono <input  type="string" class="form-control"[(ngModel)]="telefono" placeholder="Ingrese Telefono" maxlength="11"/>
                     </div>
                     
-                    <div class="col-md-4">Mail<input  type="mail" class="form-control"[(ngModel)]="mail"/> 
+                    <div class="col-md-4">Mail<input  type="mail" class="form-control"[(ngModel)]="mail" placeholder="Ingrese Mail"/> 
                     </div>
 
                   </div>

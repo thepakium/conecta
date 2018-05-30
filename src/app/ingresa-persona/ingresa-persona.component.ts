@@ -18,25 +18,25 @@ export class IngresaPersonaComponent implements OnInit {
   organizaciones=[];
   organizaciones2=[];
   barrios: Barrio[];
-  nombre="Ingrese nombre..";
-  apellido="Ingrese Apellidos";
-  telefono="56912345678";
-  genero="";
-  mail="";
+  nombre: string;
+  apellido: string;
+  telefono: string;
+  genero: string;
+  mail: string;
   fecha_nacimiento="";
-  constructor(private busquedaService: BusquedaService,) { }
+  constructor(private busquedaService: BusquedaService) { }
 
   ngOnInit()     { this.buscarUsuarios(); }
   private buscarUsuarios() {
     this.busquedaService.listadoUsuarios().subscribe( respuesta => {
       respuesta.data.forEach(element => {
         this.organizaciones.push(element.organizacion);
-        
+
         });
         this.organizaciones2 = Array.from( new Set( this.organizaciones));
         console.log(this.organizaciones2);
     } );
-  }   
+  }
   crear_Persona( nombre: string , apellido: string , telefono: string , genero :string, mail :string, fecha_nacimiento :string) {
       this.busquedaService.crearPersona(nombre,apellido,telefono,genero,mail,fecha_nacimiento).subscribe( respuesta => {
       console.log("enviando a php : ",respuesta); } 
