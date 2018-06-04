@@ -13,7 +13,6 @@
 
 
   <div class="offset-1 col-10" >
-<form #msjForm="ngForm" novalidate >
 
   <div class="form-group">
     <label for="destinatario">Seleccione agrupación destinatarios:</label>
@@ -22,7 +21,7 @@
     bindLabel="etiqueta"
     placeholder="Seleccione destinatarios"
     (change)='filtrar($event)'
-    [(ngModel)]="filtros"  [ngModelOptions]="{standalone: true}" >
+    [(ngModel)]="dest"  >
 </ng-select>
 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#usersModal" >{{selected.length}} usuarios seleccionados</button>
 
@@ -34,13 +33,13 @@
               [items]="categorias" required
               bindLabel="categoria"
               placeholder="Seleccione categoria"
-              [(ngModel)]="categoria"  [ngModelOptions]="{standalone: true}" >
+              [(ngModel)]="categoria" >
     </ng-select>
   </div>
 
   <div class="form-group">
     <label for="mensaje">Escriba su mensaje:</label>
-    <textarea rows="5" class="form-control" required maxlength="160" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" placeholder="Escriba Mensaje"></textarea>
+    <textarea rows="5" class="form-control" required maxlength="160" [(ngModel)]="mensaje" placeholder="Escriba Mensaje"></textarea>
       {{ 160 - mensaje.length }} carácteres restantes
     </div>
     
@@ -54,7 +53,6 @@
       <span [hidden]="categoria"> Debe seleccionar Categoria<br></span>
       <span [hidden]="mensaje"> Debe escribir mensaje</span>
     </div>
-  </form>
 </div>
 </div>
 

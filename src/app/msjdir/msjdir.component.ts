@@ -4,6 +4,7 @@ import {NgSelectModule, NgOption} from '@ng-select/ng-select';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../environments/environment';
 import { BusquedaService } from '../share/busqueda.service';
+import { Usuario, Formulario } from 'src/app/share/models';
 
 @Component({
   selector: 'app-msjdir',
@@ -22,6 +23,7 @@ export class MsjdirComponent implements OnInit {
   filtros: Filtro[];
   selected: Usuario[] = [];
   timeout: any;
+  form = new Formulario();
 
   categorias = [];
 
@@ -35,10 +37,10 @@ export class MsjdirComponent implements OnInit {
   ngOnInit() {
     this.usuario = JSON.parse(localStorage.getItem('user'));
 
-    this.toastr.show(
-      '¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas!' +
-      ' Con Conectados estás a un mensaje de distancia.' ,
-      'Bienvenid' + (this.usuario.genero === 'Mujer' ? 'a ' : 'o ')  + this.usuario.nombre, { timeOut: 6000 });
+     this.toastr.show(
+       '¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas!' +
+       ' Con Conectados estás a un mensaje de distancia.' ,
+       'Bienvenid' + (this.usuario.genero === 'Mujer' ? 'a ' : 'o ')  + this.usuario.nombre, { timeOut: 6000 });
 }
 
   enviarMensaje( ) {
@@ -126,14 +128,7 @@ export class MsjdirComponent implements OnInit {
 }
 
 // just an interface for type safety.
-interface Usuario {
-  organizacion: string;
-  nombre: string;
-  apellido: string;
-  telefono: number;
-  genero: string;
-  barrio: string;
-}
+
 
 interface Filtro {
   tipo: string;
