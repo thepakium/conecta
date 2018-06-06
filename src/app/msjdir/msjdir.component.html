@@ -44,7 +44,7 @@
     </div>
     
     <div class="form-group">
-      <button  (click)="enviarMensaje()" class="btn btn-default" [disabled]="!((selected?.length>0)&&categoria&&mensaje)">Enviar</button> &nbsp; 
+      <button data-toggle="modal" data-target="#previewModal" class="btn btn-default" [disabled]="!((selected?.length>0)&&categoria&&mensaje)">{{fecha?'Programar':'Revisar'}}</button> &nbsp; 
       <label>Programar envío</label>
       <input type="datetime-local"  [(ngModel)]="fecha" />
     </div>
@@ -54,6 +54,7 @@
       <span [hidden]="mensaje"> Debe escribir mensaje</span>
     </div>
 </div>
+<pre>{{ fecha }}</pre>
 </div>
 
 <div class="modal fade" id="usersModal" tabindex="-1" role="dialog" aria-labelledby="usersModalLabel" aria-hidden="true">
@@ -98,7 +99,23 @@
             
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="speech-bubble">
+            <h2 style="padding:15px;">{{ mensaje }}</h2>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success"  (click)="enviarMensaje()" >Enviar</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>

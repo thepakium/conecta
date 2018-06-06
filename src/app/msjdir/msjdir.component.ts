@@ -19,11 +19,13 @@ export class MsjdirComponent implements OnInit {
   categoria: any;
   mensaje = '';
   datos: any;
-  fecha: string;
+  fecha: Date;
   filtros: Filtro[];
   selected: Usuario[] = [];
   timeout: any;
   form = new Formulario();
+
+
 
   categorias = [];
 
@@ -37,10 +39,10 @@ export class MsjdirComponent implements OnInit {
   ngOnInit() {
     this.usuario = JSON.parse(localStorage.getItem('user'));
 
-     this.toastr.show(
-       '¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas!' +
-       ' Con Conectados estás a un mensaje de distancia.' ,
-       'Bienvenid' + (this.usuario.genero === 'Mujer' ? 'a ' : 'o ')  + this.usuario.nombre, { timeOut: 6000 });
+    //  this.toastr.show(
+    //    '¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas!' +
+    //    ' Con Conectados estás a un mensaje de distancia.' ,
+    //    'Bienvenid' + (this.usuario.genero === 'Mujer' ? 'a ' : 'o ')  + this.usuario.nombre, { timeOut: 6000 });
 }
 
   enviarMensaje( ) {
