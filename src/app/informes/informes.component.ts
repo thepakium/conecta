@@ -9,33 +9,32 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./informes.component.css'],
   providers: [BusquedaService]
 })
+
 export class InformesComponent implements OnInit {
-  datarecibida: Mensaje[];
+  datarecibida = [];
   Contador_sms_mes: Conta[];
 
-
-  
-  constructor(private busquedaService: BusquedaService) { 
+  constructor(private busquedaService: BusquedaService) {
     this.buscarMensajes();
     this.buscarconteosms();
 
 }
   ngOnInit() {
-    
-    }
-    buscarconteosms() {
+  }
+
+  buscarconteosms() {
       const datos = { tipo: 'contador_sms'};
       this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => { 
         this.Contador_sms_mes = data; 
         console.log(this.Contador_sms_mes);} );
   }
-    buscarMensajes() {
+
+  buscarMensajes() {
       const datos = { tipo: 'mensajes'};
-      this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => { 
-        this.datarecibida = data; 
-        console.log(this.datarecibida);} );
+      this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.datarecibida = data
+     );
   }
-    
+
 
 
 }
@@ -44,11 +43,3 @@ export class InformesComponent implements OnInit {
 interface Conta {
   cuantos: string;
 }
-interface Mensaje {
-  nombre: string;
-  fecha_creacion: string;
-  fecha_envio: string;
-  body: string;
-  t_to: string;
-  cliente: string;
-  estado: string;}

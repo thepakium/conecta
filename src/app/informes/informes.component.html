@@ -1,9 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
 <div class="container">
     <button type="button" class="btn btn-success" [routerLink]="['/msjdir']" >Mensajeria</button>&nbsp;
     <button type="button" class="btn btn-primary" [routerLink]="['/informe']" >Reportes</button>&nbsp;
@@ -11,64 +5,42 @@
     </div>
     <br/>
     <br/>
-<div ng-app="informes" ng-controller="customersCtrl"> 
-  <div class="row">
-      <div class="col-dm-11 col-centered">
-          <table>
-              <td><b>Ranking Envios</b></td>
-              <tr *ngFor="let dato of Contador_sms_mes">
-                  <td>{{ dato.usuario==datarecibida[0].id?datarecibida[0].nombre:"Rodrigo"}} {{dato.cuantos}} Mensajes enviados este mes.</td>          
-          </table>
-      </div>
-  </div>
-  <br>
-  <div class="container">
-    <table>
-        <td><b>Emisor</b></td>
-        <td><b>Fecha Creación</b></td>
-        <td><b>Fecha Envio</b></td>
-        <td><b>Mensaje</b></td>
-        <td><b>Para</b></td>
-        <td><b>Estado</b></td>
-      <tr *ngFor="let dato of datarecibida">
-        <td>{{dato.nombre}}</td>
-        <td>{{dato.fecha_creacion}}</td>
-        <td>{{dato.fecha_envio}}</td>
-        <td>{{dato.body }}</td>
-        <td>{{dato.cliente }}</td>
-        <td>{{dato.estado }}</td>
-      </tr>
-    </table>    
-  </div>
-</div>
-<!--
-<div style='float:left;width:75%'>
+<div >
     <ngx-datatable
       style="width: 90%"
       class="material"
       [rows]="datarecibida"
-      [columnMode]="'standard'"
+      [columnMode]="'force'"
       [headerHeight]="40"
       [footerHeight]="50"
+      [groupRowsBy]="'camada'"
       [rowHeight]="40"
       [limit]="6"
       (select)='onSelect($event)'>
-      <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
-         
-      </ngx-datatable-column>
       <ngx-datatable-column name="Nombre"></ngx-datatable-column>
-      <ngx-datatable-column name="fcrea">
-          <ng-template let-column="column" ngx-datatable-header-template>
+      <ngx-datatable-column prop="fechaEnvio">
+          <ng-template let-column="column" ngx-datatable-header-template>Fecha Envio
           </ng-template>
           <ng-template let-value="value" ngx-datatable-cell-template>
-              {{value}}
+              {{value| date: 'dd/MM/yyyy HH:mm'}}
+          </ng-template>
+      </ngx-datatable-column>
+      
+      <ngx-datatable-column prop="fechaRecepcion">
+          <ng-template let-column="column" ngx-datatable-header-template>Fecha Recepcion
+          </ng-template>
+          <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value| date: 'dd/MM/yyyy HH:mm'}}
           </ng-template>
       </ngx-datatable-column>
       
       <ngx-datatable-column name="Cliente"></ngx-datatable-column>
-      <ngx-datatable-column name="Body"></ngx-datatable-column>
+      <ngx-datatable-column name="Body" [width]="240" >
+          <ng-template let-column="column"  ngx-datatable-header-template>{{column.name}}</ng-template> 
+        </ngx-datatable-column>
+      <ngx-datatable-column name="Categoria" [width]="240"></ngx-datatable-column>
       <ngx-datatable-column name="Estado"></ngx-datatable-column>
     </ngx-datatable>
   </div>
--->
+
   <button type="button" class="btn btn-primary float-left"><b>Contactanos</b></button>
