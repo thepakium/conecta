@@ -46,22 +46,26 @@
 </div>
 </div>
 
-  <button type="button" class="btn btn-primary float-left"(click)="visible=true"><b>Contactanos</b></button>
+  <button type="button" class="btn btn-primary float-left" data-toggle="modal" data-target="#contactoModal"><b>Contactanos</b></button>
  
-
-  <div class="container ">
-        <div [hidden]="!visible">
-    <h1>Problemas Sugerencias</h1>
-    <form>
-      <div class="form-group">
-        <label for="form_contacto">¿Deseas reportar un incidente? ¿tienes una sugerencia?<br>ESCRIBENOS!</label>
-        <input type="text" class="form-control" id="form_contacto" required 
-        [(ngModel)]="sugerencias" name="form_contacto">
-      </div>
- 
-
-      <button type="submit" class="btn btn-secondary">Cancelar</button>
-      <button type="submit" class="btn btn-success"(click)="visible=false">Enviar comentario</button>
- 
-    </form>
+  <div class="modal fade" id="contactoModal" tabindex="-1" role="dialog" aria-labelledby="contactoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <h5 class="modal-title" id="contactoModalLabel"><h1>Problemas Sugerencias</h1></h5>
+            <form>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="form_contacto">¿Deseas reportar un incidente? ¿tienes una sugerencia?<br>ESCRIBENOS!</label>
+                    <input type="text" class="form-control" id="form_contacto" required 
+                    [(ngModel)]="sugerencias" name="form_contacto">
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" data-dismiss="modal" >Enviar comentario</button>
+              </div>
+            </form>
         </div>
+          </div>
+        </div>
+      
