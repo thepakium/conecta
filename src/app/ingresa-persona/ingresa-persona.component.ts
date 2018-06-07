@@ -10,60 +10,63 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./ingresa-persona.component.css']
 })
 export class IngresaPersonaComponent implements OnInit {
-  funds=["Mi Parque","Fundación Test"]
-  generos=["Hombre", "Mujer"]
+  funds = [ 'Mi Parque', 'Fundación Test'];
+  generos = ['Masculino', 'Femenino'];
   usuarios: Usuario[];
   seleccionados: any;
   seleccionadosb: any;
-  organizacion: "";
-  organizaciones=[];
-  organizaciones2=[];
+  organizacion: '';
+  organizaciones = [];
+  organizaciones2 = [];
   barrios: Barrio[];
   nombre: string;
   apellido: string;
   telefono: string;
   genero: string;
   mail: string;
-  fecha_nacimiento="";
+  fecha_nacimiento = '';
   constructor(private toastr: ToastrService,
               private busquedaService: BusquedaService) { }
 
-  ngOnInit()     { this.buscarUsuarios(); }
-  private buscarUsuarios() {
-    this.busquedaService.listadoUsuarios().subscribe( respuesta => {
-      respuesta.data.forEach(element => {
-        this.organizaciones.push(element.organizacion);
+  ngOnInit()     {
+        this.buscarUsuarios(); 
+      }
 
+  
+  private buscarUsuarios() {
+      this.busquedaService.listadoUsuarios().subscribe( respuesta => {
+          respuesta.data.forEach(element => {
+              this.organizaciones.push(element.organizacion);
         });
         this.organizaciones2 = Array.from( new Set( this.organizaciones));
         console.log(this.organizaciones2);
     } );
   }
-  crear_Persona( nombre: string , apellido: string , telefono: string , genero :string, mail :string, fecha_nacimiento :string) {
-      this.busquedaService.crearPersona(nombre,apellido,telefono,genero,mail,fecha_nacimiento).subscribe( respuesta => {
+
+  crear_Persona( nombre: string , apellido: string , telefono: string , genero: string, mail: string, fecha_nacimiento: string) {
+      this.busquedaService.crearPersona(nombre, apellido, telefono, genero, mail, fecha_nacimiento).subscribe( respuesta => {
         if (respuesta) {
-         this.toastr.success( respuesta, 'Persona Agregada', {timeOut: 3000,});
+         this.toastr.success( respuesta, 'Persona Agregada', {timeOut: 3000});
           nombre = '';
-          fecha_nacimiento="";}
-        })
+          fecha_nacimiento = ''; }
+        });
   }
+
   buscaBarrio(organizacion: string) {
-      console.log("entro a BuscaBarrio con valor : ",organizacion)
+      // console.log("entro a BuscaBarrio con valor : ",organizacion)
       this.busquedaService.listadoBarrios(organizacion).subscribe( respuesta => {
-      console.log("enviando a buscabarrio : ",respuesta); 
+      // console.log("enviando a buscabarrio : ",respuesta);
       respuesta.data.forEach(element => {
         this.barrios.push(element.nombre);
-        
         });
-    } 
-    )
-  };
-  update () {
-      console.log("ahora tiene : ",this.organizaciones);
+    }
+    );
   }
-    
-    
-  
+
+  update () {
+      // console.log("ahora tiene : ",this.organizaciones);
+  }
+
 }
 
 interface Barrio {

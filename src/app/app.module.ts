@@ -22,6 +22,7 @@ import { IngresaPersonaComponent } from './ingresa-persona/ingresa-persona.compo
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AuthGuard } from './share';
 import { InformesComponent } from './informes/informes.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 // AoT requires an exported function for factories
@@ -83,6 +84,7 @@ const appRoutes: Routes = [
     NgxDatatableModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
+    NgbModule.forRoot(),
     ToastrModule.forRoot()
   ],
   exports: [RouterModule],

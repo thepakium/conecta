@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../environments/environment';
 import { BusquedaService } from '../share/busqueda.service';
 import { Usuario, Formulario } from 'src/app/share/models';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-msjdir',
@@ -38,12 +39,12 @@ export class MsjdirComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = JSON.parse(localStorage.getItem('user'));
+    setTimeout(() => this.toastr.show('¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas!' +
+                                      ' Con Conectados estás a un mensaje de distancia.' ,
+                                      'Bienvenid' + (this.usuario.genero === 'Mujer' ? 'a ' : 'o ')  + this.usuario.nombre));
+  }
 
-    //  this.toastr.show(
-    //    '¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas!' +
-    //    ' Con Conectados estás a un mensaje de distancia.' ,
-    //    'Bienvenid' + (this.usuario.genero === 'Mujer' ? 'a ' : 'o ')  + this.usuario.nombre, { timeOut: 6000 });
-}
+
 
   enviarMensaje( ) {
     const datos = { mensaje: this.mensaje ,
@@ -67,6 +68,15 @@ export class MsjdirComponent implements OnInit {
            });
        }
      } );
+  }
+
+  cambiarTexto( texto: string ) {
+    if ( this.selected.length > 0 ) {
+      const quien = this.selected[0];
+      return texto.replace('##{nombre}', quien.nombre ).replace('##{apelli}', quien.apellido ).replace('##{barrio}', quien.barrio );
+    }
+
+    return texto;
   }
 
   customSearchFn(term: string, item: Usuario) {
