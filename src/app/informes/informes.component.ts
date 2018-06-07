@@ -13,7 +13,8 @@ import { environment } from '../../environments/environment';
 export class InformesComponent implements OnInit {
   datarecibida = [];
   Contador_sms_mes: Conta[];
-
+  sugerencias: any;
+  visible: false;
   constructor(private busquedaService: BusquedaService) {
     this.buscarMensajes();
     this.buscarconteosms();
