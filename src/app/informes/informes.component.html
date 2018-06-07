@@ -6,6 +6,8 @@
     <br/>
     <br/>
 <div >
+        
+    <div [hidden]="visible">
     <ngx-datatable
       style="width: 90%"
       class="material"
@@ -41,6 +43,25 @@
       <ngx-datatable-column name="Categoria" [width]="240"></ngx-datatable-column>
       <ngx-datatable-column name="Estado"></ngx-datatable-column>
     </ngx-datatable>
-  </div>
+</div>
+</div>
 
-  <button type="button" class="btn btn-primary float-left"><b>Contactanos</b></button>
+  <button type="button" class="btn btn-primary float-left"(click)="visible=true"><b>Contactanos</b></button>
+ 
+
+  <div class="container ">
+        <div [hidden]="!visible">
+    <h1>Problemas Sugerencias</h1>
+    <form>
+      <div class="form-group">
+        <label for="form_contacto">¿Deseas reportar un incidente? ¿tienes una sugerencia?<br>ESCRIBENOS!</label>
+        <input type="text" class="form-control" id="form_contacto" required 
+        [(ngModel)]="sugerencias" name="form_contacto">
+      </div>
+ 
+
+      <button type="submit" class="btn btn-secondary">Cancelar</button>
+      <button type="submit" class="btn btn-success"(click)="visible=false">Enviar comentario</button>
+ 
+    </form>
+        </div>
