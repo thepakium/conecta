@@ -3,6 +3,24 @@
   <button type="button" class="btn btn-primary" [routerLink]="['/msjgrupal']" >Reportes</button>&nbsp;
   <button type="button" class="btn btn-secondary" [routerLink]="['/personal']" >Gestión Personas</button>
   </div>
-  <p>
-  gestion de personas
-</p>
+  
+  <div>
+    <ngx-datatable
+        style="width: 90%"
+        class="material"
+        [rows]="usuarios"
+        [columnMode]="'force'"
+        [headerHeight]="40"
+        [footerHeight]="50"
+        [rowHeight]="40"
+        [loadingIndicator]="loadingIndicator"
+        [limit]="10"
+        (select)='onSelect($event)'>
+      <ngx-datatable-column name="Organizacion"></ngx-datatable-column>
+      <ngx-datatable-column name="Barrio"></ngx-datatable-column>
+      <ngx-datatable-column name="Genero"></ngx-datatable-column>
+      <ngx-datatable-column name="Nombre"></ngx-datatable-column>
+      <ngx-datatable-column name="Telefono"></ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+<pre>{{usuarios|json}}</pre>

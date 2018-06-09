@@ -7,7 +7,6 @@
     <br/>
 <div >
         
-    <div [hidden]="visible">
     <ngx-datatable
       style="width: 90%"
       class="material"
@@ -16,6 +15,7 @@
       [headerHeight]="40"
       [footerHeight]="50"
       [groupRowsBy]="'camada'"
+      [loadingIndicator]="loadingIndicator"
       [rowHeight]="40"
       [limit]="6"
       (select)='onSelect($event)'>
@@ -43,7 +43,6 @@
       <ngx-datatable-column name="Categoria" [width]="240"></ngx-datatable-column>
       <ngx-datatable-column name="Estado"></ngx-datatable-column>
     </ngx-datatable>
-</div>
 </div>
 
   <button type="button" class="btn btn-primary float-left" data-toggle="modal" data-target="#contactoModal"><b>Contactanos</b></button>

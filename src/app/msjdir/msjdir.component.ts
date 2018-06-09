@@ -25,10 +25,8 @@ export class MsjdirComponent implements OnInit {
   selected: Usuario[] = [];
   timeout: any;
   form = new Formulario();
-
-
-
   categorias = [];
+  loadingIndicator = true;
 
   constructor(    private toastr: ToastrService,
                   private busquedaService: BusquedaService  ) {
@@ -56,13 +54,14 @@ export class MsjdirComponent implements OnInit {
 
        this.busquedaService.enviarMsj( JSON.stringify(datos) ).subscribe( respuesta => {
          if (respuesta && !respuesta.errors) {
-           this.toastr.success( respuesta, 'Mensaje Enviado', {
+           this.toastr.success( respuesta.text(), 'Mensaje Enviado', {
                timeOut: 3000,
            });
             this.selected = [];
             this.categoria = null;
             this.mensaje = '';
        } else {
+          console.log(respuesta);
            this.toastr.error('Mensajes no fueron enviados', 'ERROR', {
                timeOut: 3000,
            });
@@ -73,7 +72,7 @@ export class MsjdirComponent implements OnInit {
   cambiarTexto( texto: string ) {
     if ( this.selected.length > 0 ) {
       const quien = this.selected[0];
-      return texto.replace('##{nombre}', quien.nombre ).replace('##{apelli}', quien.apellido ).replace('##{barrio}', quien.barrio );
+      return texto.replace('##(nombre)', quien.nombre ).replace('##(apelli)', quien.apellido ).replace('##(barrio)', quien.barrio );
     }
 
     return texto;
@@ -96,7 +95,9 @@ export class MsjdirComponent implements OnInit {
 
   buscarUsuario() {
     const datos = { tipo: 'usuario', usuario: this.usuario };
-    this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.usuarios = data );
+    this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => { this.usuarios = data;
+      setTimeout(() => { this.loadingIndicator = false; }, 1500); }
+    );
   }
 
 
@@ -140,16 +141,8 @@ export class MsjdirComponent implements OnInit {
 }
 
 // just an interface for type safety.
-
-
 interface Filtro {
   tipo: string;
   nombre: string;
   etiqueta: string;
 }
-
-
-
-
-
-

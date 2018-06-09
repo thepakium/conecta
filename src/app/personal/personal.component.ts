@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/app/share/models';
+import { BusquedaService } from 'src/app/share/busqueda.service';
 
 @Component({
   selector: 'app-personal',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonalComponent implements OnInit {
 
-  constructor() { }
+  usuarios: Usuario[];
+  usuario: Usuario;
+  loadingIndicator = true;
+
+  constructor(  private busquedaService: BusquedaService  ) { }
 
   ngOnInit() {
+    this.usuario = JSON.parse(localStorage.getItem('user'));
+    this.buscarUsuario();
+
   }
 
+  buscarUsuario() {
+    const datos = { tipo: 'usuario', usuario: this.usuario };
+    this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
+                data => { this.usuarios = data;
+                          setTimeout(() => { this.loadingIndicator = false; }, 1500); 
+                        }
+    );
+  }
 }

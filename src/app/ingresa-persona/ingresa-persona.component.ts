@@ -29,10 +29,10 @@ export class IngresaPersonaComponent implements OnInit {
               private busquedaService: BusquedaService) { }
 
   ngOnInit()     {
-        this.buscarUsuarios(); 
+        this.buscarUsuarios();
       }
 
-  
+
   private buscarUsuarios() {
       this.busquedaService.listadoUsuarios().subscribe( respuesta => {
           respuesta.data.forEach(element => {

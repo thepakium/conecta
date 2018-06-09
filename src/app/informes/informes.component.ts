@@ -15,6 +15,8 @@ export class InformesComponent implements OnInit {
   Contador_sms_mes: Conta[];
   sugerencias: any;
   visible: false;
+  loadingIndicator = true;
+
   constructor(private busquedaService: BusquedaService) {
     this.buscarMensajes();
     this.buscarconteosms();
@@ -25,14 +27,16 @@ export class InformesComponent implements OnInit {
 
   buscarconteosms() {
       const datos = { tipo: 'contador_sms'};
-      this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => { 
-        this.Contador_sms_mes = data; 
-        console.log(this.Contador_sms_mes);} );
+      this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => {
+        this.Contador_sms_mes = data;
+        console.log(this.Contador_sms_mes); } );
   }
 
   buscarMensajes() {
       const datos = { tipo: 'mensajes'};
-      this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.datarecibida = data
+      this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
+              data => { this.datarecibida = data;
+                        setTimeout(() => { this.loadingIndicator = false; }, 1500); }
      );
   }
 
