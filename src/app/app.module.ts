@@ -23,6 +23,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AuthGuard } from './share';
 import { InformesComponent } from './informes/informes.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ChartsModule } from 'ng2-charts';
 
 
 // AoT requires an exported function for factories
@@ -80,6 +81,7 @@ const appRoutes: Routes = [
     HttpModule,
     HttpClientModule,
     NgSelectModule,
+    ChartsModule,
     FormsModule,
     NgxDatatableModule,
     BrowserAnimationsModule,
