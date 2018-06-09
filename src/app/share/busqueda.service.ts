@@ -24,10 +24,11 @@ export class BusquedaService {
     const apiURL = `${environment.apiUrl}/try.php`;
     return this.http.get( apiURL )
   }
+
   listadoDatos( tipo: string): Observable<any> {
     const apiURL = `${environment.apiUrl}/getData.php`;
     const formData: FormData = new FormData();
-    formData.append('data', tipo );
+    formData.append('data', btoa(encodeURIComponent(tipo)) );
     return this.http.post( apiURL, formData )
     .pipe(map((r: Response) => r.json() ));
   }
@@ -42,7 +43,7 @@ export class BusquedaService {
       cb(JSON.parse(req.response));
     };
 
-    req.send('data=' + tipo);
+    req.send('data=' +  btoa(encodeURIComponent( tipo )) );
   }
 
   enviarMsj( datos: string  ): Observable<any> {
