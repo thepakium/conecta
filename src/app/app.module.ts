@@ -38,20 +38,12 @@ const appRoutes: Routes = [
     component: MsjdirComponent
   },
   {
-    path: 'msjgrupal',  canActivate: [AuthGuard],
-    component: MsjgrupalComponent
-  },
-  {
     path: 'personal',   canActivate: [AuthGuard],
     component: PersonalComponent
   },
   { path: '', redirectTo: 'msjdir', pathMatch: 'full' },
   {
-    path: 'ingresapersona',
-    component: IngresaPersonaComponent
-  },
-  {
-    path: 'informe',
+    path: 'informe', canActivate: [AuthGuard],
     component: InformesComponent
   },
   {
