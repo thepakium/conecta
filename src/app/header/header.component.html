@@ -8,17 +8,26 @@
 </nav>
 <!--BOTONERA NAVEGACIÓN-->
 <div class="container">
-        <button type="button" class="btn btn-success" [routerLink]="['/msjdir']" >Mensajeria</button>&nbsp;
-        <button type="button" class="btn btn-primary" [routerLink]="['/informe']" >Reportes</button>&nbsp;
-        <button type="button" class="btn btn-secondary" [routerLink]="['/personal']" >Personas</button>&nbsp;
-        <!--BOTON COUTA SMS-->
-        <ng-template #cuotaTip>
-            Couta SMS restantes
-        </ng-template>
-        <button class="buttonT buttonRedondeo"[ngbTooltip]="cuotaTip"><i class="fa fa-comment-o"></i> 12</button> 
-      </div>
+    <div class="row">
+        <div class="col" layout="col .col-lg-10">
+            <button type="button" class="btn btn-success" [routerLink]="['/msjdir']" ><i class="fa fa-comment-o"></i> Mensajeria</button>&nbsp;
+            <button type="button" class="btn btn-primary" [routerLink]="['/informe']" ><i class="fa fa-area-chart"></i> Reportes</button>&nbsp;
+            <button type="button" class="btn btn-secondary" [routerLink]="['/personal']" ><i class="fa fa-user-circle-o"></i> Personas</button>&nbsp;
+            <!--BOTON COUTA SMS-->
+            <ng-template #cuotaTip>
+               Couta SMS restantes
+            </ng-template>
+            <button class="btn btn-warning buttonRedondeo"[ngbTooltip]="cuotaTip"><i class="fa fa-comment-o"></i> 12</button> 
+        </div>
+        <div class="col" layout="col .col-lg-2" layout-align="end center">
+            <button type="button" class="btn btn-danger" style="float: right;"><i class="fa fa-sign-out"></i> Salir</button>&nbsp;
+        </div>   
+    </div>   
+<br>
+<br>
+</div>
 <!--BOTON CONTACTO FLOAT -->
-<button type="button" class="btn btn-primary float-top" data-toggle="modal" data-target="#contactoModal" >
+<button type="button" class={{this.estado}} (mouseover)="moverin()" (mouseleave)="moverout()" data-toggle="modal" data-target="#contactoModal" >
     <div layout="row" layout-padding>
         <div flex><b><i class="material-icons">phone</i>+569 3587 2165</b><br></div>
         <div flex><b><i class="material-icons">mail</i>soporte@ahoraconectados.cl</b></div>
