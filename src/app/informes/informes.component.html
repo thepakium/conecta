@@ -1,6 +1,7 @@
 
 
 <div class="container">
+        
     <button type="button" class="btn btn-success" [routerLink]="['/msjdir']" >Mensajeria</button>&nbsp;
     <button type="button" class="btn btn-primary" [routerLink]="['/informe']" >Reportes</button>&nbsp;
     <button type="button" class="btn btn-secondary" [routerLink]="['/ingresapersona']" >Personas</button>&nbsp;
@@ -9,30 +10,34 @@
     <br/>
 <div >
         
+<div layout="row">        
+    <div class="col-md-2 .col-centered">
+        <div class="form-group">
+          <ng-select [searchable]="false" 
+          [items]="meses"
+          [multiple]="false"
+          bindLabel="name"
+          bindValue="id"
+          [(ngModel)]="mes"
+          placeholder="Seleccione mes"
+          [ngModelOptions]="{standalone: true}" >
+            </ng-select>
+        </div>
+    </div>
+    <div class="col-sm-2 .col-centered">
+        <button class="btn btn-info btn-sm" (click)="Fechas_mes_to_php()">Obtener data Mes</button>
+    </div>
+</div>
         <div style="display: block">
                 <canvas baseChart
                         [data]="pieChartData"
                         [labels]="pieChartLabels"
                         [chartType]="pieChartType"
                         (chartHover)="chartHovered($event)"
-                        (chartClick)="chartClicked($event)"></canvas>
+                        (chartClick)="chartClicked($event)">
+                </canvas>
         </div>
-        <div class="col-md-2 .col-centered">
-            <div class="form-group">
-              <ng-select [searchable]="false" 
-              [items]="meses"
-              [multiple]="false"
-              bindLabel="name"
-              bindValue="id"
-              [(ngModel)]="mes"
-              placeholder="Seleccione mes"
-              [ngModelOptions]="{standalone: true}" >
-                </ng-select>
-            </div>
-        </div>
-        <div class="col-sm-2 .col-centered">
-            <button class="btn btn-info btn-sm" (click)="Fechas_mes_to_php()">Obtener data Mes</button>
-        </div>
+
     <ngx-datatable
       style="width: 90%"
       class="material"
@@ -71,26 +76,8 @@
     </ngx-datatable>
 </div>
 
-  <button type="button" class="btn btn-primary float-left" data-toggle="modal" data-target="#contactoModal"><b>Contactanos</b></button>
+<!--button type="button" class="btn btn-primary float-left" data-toggle="modal" data-target="#contactoModal"><b>Contactanos</b></button-->
+
  
-  <div class="modal fade" id="contactoModal" tabindex="-1" role="dialog" aria-labelledby="contactoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <h5 class="modal-title" id="contactoModalLabel"><h1>Problemas Sugerencias</h1></h5>
-            <form>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="form_contacto">¿Deseas reportar un incidente? ¿tienes una sugerencia?<br>ESCRIBENOS!</label>
-                    <input type="text" class="form-control" id="form_contacto" required 
-                    [(ngModel)]="sugerencias" name="form_contacto">
-                </div>
-            </div>
-            <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success" data-dismiss="modal" >Enviar comentario</button>
-              </div>
-            </form>
-        </div>
-          </div>
-        </div>
+
       

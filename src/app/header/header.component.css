@@ -5,3 +5,31 @@ header{
     border-bottom: 2px solid #eee
     
 }
+.float-left {
+    position:fixed;
+      width:160px;
+      height:60px;
+      bottom:-15px;
+      right:5px;
+      background-color:#0C9;
+      color:#FFF;
+      border-radius:25px;
+      text-align:center;
+      box-shadow: 2px 2px 3px #999;
+  }
+  .float-top {
+    position:fixed;
+      width:280px;
+      height:110px;
+      top:-15px;
+      right:0px;
+      background-color:rgb(106, 32, 69);
+      color:#FFF;
+      border-radius:25px;
+      text-align:left;
+      vertical-align: middle;
+      box-shadow: 2px 2px 3px #999;
+  }
+  .colorUrbanismo{
+      background-color: rgb(151, 215, 0)
+  }

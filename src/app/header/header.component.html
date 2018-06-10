@@ -1,1 +1,31 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <header>Conectados</header>
+<button type="button" class="btn btn-primary float-top" data-toggle="modal" data-target="#contactoModal" >
+    <div layout="row" layout-padding>
+        <div flex><b><i class="material-icons">phone</i>+569 3587 2165</b><br></div>
+        <div flex><b><i class="material-icons">mail_outline</i>soporte@ahoraconectados.cl</b></div>
+    </div>
+</button>
+
+<div class="modal fade" id="contactoModal" tabindex="-1" role="dialog" aria-labelledby="contactoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <h5 class="modal-title" id="contactoModalLabel"><h1>Problemas Sugerencias</h1></h5>
+            <form>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="form_contacto">¿Deseas reportar un incidente? ¿tienes una sugerencia?<br>ESCRIBENOS!</label>
+                    <input type="text" class="form-control" id="form_contacto" required 
+                    [(ngModel)]="sugerencias" name="form_contacto">
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" data-dismiss="modal" >Enviar comentario</button>
+                    <label>Tambien puedes escribirnos a soporte@ahoraconectados.cl o llamar al +569 3587 21 65</label>
+
+              </div>
+            </form>
+        </div>
+          </div>
+        </div>

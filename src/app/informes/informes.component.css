@@ -25,6 +25,18 @@ table, th , td  {
 	text-align:center;
 	box-shadow: 2px 2px 3px #999;
 }
+.float-top {
+  position:fixed;
+	width:160px;
+	height:60px;
+	top:0px;
+	left:5px;
+	background-color:rgb(75, 6, 66);
+	color:#FFF;
+	border-radius:25px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
 .float-midd {
   position:fixed;
 	width:400px;
