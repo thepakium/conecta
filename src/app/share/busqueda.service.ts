@@ -36,12 +36,11 @@ export class BusquedaService {
     req.send('data=' +  btoa(encodeURIComponent( tipo )) );
   }
 
-  enviarMsj( datos: string  ): Observable<any> {
+  enviarMsj( datos: string): Observable<any> {
     const apiURL = `${environment.apiUrl}/bulkSMS.php`;
     const formData: FormData = new FormData();
     formData.append('data', btoa(encodeURIComponent( datos )) );
     return this.http.post( apiURL , formData )
     .pipe(map((r: Response) => r ));
   }
-
 }

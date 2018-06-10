@@ -43,8 +43,6 @@ export class MsjdirComponent implements OnInit {
           this.buscarFiltros();
   }
 
-
-
   enviarMensaje( ) {
     const datos = { mensaje: this.mensaje ,
                     usuario: this.logged,
