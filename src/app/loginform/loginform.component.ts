@@ -26,21 +26,21 @@ export class LoginformComponent implements OnInit {
   loginUser() {
     const datos = { tipo: 'auth' , user: this.ingreso };
 
-    this.busquedaService.listadoDatos( JSON.stringify(datos) ).subscribe(respuesta =>  {
-      if ( respuesta && !respuesta.errors && Object.keys(respuesta).length > 0) {
-          localStorage.setItem('conecta2In', 'true');
-          this.toastr.success(
-              'Con Conectados estás a un mensaje de distancia.' , 'Acceso concedido', { timeOut: 3000 });
-          console.log( respuesta );
-          localStorage.setItem('user', JSON.stringify(respuesta[0]));
-          this.router.navigate(['/msjdir']);
-      } else {
-          console.log( ' USUARIO SIN ACCESO ');
-          this.toastr.error('revise sus credenciales', 'Acceso no concedido', {
-              timeOut: 3000,
-          });
-      }
-  });
+    this.busquedaService.obtenerDatos( JSON.stringify(datos) , respuesta => {
+        if ( respuesta && !respuesta.errors && Object.keys(respuesta).length > 0) {
+            localStorage.setItem('conecta2In', 'true');
+            this.toastr.success(
+                'Con Conectados estás a un mensaje de distancia.' , 'Acceso concedido', { timeOut: 3000 });
+            console.log( respuesta );
+            localStorage.setItem('user', JSON.stringify(respuesta[0]));
+            this.router.navigate(['/msjdir']);
+        } else {
+            console.log( ' USUARIO SIN ACCESO ');
+            this.toastr.error('revise sus credenciales', 'Acceso no concedido', {
+                timeOut: 3000,
+            });
+        }
+    } );
 
   }
 }

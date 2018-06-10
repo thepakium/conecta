@@ -4,7 +4,7 @@ import {NgSelectModule, NgOption} from '@ng-select/ng-select';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../environments/environment';
 import { BusquedaService } from '../share/busqueda.service';
-import { Usuario, Formulario } from 'src/app/share/models';
+import { Usuario, Formulario, Username } from 'src/app/share/models';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -17,6 +17,7 @@ export class MsjdirComponent implements OnInit {
 
   usuarios: Usuario[];
   usuario: Usuario;
+  logged: Username;
   categoria: any;
   mensaje = '';
   datos: any;
@@ -30,21 +31,21 @@ export class MsjdirComponent implements OnInit {
 
   constructor(    private toastr: ToastrService,
                   private busquedaService: BusquedaService  ) {
-                  this.buscarCategoria( );
-                  this.buscarUsuario();
-                  this.buscarFiltros();
-                 }
-
+                  }
+ 
   ngOnInit() {
-    this.usuario = JSON.parse(localStorage.getItem('user'));
-    setTimeout(() => this.toastr.show('¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas!' +
-                                      ' Con Conectados estás a un mensaje de distancia.' ,
-                                      'Bienvenid' + (this.usuario.genero === 'Mujer' ? 'a ' : 'o ')  + this.usuario.nombre));
+          this.logged = JSON.parse(localStorage.getItem('user'));
+          setTimeout(() => this.toastr.show('¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas!' +
+                                            ' Con Conectados estás a un mensaje de distancia.' ,
+                                            'Bienvenid' + (this.logged.genero === 'Femenino' ? 'a ' : 'o ')  + this.logged.nombre));
+          this.buscarCategoria( );
+          this.buscarUsuario();
+          this.buscarFiltros();
   }
 
   enviarMensaje( ) {
     const datos = { mensaje: this.mensaje ,
-                    usuario: this.usuario,
+                    usuario: this.logged,
                     categoria: this.categoria,
                     quienes: this.selected,
                     programar: this.fecha
@@ -70,29 +71,29 @@ export class MsjdirComponent implements OnInit {
   cambiarTexto( texto: string ) {
     if ( this.selected.length > 0 ) {
       const quien = this.selected[0];
-      return texto.replace('##(nombre)', quien.nombre ).replace('##(apelli)', quien.apellido ).replace('##(barrio)', quien.barrio );
+      return texto.replace('##(nombre)', quien.nombre ).replace('##(apelli)', quien.apellidoP ).replace('##(barrio)', quien.barrio );
     }
 
     return texto;
   }
 
-  customSearchFn(term: string, item: Usuario) {
-    term = term.toLocaleLowerCase();
-    return item.nombre.toLocaleLowerCase().indexOf(term) > -1 || item.apellido.toLocaleLowerCase().indexOf(term) > -1;
-  }
+  // customSearchFn(term: string, item: Usuario) {
+  //   term = term.toLocaleLowerCase();
+  //   return item.nombre.toLocaleLowerCase().indexOf(term) > -1 || item.apellido.toLocaleLowerCase().indexOf(term) > -1;
+  // }
 
   buscarCategoria() {
-    const datos = { tipo: 'categoria', usuario: this.usuario };
+    const datos = { tipo: 'categoria', usuario: this.logged };
     this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.categorias = data );
   }
 
   buscarFiltros() {
-    const datos = { tipo: 'filtroUsuario', usuario: this.usuario };
+    const datos = { tipo: 'filtroUsuario', usuario: this.logged };
     this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.filtros = data );
   }
 
   buscarUsuario() {
-    const datos = { tipo: 'usuario', usuario: this.usuario };
+    const datos = { tipo: 'usuario', usuario: this.logged };
     this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => { this.usuarios = data;
       setTimeout(() => { this.loadingIndicator = false; }, 1500); }
     );

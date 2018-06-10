@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
 import { BusquedaService } from '../share/busqueda.service';
+import { Usuario } from 'src/app/share/models';
 import { environment } from '../../environments/environment';
 import { getLocaleDateFormat } from '@angular/common';
 
@@ -13,6 +14,7 @@ import { getLocaleDateFormat } from '@angular/common';
 
 export class InformesComponent implements OnInit {
   datarecibida: Estates[];
+  usuario: Usuario;
   Contador_estates: Estates[];
   loadingIndicator = true;
   mes: number;
@@ -43,36 +45,39 @@ export class InformesComponent implements OnInit {
             ];
   public pieChartLabels: string[] = [];
   public pieChartData: number[] = [];
-  public pieChartType: string = 'pie';
-  
+  public pieChartType = 'pie';
+
   Fechas_mes_to_php (){
     let  fechaInicio = new Date( 2018, this.mes-1 , 1 ,0,0,1 ).toISOString().substr(0, 19).replace('T', ' ');
     let fechaFinal = new Date( 2018, this.mes , 1 ,0,0,1).toISOString().substr(0, 19).replace('T', ' ');
     console.log("F i",fechaInicio);
     console.log("F F",fechaFinal);
-    this.buscarconteoestados(fechaInicio,fechaFinal)
+    this.buscarconteoestados(fechaInicio, fechaFinal );
   }
   // events
   public chartClicked(e:any):void {
     console.log(e);
   }
+
   public chartHovered(e:any):void {
     console.log(e);
   }
-  constructor(private busquedaService: BusquedaService) {
-    this.buscarMensajes();
-}
 
-  ngOnInit() {
+  constructor(private busquedaService: BusquedaService) {
   }
 
-  buscarconteoestados(fecha1,fecha2) {
-      this.pieChartLabels=[];
-      const datos = { tipo: 'contador_estados',fechainicio: fecha1,fechafinal: fecha2};
+  ngOnInit() {
+     this.usuario = JSON.parse(localStorage.getItem('user'));
+     this.buscarMensajes();
+  }
+
+  buscarconteoestados(fecha1, fecha2) {
+      this.pieChartLabels = [];
+      const datos = { tipo: 'contador_estados', fechainicio: fecha1, fechafinal: fecha2};
       this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => {
         this.Contador_estates = data;
         const cloneb = JSON.parse(JSON.stringify(this.pieChartData));
-        for (let i = 0; i < this.Contador_estates.length; i++){
+        for (let i = 0; i < this.Contador_estates.length; i++) {
           cloneb[i] = this.Contador_estates[i].cuantose;
           this.pieChartLabels.push(this.Contador_estates[i].estado);
           }
@@ -81,10 +86,10 @@ export class InformesComponent implements OnInit {
       }
 
   buscarMensajes() {
-      const datos = { tipo: 'mensajes'};
+      const datos = { tipo: 'mensajes', usuario: this.usuario };
       this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
               data => { this.datarecibida = data;
-              //console.log(this.datarecibida);
+              // console.log(this.datarecibida);
               setTimeout(() => { this.loadingIndicator = false; }, 1500); });
       }
 }

@@ -10,12 +10,27 @@ export class Formulario {
 }
 
 export class Usuario {
-    organizacion: string;
+    id: number;
     nombre: string;
-    apellido: string;
+    apellidoP: string;
+    apellidoM: string;
     telefono: number;
     genero: string;
+    email: string;
+    rut: string;
+    fechaNacimiento: Date;
+    organizacion: string;
     barrio: string;
+    id_barrio: number;
+    activo: boolean;
+  }
+
+export class Username {
+    id: number;
+    nombre: string;
+    apellido: string;
+    usernames: string;
+    genero: string;
   }
 
 export class Categoria {

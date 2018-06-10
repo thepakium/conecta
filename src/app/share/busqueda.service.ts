@@ -12,27 +12,17 @@ export class BusquedaService {
 
   constructor(private http: Http) { }
 
-  listadoBarrios(organizacion: string): Observable<any> {
-    const apiURL = `${environment.apiUrl}/getbarrio.php`;
-    const formData2: FormData = new FormData();
-    formData2.append('organizacion', organizacion );
-    return this.http.post( apiURL, formData2 )
-    .pipe(map((r: Response) => r ));
-  }
+  ingresaDatos( tipo , cb ) {
+    const req = new XMLHttpRequest();
+    req.open('POST', `${environment.apiUrl}/gatherData.php`, true);
+    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-  listadoUsuarios(): Observable<any> {
-    const apiURL = `${environment.apiUrl}/try.php`;
-    return this.http.get( apiURL )
-  }
+    req.onload = () => {
+      cb( req.response );
+    };
 
-  listadoDatos( tipo: string): Observable<any> {
-    const apiURL = `${environment.apiUrl}/getData.php`;
-    const formData: FormData = new FormData();
-    formData.append('data', btoa(encodeURIComponent(tipo)) );
-    return this.http.post( apiURL, formData )
-    .pipe(map((r: Response) => r.json() ));
+    req.send('data=' +  btoa(encodeURIComponent( tipo )) );
   }
-
 
   obtenerDatos( tipo , cb ) {
     const req = new XMLHttpRequest();
@@ -49,20 +39,7 @@ export class BusquedaService {
   enviarMsj( datos: string): Observable<any> {
     const apiURL = `${environment.apiUrl}/bulkSMS.php`;
     const formData: FormData = new FormData();
-    formData.append('data', datos );
-    return this.http.post( apiURL , formData )
-    .pipe(map((r: Response) => r ));
-  }
-
-  crearPersona( nombre: string , apellido: string , telefono: string , genero :string, mail :string, fecha_nacimiento :string): Observable<any> {
-    const apiURL = `${environment.apiUrl}/crea_person.php`;
-    const formData: FormData = new FormData();
-    formData.append('nombre', nombre );
-    formData.append('apellido', apellido );
-    formData.append('telefono', telefono );
-    formData.append('genero', genero );
-    formData.append('mail', mail );
-    formData.append('fecha_nacimiento', fecha_nacimiento );
+    formData.append('data', btoa(encodeURIComponent( datos )) );
     return this.http.post( apiURL , formData )
     .pipe(map((r: Response) => r ));
   }
