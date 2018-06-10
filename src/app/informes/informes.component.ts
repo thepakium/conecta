@@ -28,8 +28,19 @@ export class InformesComponent implements OnInit {
             {id: 10, name: 'Octubre'},
             {id: 11, name: 'Noviembre'},
             {id: 12, name: 'Diciembre'},
-          ]
-  
+          ];
+  public pieChartColors = [
+            {
+              backgroundColor: [
+                'rgba(255, 99, 132)',
+                'rgba(54, 162, 235)',
+                'rgba(255, 206, 86)',
+                'rgba(0, 255, 0)',
+                'rgba(102, 0, 204)',
+                'rgba(255, 128, 0)'
+              ]
+            }
+            ];
   public pieChartLabels: string[] = [];
   public pieChartData: number[] = [];
   public pieChartType: string = 'pie';

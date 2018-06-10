@@ -23,7 +23,7 @@ header{
       height:110px;
       top:-15px;
       right:0px;
-      background-color:rgb(106, 32, 69);
+      background-color:#672146;
       color:#FFF;
       border-radius:25px;
       text-align:left;
@@ -33,3 +33,12 @@ header{
   .colorUrbanismo{
       background-color: rgb(151, 215, 0)
   }
+  .buttonT {
+    background-color:rgb(151, 215, 0);;
+    border: rgb(151, 215, 0);
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.buttonRedondeo {border-radius: 50%;}

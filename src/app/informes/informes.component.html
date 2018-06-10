@@ -1,15 +1,4 @@
-
-
-<div class="container">
-        
-    <button type="button" class="btn btn-success" [routerLink]="['/msjdir']" >Mensajeria</button>&nbsp;
-    <button type="button" class="btn btn-primary" [routerLink]="['/informe']" >Reportes</button>&nbsp;
-    <button type="button" class="btn btn-secondary" [routerLink]="['/ingresapersona']" >Personas</button>&nbsp;
-    </div>
-    <br/>
-    <br/>
-<div >
-        
+<div>    
 <div layout="row">        
     <div class="col-md-2 .col-centered">
         <div class="form-group">
@@ -33,6 +22,7 @@
                         [data]="pieChartData"
                         [labels]="pieChartLabels"
                         [chartType]="pieChartType"
+                        [colors]="pieChartColors"
                         (chartHover)="chartHovered($event)"
                         (chartClick)="chartClicked($event)">
                 </canvas>

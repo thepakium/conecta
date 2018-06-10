@@ -42,8 +42,6 @@ export class MsjdirComponent implements OnInit {
                                       'Bienvenid' + (this.usuario.genero === 'Mujer' ? 'a ' : 'o ')  + this.usuario.nombre));
   }
 
-
-
   enviarMensaje( ) {
     const datos = { mensaje: this.mensaje ,
                     usuario: this.usuario,
