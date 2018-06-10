@@ -1,7 +1,6 @@
 <div>    
-<div layout="row">        
-    <div class="col-md-2 .col-centered">
-        <div class="form-group">
+<div class="row">        
+    <div class="col-md-2 ">
           <ng-select [searchable]="false" 
           [items]="meses"
           [multiple]="false"
@@ -9,29 +8,29 @@
           bindValue="id"
           [(ngModel)]="mes"
           placeholder="Seleccione mes"
+          (change)="Fechas_mes_to_php()"
           [ngModelOptions]="{standalone: true}" >
             </ng-select>
-        </div>
     </div>
-    <div class="col-sm-2 .col-centered">
-        <button class="btn btn-info btn-sm" (click)="Fechas_mes_to_php()">Obtener data Mes</button>
+    <div class="col-6">
+        <div [hidden]="!vacio"> Sin Datos para el mes</div>
+        <div [hidden]="vacio" >
+            <canvas baseChart 
+                    [data]="pieChartData"
+                    [labels]="pieChartLabels"
+                    [chartType]="pieChartType"
+                    [colors]="pieChartColors"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
+            </canvas>
+        </div>
     </div>
 </div>
-        <div style="display: block">
-                <canvas baseChart
-                        [data]="pieChartData"
-                        [labels]="pieChartLabels"
-                        [chartType]="pieChartType"
-                        [colors]="pieChartColors"
-                        (chartHover)="chartHovered($event)"
-                        (chartClick)="chartClicked($event)">
-                </canvas>
-        </div>
 
     <ngx-datatable
       style="width: 90%"
       class="material"
-      [rows]="datarecibida"
+      [rows]="datarecibida "
       [columnMode]="'force'"
       [headerHeight]="40"
       [footerHeight]="50"
