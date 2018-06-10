@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
 import { BusquedaService } from '../share/busqueda.service';
+import { Usuario } from 'src/app/share/models';
 import { environment } from '../../environments/environment';
 import { getLocaleDateFormat } from '@angular/common';
 
@@ -13,6 +14,7 @@ import { getLocaleDateFormat } from '@angular/common';
 
 export class InformesComponent implements OnInit {
   datarecibida: Estates[];
+  usuario: Usuario;
   Contador_estates: Estates[];
   loadingIndicator = true;
   mes: number;
@@ -53,6 +55,7 @@ export class InformesComponent implements OnInit {
 }
 
   ngOnInit() {
+    this.usuario = JSON.parse(localStorage.getItem('user'));
   }
 
   buscarconteoestados(fecha1,fecha2) {
@@ -70,7 +73,7 @@ export class InformesComponent implements OnInit {
       }
 
   buscarMensajes() {
-      const datos = { tipo: 'mensajes'};
+      const datos = { tipo: 'mensajes', usuario: this.usuario };
       this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
               data => { this.datarecibida = data;
               //console.log(this.datarecibida);
