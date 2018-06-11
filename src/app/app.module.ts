@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginformComponent } from './loginform/loginform.component';
@@ -18,7 +17,6 @@ import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { environment } from '../environments/environment';
-import { IngresaPersonaComponent } from './ingresa-persona/ingresa-persona.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AuthGuard } from './share';
 import { InformesComponent } from './informes/informes.component';
@@ -34,17 +32,14 @@ const appRoutes: Routes = [
     component: LoginformComponent
   },
   {
-    path: 'msjdir',   canActivate: [AuthGuard],
-    component: MsjdirComponent
+    path: 'msjdir',   canActivate: [AuthGuard],   component: MsjdirComponent
   },
   {
-    path: 'personal',   canActivate: [AuthGuard],
-    component: PersonalComponent
+    path: 'personal',   canActivate: [AuthGuard],    component: PersonalComponent
   },
   { path: '', redirectTo: 'msjdir', pathMatch: 'full' },
   {
-    path: 'informe', canActivate: [AuthGuard],
-    component: InformesComponent
+    path: 'informe', canActivate: [AuthGuard],    component: InformesComponent
   },
   {
     path: '**',
@@ -64,7 +59,6 @@ const appRoutes: Routes = [
     PersonalComponent,
     NoEncontradoComponent,
     MsjgrupalComponent,
-    IngresaPersonaComponent,
     InformesComponent,
 
   ],
