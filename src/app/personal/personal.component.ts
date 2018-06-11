@@ -13,7 +13,7 @@ export class PersonalComponent implements OnInit {
   usuario: Usuario;
   logged: Username;
   organizaciones = [];
-  organizacion = '';
+  organizacion: number;
   generos = ['Masculino', 'Femenino'];
   barrios = [];
   newUser = new Usuario;
@@ -55,6 +55,16 @@ export class PersonalComponent implements OnInit {
     } else {
       this.barrios = [];
       this.newUser.id_barrio = null;
+    }
+  }
+
+  accion ( dato = null ) {
+    console.log( dato );
+    if ( dato ) {
+      this.newUser = dato;
+      this.organizacion = 2;
+    } else {
+      this.newUser = new Usuario;
     }
   }
 

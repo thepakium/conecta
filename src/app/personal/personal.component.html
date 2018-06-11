@@ -16,10 +16,17 @@
       <ngx-datatable-column name="Genero"></ngx-datatable-column>
       <ngx-datatable-column name="Nombre"></ngx-datatable-column>
       <ngx-datatable-column name="Telefono"></ngx-datatable-column>
+      <ngx-datatable-column>
+        <ng-template ngx-datatable-cell-template let-row="row">
+          
+          <button #btnElement class="btn-warning btn" data-toggle="modal" data-target="#ingresoModal" (click)="accion(row)"><i class="fa fa-pencil-square-o"></i></button>
+          <button #btnElement class="btn-danger btn" data-toggle="modal" data-target="#eliminaModal" (click)="accion(row)"><i class="fa fa-trash"></i></button>
+        </ng-template>
+      </ngx-datatable-column>
     </ngx-datatable>
   </div>
-  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ingresoModal" >Agregar nuevo Usuario</button>
-
+  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ingresoModal" (click)="accion()">Agregar nuevo Usuario</button>
+<pre>{{ organizacion }}</pre>
      
 <div class="modal fade" id="ingresoModal" tabindex="-1" role="dialog" aria-labelledby="ingresoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -95,6 +102,25 @@
         </div> <!-- close modal body -->  
         <div class="modal-footer">
           <button type="button" class="btn btn-success" (click)="ingresaUsuario()"  >Guardar</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        </div> <!-- close modal footer -->
+      </div> <!-- close modal content -->
+    </div> <!-- close modal dialog -->
+</div> <!-- close modal  -->
+  
+     
+<div class="modal fade" id="eliminaModal" tabindex="-1" role="dialog" aria-labelledby="eliminaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <h2 class="modal-title" id="eliminaModalLabel">Confirmación </h2>
+        <div class="modal-body">
+            <div class="row">
+              <h5>Seguro desea eliminar a {{newUser.nombre}}</h5>
+            </div>
+           
+        </div> <!-- close modal body -->  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" (click)="ingresaUsuario()"  >Eliminar</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
         </div> <!-- close modal footer -->
       </div> <!-- close modal content -->
