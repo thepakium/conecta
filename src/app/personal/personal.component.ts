@@ -13,6 +13,7 @@ export class PersonalComponent implements OnInit {
   usuario: Usuario;
   logged: Username;
   organizaciones = [];
+  organizacion = '';
   generos = ['Masculino', 'Femenino'];
   barrios = [];
   newUser = new Usuario;

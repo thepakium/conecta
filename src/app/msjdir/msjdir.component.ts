@@ -21,6 +21,7 @@ export class MsjdirComponent implements OnInit {
   categoria: any;
   mensaje = '';
   datos: any;
+  dest: any;
   fecha: Date;
   filtros: Filtro[];
   selected: Usuario[] = [];

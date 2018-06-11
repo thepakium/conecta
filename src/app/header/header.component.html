@@ -9,7 +9,7 @@
 <!--BOTONERA NAVEGACIÓN-->
 <div class="container">
     <div class="row">
-        <div class="col" layout="col .col-lg-10">
+        <div class="col-lg-10">
             <button type="button" class="btn btn-success" [routerLink]="['/msjdir']" ><i class="fa fa-comment-o"></i> Mensajeria</button>&nbsp;
             <button type="button" class="btn btn-primary" [routerLink]="['/informe']" ><i class="fa fa-area-chart"></i> Reportes</button>&nbsp;
             <button type="button" class="btn btn-secondary" [routerLink]="['/personal']" ><i class="fa fa-user-circle-o"></i> Personas</button>&nbsp;
@@ -19,7 +19,7 @@
             </ng-template>
             <button class="btn btn-warning buttonRedondeo"[ngbTooltip]="cuotaTip"><i class="fa fa-comment-o"></i> 12</button> 
         </div>
-        <div class="col" layout="col .col-lg-2" layout-align="end center">
+        <div class="col-lg-2" layout-align="end center">
             <button type="button" class="btn btn-danger" (click)="logout()" style="float: right;"><i class="fa fa-sign-out"></i> Salir</button>&nbsp;
         </div>   
     </div>   
