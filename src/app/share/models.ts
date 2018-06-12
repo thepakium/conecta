@@ -37,3 +37,9 @@ export class Categoria {
     nombre: string;
     id: number;
   }
+
+export class Victima {
+  tipo: string;
+  quien: number;
+  id: number;
+}

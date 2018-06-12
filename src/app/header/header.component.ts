@@ -12,32 +12,33 @@ import { Router } from '@angular/router';
 
 export class HeaderComponent implements OnInit {
   sugerencias = 'escriba aqui su comentario';
+  estado = 'btn btn-primary float-top-s';
 
   constructor(private router: Router) { }
 
-  estado = 'btn btn-primary float-top-s';
 
   ngOnInit() {
     this.retirarboton();
   }
 
- moverin(): void {
-   this.estado = 'btn btn-primary float-top-s';
- }
- moverout(): void {
-   this.estado = 'btn btn-primary float-top-h';
- }
+  moverin(): void {
+    this.estado = 'btn btn-primary float-top-s';
+  }
 
- retirarboton(): void {
-    setTimeout(() => { this.moverout(); }, 1000);
- }
+  moverout(): void {
+    this.estado = 'btn btn-primary float-top-h';
+  }
 
- logout() {
-   localStorage.removeItem('conecta2In');
-   localStorage.removeItem('user');
-   this.router.navigate(['/login']);
- }
+  retirarboton(): void {
+      setTimeout(() => { this.moverout(); }, 1000);
+  }
 
- send() {}
+  logout() {
+    localStorage.removeItem('conecta2In');
+    localStorage.removeItem('user');
+    this.router.navigate(['/login']);
+  }
+
+  send() {}
 
 }
