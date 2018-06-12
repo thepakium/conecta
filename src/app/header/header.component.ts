@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
  logout() {
    localStorage.removeItem('conecta2In');
    localStorage.removeItem('user');
-   this.router.navigate(['/']);
+   this.router.navigate(['/login']);
  }
 
  send() {}
