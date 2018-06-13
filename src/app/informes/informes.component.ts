@@ -13,7 +13,8 @@ import { getLocaleDateFormat } from '@angular/common';
 })
 
 export class InformesComponent implements OnInit {
-  datarecibida: Estates[];
+  datarecibida = [];
+  mensajes = [];
   logged: Username;
   Contador_estates: Estates[];
   loadingIndicator = true;
@@ -30,7 +31,7 @@ export class InformesComponent implements OnInit {
             {id: 9, name: 'Septiembre'},
             {id: 10, name: 'Octubre'},
             {id: 11, name: 'Noviembre'},
-            {id: 12, name: 'Diciembre'},
+            {id: 12, name: 'Diciembre'}
           ];
   public pieChartColors = [
             {
@@ -43,7 +44,7 @@ export class InformesComponent implements OnInit {
                 'rgba(255, 128, 0)'
               ]
             }
-            ];
+           ];
   public pieChartLabels: string[] = [];
   public pieChartData: number[] = [];
   public pieChartType = 'pie';
@@ -93,8 +94,16 @@ export class InformesComponent implements OnInit {
         } );
       }
 
+  buscarDetalleMensajes( msj ) {
+      const datos = { tipo: 'mensajes', usuario: this.logged, filtro: { tipo: 'camada', valor: msj} };
+      this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
+              data => { this.mensajes = data;
+              // console.log(this.datarecibida);
+              setTimeout(() => { this.loadingIndicator = false; }, 1500); });
+      }
+  
   buscarMensajes(fecha1 = null, fecha2 = null) {
-      const datos = { tipo: 'mensajes', usuario: this.logged, fechainicio: fecha1, fechafinal: fecha2 };
+      const datos = { tipo: 'mensajes', usuario: this.logged, agrupacion: 'destinatarios' , fechainicio: fecha1, fechafinal: fecha2 };
       this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
               data => { this.datarecibida = data;
               // console.log(this.datarecibida);

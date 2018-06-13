@@ -31,37 +31,39 @@
     <ngx-datatable
       style="width: 90%"
       class="material"
-      [rows]="datarecibida "
+      [rows]="datarecibida"
+	  [groupRowsBy]="'fecha'"
       [columnMode]="'force'"
       [headerHeight]="40"
       [footerHeight]="50"
       [loadingIndicator]="loadingIndicator"
-      [rowHeight]="40"
-      [limit]="6"
+      [rowHeight]="auto"
+      [groupExpansionDefault]="true"
       >
-      <ngx-datatable-column name="Nombre"></ngx-datatable-column>
-      <ngx-datatable-column prop="fechaEnvio">
-          <ng-template let-column="column" ngx-datatable-header-template>Fecha Envio
+	  <ngx-datatable-group-header [rowHeight]="50" #myGroupHeader >
+          <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
+            <div style="padding-left:15px;">
+              
+                <b>  {{group.value[0].fecha}}</b>
+                                   
+            </div>
+          </ng-template>
+        </ngx-datatable-group-header>
+      <ngx-datatable-column name="Hora"></ngx-datatable-column>
+      <ngx-datatable-column name="Barrio"></ngx-datatable-column>
+      <ngx-datatable-column prop="total">
+          <ng-template let-column="column" ngx-datatable-header-template>Destinatarios
           </ng-template>
           <ng-template let-value="value" ngx-datatable-cell-template>
-              {{value| date: 'dd/MM/yyyy HH:mm'}}
+              {{value}} Destinatarios
           </ng-template>
       </ngx-datatable-column>
       
-      <ngx-datatable-column prop="fechaRecepcion">
-          <ng-template let-column="column" ngx-datatable-header-template>Fecha Recepcion
-          </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-              {{value| date: 'dd/MM/yyyy HH:mm'}}
-          </ng-template>
-      </ngx-datatable-column>
-      
-      <ngx-datatable-column name="Cliente"></ngx-datatable-column>
-      <ngx-datatable-column name="Body" [width]="240" >
-          <ng-template let-column="column"  ngx-datatable-header-template>{{column.name}}</ng-template> 
-        </ngx-datatable-column>
       <ngx-datatable-column name="Categoria" [width]="240"></ngx-datatable-column>
-      <ngx-datatable-column name="Estado"></ngx-datatable-column>
+      <ngx-datatable-column name="Mensaje" [width]="240" >
+	  <ng-template let-value="value" ngx-datatable-cell-template>
+              <div>{{value}} </div>  </ng-template>
+	  </ngx-datatable-column>
     </ngx-datatable>
 </div>
 
