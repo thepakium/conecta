@@ -20,6 +20,8 @@ export class MsjdirComponent implements OnInit {
   logged: Username;
   categoria: any;
   mensaje = '';
+  c2: any;
+  cambio = '';
   datos: any;
   dest: any;
   fecha: Date;
@@ -69,13 +71,13 @@ export class MsjdirComponent implements OnInit {
      } );
   }
 
-  cambiarTexto( texto: string ) {
-    if ( this.selected.length > 0 ) {
-      const quien = this.selected[0];
-      return texto.replace('##(nombre)', quien.nombre ).replace('##(apelli)', quien.apellidoP ).replace('##(barrio)', quien.barrio );
-    }
-
-    return texto;
+  cambiarTexto(  ) {
+	  if( !this.c2) this.c2 = 0;
+    this.cambio = this.mensaje.replace('##(nombre)', this.selected[this.c2].nombre )
+						.replace('##(apelli)', this.selected[this.c2].apellidoP )
+						.replace('#@', (this.selected[this.c2].genero === 'Femenino') ? 'a' : 'o' )
+						.replace('##(barrio)', this.selected[this.c2].barrio );
+    
   }
 
   // customSearchFn(term: string, item: Usuario) {

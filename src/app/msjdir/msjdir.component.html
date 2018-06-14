@@ -40,12 +40,16 @@
           <td>Nombre de pila</td>
         </tr>
         <tr>
-            <td>##(apelli)</td>
-            <td>Apellido Paterno</td>
-          </tr>
-          <tr>
-           <td>##(barrio)</td>
+		  <td>##(apelli)</td>
+		  <td>Apellido Paterno</td>
+	    </tr>
+        <tr>
+          <td>##(barrio)</td>
           <td>Barrio</td>
+        </tr>
+		<tr>
+          <td>#@</td>
+          <td>(a)/(o)</td>
         </tr>
       </table></ng-template>
     <span class="badge badge-pill badge-info" placement="top" [ngbTooltip]="tipContent" >Abrev.</span>
@@ -54,7 +58,8 @@
     </div>
     
     <div class="form-group">
-      <button data-toggle="modal" data-target="#previewModal" class="btn btn-default" [disabled]="!((selected?.length>0)&&categoria&&mensaje)">{{fecha?'Programar':'Revisar'}}</button> &nbsp; 
+      <button data-toggle="modal" data-target="#previewModal" class="btn btn-default" (click)='cambiarTexto()'
+	  [disabled]="!((selected?.length>0)&&categoria&&mensaje)">{{fecha?'Programar':'Revisar'}}</button> &nbsp; 
       <label>Programar envío</label>
       <input type="datetime-local"  [(ngModel)]="fecha" />
     </div>
@@ -118,10 +123,11 @@
 <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <h5 class="modal-title" id="usersModalLabel">Para: {{selected[0]?.nombre}}</h5>
+      <h5 class="modal-title" id="usersModalLabel">Para: 
+	  <select id="chan" [(ngModel)]="c2" (change)='cambiarTexto();' ><option *ngFor="let opt of selected; let i = index" [value]='i'  >{{opt.nombre}}</option></select></h5>
       <div class="modal-body">
         <div class="speech-bubble">
-          <h2 style="padding:15px;">{{ cambiarTexto(mensaje) }}</h2>
+          <h2 style="padding:15px;">{{ cambio }}</h2>
         </div>
       </div>
       <div class="modal-footer">
