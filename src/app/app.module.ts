@@ -10,7 +10,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { MsjdirComponent } from './msjdir/msjdir.component';
 import { PersonalComponent } from './personal/personal.component';
 import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
-import { MsjgrupalComponent } from './msjgrupal/msjgrupal.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
@@ -32,14 +31,14 @@ const appRoutes: Routes = [
     component: LoginformComponent
   },
   {
-    path: 'msjdir',   canActivate: [AuthGuard],   component: MsjdirComponent
+    path: 'mensajes',   canActivate: [AuthGuard],   component: MsjdirComponent
   },
   {
-    path: 'personal',   canActivate: [AuthGuard],    component: PersonalComponent
+    path: 'personas',   canActivate: [AuthGuard],    component: PersonalComponent
   },
-  { path: '', redirectTo: 'msjdir', pathMatch: 'full' },
+  { path: '', redirectTo: 'mensajes', pathMatch: 'full' },
   {
-    path: 'informe', canActivate: [AuthGuard],    component: InformesComponent
+    path: 'reportes', canActivate: [AuthGuard],    component: InformesComponent
   },
   {
     path: '**',
@@ -58,7 +57,6 @@ const appRoutes: Routes = [
     MsjdirComponent,
     PersonalComponent,
     NoEncontradoComponent,
-    MsjgrupalComponent,
     InformesComponent,
 
   ],

@@ -31,16 +31,16 @@ export class PersonalComponent implements OnInit {
   }
 
   buscarGrupoUsuarios() {
-	const datos = { tipo: 'sumarioGrupo', usuario: this.logged };
+    const datos = { tipo: 'sumarioGrupo', usuario: this.logged };
     this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
                 data => { this.agrupaciones = data;
                           setTimeout(() => { this.loadingIndicator = false; }, 1500);
                         }
     );
   }
-  
+
   buscarUsuarios( barrio ) {
-	this.usuarios = [];
+    this.usuarios = [];
     const datos = { tipo: 'usuario', usuario: this.logged , barrio: barrio };
     this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
                 data => { this.usuarios = data;
@@ -54,18 +54,17 @@ export class PersonalComponent implements OnInit {
     this.busquedaService.ingresaDatos( JSON.stringify(datos) , data => console.log(data) );
 
   }
-  
+
   elimina() {
     const datos = { tipo: 'elimina', usuario: this.logged, 'victima': this.victima };
     this.busquedaService.ingresaDatos( JSON.stringify(datos) , data => console.log(data) );
-	this.victima = new Victima;
+    this.victima = new Victima;
   }
-  
+
   borrar( id , nombre , tipo ) {
     this.victima.id = id;
-	this.victima.quien = nombre;
-	this.victima.tipo = tipo;
-	//this.elimina( this.victima );
+    this.victima.quien = nombre;
+    this.victima.tipo = tipo;
   }
 
   buscarOrganizaciones() {

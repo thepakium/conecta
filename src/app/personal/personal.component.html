@@ -73,11 +73,10 @@
 				  <ngx-datatable-column name="Nombre"></ngx-datatable-column>
 				  <ngx-datatable-column name="Telefono"></ngx-datatable-column>
 				  <ngx-datatable-column>
-					<ng-template ngx-datatable-cell-template let-row="row">
-					  
-					  <button #btnElement class="btn-warning btn" data-toggle="modal" data-target="#ingresoModal" (click)="accion(row)"><i class="fa fa-pencil-square-o"></i></button>
-					  <button #btnElement class="btn-danger btn" data-toggle="modal" data-target="#eliminaModal" (click)="borrar(row.id, row.nombre, 'cliente')"><i class="fa fa-trash"></i></button>
-					</ng-template>
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <button #btnElement class="btn-warning btn" data-toggle="modal" data-target="#ingresoModal" (click)="accion(row)"><i class="fa fa-pencil-square-o"></i></button>
+              <button #btnElement class="btn-danger btn" data-toggle="modal" data-target="#eliminaModal" (click)="borrar(row.id, row.nombre, 'cliente')"><i class="fa fa-trash"></i></button>
+            </ng-template>
 				  </ngx-datatable-column>
 				</ngx-datatable>
 			</div>
@@ -173,7 +172,7 @@
   
      
 <div class="modal fade" id="eliminaModal" tabindex="-1" role="dialog" aria-labelledby="eliminaModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <h2 class="modal-title" id="eliminaModalLabel">Confirmación </h2>
         <div class="modal-body">

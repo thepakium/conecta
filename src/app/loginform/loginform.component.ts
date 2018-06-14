@@ -33,7 +33,7 @@ export class LoginformComponent implements OnInit {
                 'Con Conectados estás a un mensaje de distancia.' , 'Acceso concedido', { timeOut: 3000 });
             console.log( respuesta );
             localStorage.setItem('user', JSON.stringify(respuesta[0]));
-            this.router.navigate(['/msjdir']);
+            this.router.navigate(['/mensajes']);
         } else {
             console.log( ' USUARIO SIN ACCESO ');
             this.toastr.error('revise sus credenciales', 'Acceso no concedido', {

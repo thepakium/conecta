@@ -1,5 +1,3 @@
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
         <div class="container">
             <a class="navbar-brand"><img src="../../assets/images/logo-conectados.svg" width="150px"> </a>
@@ -10,14 +8,14 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-10">
-            <button type="button" class="btn btn-success" [routerLink]="['/msjdir']" ><i class="fa fa-comment-o"></i> Mensajeria</button>&nbsp;
-            <button type="button" class="btn btn-primary" [routerLink]="['/informe']" ><i class="fa fa-area-chart"></i> Reportes</button>&nbsp;
-            <button type="button" class="btn btn-secondary" [routerLink]="['/personal']" ><i class="fa fa-user-circle-o"></i> Personas</button>&nbsp;
+            <button type="button" class="btn btn-success" [routerLink]="['/mensajes']" ><i class="fa fa-comment-o"></i> Mensajeria</button>&nbsp;
+            <button type="button" class="btn btn-primary" [routerLink]="['/reportes']" ><i class="fa fa-area-chart"></i> Reportes</button>&nbsp;
+            <button type="button" class="btn btn-secondary" [routerLink]="['/personas']" ><i class="fa fa-user-circle-o"></i> Personas</button>&nbsp;
             <!--BOTON COUTA SMS-->
             <ng-template #cuotaTip>
                Couta SMS restantes
             </ng-template>
-            <button class="btn btn-warning buttonRedondeo"[ngbTooltip]="cuotaTip"><i class="fa fa-comment-o"></i> 12</button> 
+            <button class="btn btn-warning buttonRedondeo" [ngbTooltip]="cuotaTip"><i class="fa fa-comment-o"></i> 12</button> 
         </div>
         <div class="col-lg-2" layout-align="end center">
             <button type="button" class="btn btn-danger" (click)="logout()" style="float: right;"><i class="fa fa-sign-out"></i> Salir</button>&nbsp;

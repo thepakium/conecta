@@ -51,11 +51,12 @@
         </ngx-datatable-group-header>
       <ngx-datatable-column name="Hora"></ngx-datatable-column>
       <ngx-datatable-column name="Barrio"></ngx-datatable-column>
-      <ngx-datatable-column prop="total">
-          <ng-template let-column="column" ngx-datatable-header-template>Destinatarios
+      <ngx-datatable-column >
+          <ng-template let-column="column" ngx-datatable-header-template>Detalle
           </ng-template>
-          <ng-template let-value="value" ngx-datatable-cell-template>
-              {{value}} Destinatarios
+          <ng-template let-row="row" ngx-datatable-cell-template>
+<button type="button" class="btn btn-primary " (click)='buscarDetalleMensajes(row)' data-toggle="modal" data-target="#detalleModal">{{row.total}} Destinatarios</button>
+              
           </ng-template>
       </ngx-datatable-column>
       
@@ -70,5 +71,59 @@
 <!--button type="button" class="btn btn-primary float-left" data-toggle="modal" data-target="#contactoModal"><b>Contactanos</b></button-->
 
  
+<div class="modal fade" id="detalleModal" tabindex="-1" role="dialog" aria-labelledby="detalleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <h2 class="modal-title" id="detalleModalLabel">Detalle del Mensaje </h2>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="row">
+                            <div class="col-5">Fundación</div><div class="col-7">{{mensaje?.organizacion}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">Barrio</div><div class="col-7">{{mensaje?.barrio}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">Mensajes Enviados</div><div class="col-7">{{mensaje?.enviados}} de {{mensaje?.total}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">Programado</div><div class="col-7">{{mensaje?.programado}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">Categoría</div><div class="col-7">{{mensaje?.categoria}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">Enviador</div><div class="col-7">{{mensajes[0]?.enviador}}</div>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div>Fecha de Redaccion: {{mensaje?.fechaCreacion | date: 'dd/MM/yyyy HH:mm'}}</div>
+                        <div>Fecha de Envio:     {{mensaje?.fechaEnvio | date: 'dd/MM/yyyy HH:mm'}}</div>
+                        <div class="border"><div >Mensaje:</div><span>{{mensaje?.mensaje}}</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row border">
+                <div class="col">Destinatario</div>
+                <div class="col">Estado envio</div>
+                <div class="col">Celular</div>
+            </div>
+            <div class="row border" *ngFor="let mensaje of mensajes" >
+                    <div class="col-4">{{mensaje.cliente}}</div>
+                    <div class="col-4">{{mensaje.estado}}</div>
+                    <div class="col-4">chan3</div>
+                    <div class="col-12">{{cambiarTexto(mensaje.body, mensaje)}}</div>
+                    <div class="col-12 font-weight-light font-italic">Recepcion: {{mensaje.fechaRecepcion | date: 'dd/MM/yyyy HH:mm'}}</div>
+            </div>
+        </div> <!-- close modal body -->  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        </div> <!-- close modal footer -->
+      </div> <!-- close modal content -->
+    </div> <!-- close modal dialog -->
+</div> <!-- close modal  -->
+  
 
       

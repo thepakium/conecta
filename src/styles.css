@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import "~@ng-select/ng-select/themes/default.theme.css";
 @import "~ngx-toastr/toastr.css";
 @import '~@swimlane/ngx-datatable/release/index.css';

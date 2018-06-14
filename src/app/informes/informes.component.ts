@@ -15,6 +15,7 @@ import { getLocaleDateFormat } from '@angular/common';
 export class InformesComponent implements OnInit {
   datarecibida = [];
   mensajes = [];
+  mensaje = [];
   logged: Username;
   Contador_estates: Estates[];
   loadingIndicator = true;
@@ -94,14 +95,16 @@ export class InformesComponent implements OnInit {
         } );
       }
 
-  buscarDetalleMensajes( msj ) {
-      const datos = { tipo: 'mensajes', usuario: this.logged, filtro: { tipo: 'camada', valor: msj} };
+  buscarDetalleMensajes( valor ) {
+    // console.log( valor );
+    this.mensaje = valor;
+      const datos = { tipo: 'mensajes', usuario: this.logged, filtro: { tipo: 'camada', valor: valor.camada} };
       this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
               data => { this.mensajes = data;
-              // console.log(this.datarecibida);
+              // console.log(data);
               setTimeout(() => { this.loadingIndicator = false; }, 1500); });
       }
-  
+
   buscarMensajes(fecha1 = null, fecha2 = null) {
       const datos = { tipo: 'mensajes', usuario: this.logged, agrupacion: 'destinatarios' , fechainicio: fecha1, fechafinal: fecha2 };
       this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
@@ -109,6 +112,15 @@ export class InformesComponent implements OnInit {
               // console.log(this.datarecibida);
               setTimeout(() => { this.loadingIndicator = false; }, 1500); });
       }
+
+  cambiarTexto( texto: string , quien = null ) {
+      if ( quien ) {
+
+        return texto.replace('##(nombre)', quien.nombre ).replace('##(apelli)', quien.apellidoP ).replace('##(barrio)', quien.barrio );
+      }
+
+      return texto;
+    }
 }
 
 interface Estates {
