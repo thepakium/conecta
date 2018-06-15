@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
 import { BusquedaService } from '../share/busqueda.service';
-import { Usuario, Username } from 'src/app/share/models';
+import { Usuario, Username, Mensaje } from 'src/app/share/models';
 import { environment } from '../../environments/environment';
 import { getLocaleDateFormat } from '@angular/common';
 
@@ -15,7 +15,7 @@ import { getLocaleDateFormat } from '@angular/common';
 export class InformesComponent implements OnInit {
   datarecibida = [];
   mensajes = [];
-  mensaje = [];
+  mensaje: Mensaje;
   logged: Username;
   Contador_estates: Estates[];
   Contador_categorias: Estatesc[];
@@ -57,7 +57,12 @@ export class InformesComponent implements OnInit {
     title: {
       text: 'MENSAJES',
       display: true
-    }
+    },
+	legend: {
+            display: true,
+			position:	'left'
+            
+	}
   };
   public pieChartLabels_c: string[] = [];
   public pieChartData_c: number[] = [];
@@ -65,7 +70,12 @@ export class InformesComponent implements OnInit {
     title: {
       text: 'CATEGORIAS',
       display: true
-    }
+    },
+	legend: {
+            display: true,
+			position:	'right'
+            
+	}
   };
   Fechas_mes_to_php () {
     let  fechaInicio = new Date( 2018, this.mes-1 , 1 ,0,0,1 ).toISOString().substr(0, 19).replace('T', ' ');
@@ -141,7 +151,7 @@ export class InformesComponent implements OnInit {
       const datos = { tipo: 'mensajes', usuario: this.logged, filtro: { tipo: 'camada', valor: valor.camada} };
       this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
               data => { this.mensajes = data;
-              // console.log(data);
+               console.log(data);
               setTimeout(() => { this.loadingIndicator = false; }, 1500); });
       }
 

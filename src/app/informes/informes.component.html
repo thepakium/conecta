@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div>    
 <div class="row">        
-    <div class="col-md-2 ">
+    <div class="col-2 ">
           <ng-select [searchable]="false" 
           [items]="meses"
           [multiple]="false"
@@ -13,7 +13,7 @@
           [ngModelOptions]="{standalone: true}" >
             </ng-select>
     </div>
-    <div class="col-6">
+    <div class="col-5">
         <div [hidden]="!vacio"> Sin Datos para el mes</div>
         <div [hidden]="vacio" >
             <canvas baseChart 
@@ -27,7 +27,7 @@
             </canvas>
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-5">
             <div [hidden]="!vacio"> Sin Datos para el mes</div>
             <div [hidden]="vacio" >
                 <canvas baseChart 
@@ -52,7 +52,7 @@
       [headerHeight]="40"
       [footerHeight]="50"
       [loadingIndicator]="loadingIndicator"
-      [rowHeight]="auto"
+      [rowHeight]="'100%'"
       [groupExpansionDefault]="true"
       >
 	  <ngx-datatable-group-header [rowHeight]="50" #myGroupHeader >
@@ -110,7 +110,7 @@
                             <div class="col-5">Categoría</div><div class="col-7">{{mensaje?.categoria}}</div>
                         </div>
                         <div class="row">
-                            <div class="col-5">Enviador</div><div class="col-7">{{mensajes[0]?.enviador}}</div>
+                            <div class="col-5">Enviador</div><div class="col-7" *ngFor="let x of (mensajes ? mensajes.slice(0,2): [])">{{x.enviador}}</div>
                         </div>
                     </div>
                     <div class="col-5">
@@ -128,7 +128,7 @@
             <div class="row border" *ngFor="let mensaje of mensajes" >
                     <div class="col-4">{{mensaje.cliente}}</div>
                     <div class="col-4">{{mensaje.estado}}</div>
-                    <div class="col-4">chan3</div>
+                    <div class="col-4">buen estado</div>
                     <div class="col-12">{{cambiarTexto(mensaje.body, mensaje)}}</div>
                     <div class="col-12 font-weight-light font-italic">Recepcion: {{mensaje.fechaRecepcion | date: 'dd/MM/yyyy HH:mm'}}</div>
             </div>
