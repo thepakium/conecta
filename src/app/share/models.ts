@@ -43,3 +43,16 @@ export class Victima {
   quien: number;
   id: number;
 }
+
+export class Mensaje {
+  organizacion: string;
+  barrio: string;
+  enviados: number;
+  total: number;
+  programado: string;
+  categoria: string;
+  fechaCreacion: string;
+  fechaEnvio: string;
+  mensaje: string;
+  enviador: string;
+}
