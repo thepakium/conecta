@@ -21,11 +21,26 @@
                     [labels]="pieChartLabels"
                     [chartType]="pieChartType"
                     [colors]="pieChartColors"
+                    [options]="pieChartOptions"
                     (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)">
             </canvas>
         </div>
     </div>
+    <div class="col-6">
+            <div [hidden]="!vacio"> Sin Datos para el mes</div>
+            <div [hidden]="vacio" >
+                <canvas baseChart 
+                        [data]="pieChartData_c"
+                        [labels]="pieChartLabels_c"
+                        [chartType]="pieChartType"
+                        [colors]="pieChartColors"
+                        [options]="pieChartOptions_c"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)">
+                </canvas>
+            </div>
+        </div>
 </div>
 
     <ngx-datatable

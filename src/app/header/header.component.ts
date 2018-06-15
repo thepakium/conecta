@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BusquedaService } from '../share/busqueda.service';
 import { Router } from '@angular/router';
-
+import { Usuario, Username } from 'src/app/share/models';
 
 
 @Component({
@@ -13,11 +13,12 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   sugerencias = 'escriba aqui su comentario';
   estado = 'btn btn-primary float-top-s';
-
+  logged: Username;
   constructor(private router: Router) { }
 
 
   ngOnInit() {
+    this.logged = JSON.parse(localStorage.getItem('user'));
     this.retirarboton();
   }
 

@@ -1,17 +1,20 @@
-<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-          <a class="navbar-brand"><img src="../../assets/images/logo-conectados.svg" width="150px"> </a>
 
-      <form (submit)="loginUser()">
-        <div class="input">
-            <label>Usuario</label>
-            <input type="text" [(ngModel)]="ingreso.usuario" [ngModelOptions]="{standalone: true}" placeholder="Usuario">
-          </div>  
-        <div class="input">
-              <label>Password</label>
-              <input type="password" [(ngModel)]="ingreso.pass" [ngModelOptions]="{standalone: true}" placeholder="Password">
+    <div class="row">
+        <div class="col-lg-2 col-centered">
+          <a class="navbar-brand"><img src="../../assets/images/logo-conectados.svg" width="150px"> </a>
+          <form (submit)="loginUser()">
+            <div class="input">
+                <label>Usuario</label>
+                <input type="text" [(ngModel)]="ingreso.usuario" [ngModelOptions]="{standalone: true}" placeholder="Usuario">
+              </div>  
+            <div class="input">
+                  <label>Password</label>
+                  <input type="password" [(ngModel)]="ingreso.pass" [ngModelOptions]="{standalone: true}" placeholder="Password">
+                </div>
+            <div class ="input">
+                <input type="submit" value="Ingresar">
             </div>
-        <div class ="input">
-            <input type="submit" value="Ingresar">
+            
+          </form>
         </div>
-        
-      </form>
+    </div>

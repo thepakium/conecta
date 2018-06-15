@@ -18,8 +18,10 @@ export class InformesComponent implements OnInit {
   mensaje = [];
   logged: Username;
   Contador_estates: Estates[];
+  Contador_categorias: Estatesc[];
   loadingIndicator = true;
   vacio = false;
+  vacioc = false;
   mes: number;
   meses = [ {id: 1, name: 'Enero'},
             {id: 2, name: 'Febrero'},
@@ -42,20 +44,36 @@ export class InformesComponent implements OnInit {
                 'rgba(255, 206, 86)',
                 'rgba(0, 255, 0)',
                 'rgba(102, 0, 204)',
-                'rgba(255, 128, 0)'
+                'rgba(255, 128, 0)',
+                'rgba(55, 128, 0)',
+                'rgba(255, 255, 0)',
               ]
             }
            ];
   public pieChartLabels: string[] = [];
   public pieChartData: number[] = [];
   public pieChartType = 'pie';
-
+  public pieChartOptions = { //intento de titulo enmarcado
+    title: {
+      text: 'MENSAJES',
+      display: true
+    }
+  };
+  public pieChartLabels_c: string[] = [];
+  public pieChartData_c: number[] = [];
+  public pieChartOptions_c = { //intento de titulo enmarcado
+    title: {
+      text: 'CATEGORIAS',
+      display: true
+    }
+  };
   Fechas_mes_to_php () {
     let  fechaInicio = new Date( 2018, this.mes-1 , 1 ,0,0,1 ).toISOString().substr(0, 19).replace('T', ' ');
     let fechaFinal = new Date( 2018, this.mes , 1 ,0,0,1).toISOString().substr(0, 19).replace('T', ' ');
     // console.log("F i",fechaInicio);
     // console.log("F F",fechaFinal);
     this.buscarconteoestados(fechaInicio, fechaFinal );
+    this.buscarconteocategorias(fechaInicio, fechaFinal );
     this.buscarMensajes(fechaInicio, fechaFinal );
   }
   // events
@@ -74,8 +92,30 @@ export class InformesComponent implements OnInit {
      this.logged = JSON.parse(localStorage.getItem('user'));
      this.buscarMensajes();
      this.buscarconteoestados();
+     this.buscarconteocategorias();
   }
-
+  buscarconteocategorias(fecha1 = null, fecha2 = null) {
+    this.pieChartLabels_c = [];
+    const datos = { tipo: 'contador_categorias', usuario: this.logged, fechainicio: fecha1, fechafinal: fecha2};
+    console.log("pasaconst con valor : ", datos)
+    this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => {
+        console.log("pasaPhpCat",data)
+        if ( data.length > 0 ) {
+          this.vacioc = false;
+          this.Contador_categorias = data;
+          const clonec = []; 
+          for (let i = 0; i < this.Contador_categorias.length; i++) {
+            clonec[i] = this.Contador_categorias[i].cuantosc;
+            this.pieChartLabels_c.push(this.Contador_categorias[i].categoria);
+            }
+          this.pieChartData_c = clonec;
+          console.log("datac: ",this.pieChartData_c)
+        } else {
+          console.log("no regresó")
+          this.vacioc = true;
+        }
+      } );
+    }
   buscarconteoestados(fecha1 = null, fecha2 = null) {
       this.pieChartLabels = [];
       const datos = { tipo: 'contador_estados', usuario: this.logged, fechainicio: fecha1, fechafinal: fecha2};
@@ -126,4 +166,8 @@ export class InformesComponent implements OnInit {
 interface Estates {
   estado: string;
   cuantose: string;
+}
+interface Estatesc {
+  categoria: string;
+  cuantosc: string;
 }

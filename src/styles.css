@@ -36,3 +36,34 @@
 .ng-invalid:not(form)  {
 	border-left: 5px solid #a94442; /* red */
 }
+@font-face {
+	font-family: 'Futura PT';
+	src: url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Book.eot");
+	src: url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Book.eot?#iefix") format("embedded-opentype"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Book.woff2") format("woff2"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Book.woff") format("woff"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Book.ttf") format("truetype"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Book.svg#FuturaPT-Book") format("svg");
+	font-weight: normal;
+	font-style: normal
+}
+@font-face {
+	font-family: 'Futura PT';
+	src: url("/wp-content/themes/conectadosCL/css/font/FuturaPT-ExtraBold.eot");
+	src: url("/wp-content/themes/conectadosCL/css/font/FuturaPT-ExtraBold.eot?#iefix") format("embedded-opentype"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-ExtraBold.woff2") format("woff2"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-ExtraBold.woff") format("woff"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-ExtraBold.ttf") format("truetype"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-ExtraBold.svg#FuturaPT-ExtraBold") format("svg");
+	font-weight: 800;
+	font-style: normal
+}
+@font-face {
+	font-family: 'Futura PT';
+	src: url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Bold.eot");
+	src: url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Bold.eot?#iefix") format("embedded-opentype"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Bold.woff2") format("woff2"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Bold.woff") format("woff"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Bold.ttf") format("truetype"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Bold.svg#FuturaPT-Bold") format("svg");
+	font-weight: 700;
+	font-style: normal
+}
+#fullPage {
+	background: url(/wp-content/themes/conectadosCL/images/resources/1.jpg) no-repeat !important;
+}
+.navbar {
+	background: #fff;
+	margin-bottom: 20px
+}
+.form-group label {
+	color: #fff;
+}

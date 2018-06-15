@@ -8,14 +8,12 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-10">
+            <button type="button" class="btn disabled" [ngbTooltip]="usuarioActivo"><i class="fa fa-user"></i> {{this.logged.nombre}}</button>&nbsp;
             <button type="button" class="btn btn-success" [routerLink]="['/mensajes']" ><i class="fa fa-comment-o"></i> Mensajeria</button>&nbsp;
             <button type="button" class="btn btn-primary" [routerLink]="['/reportes']" ><i class="fa fa-area-chart"></i> Reportes</button>&nbsp;
             <button type="button" class="btn btn-secondary" [routerLink]="['/personas']" ><i class="fa fa-user-circle-o"></i> Personas</button>&nbsp;
             <!--BOTON COUTA SMS-->
-            <ng-template #cuotaTip>
-               Couta SMS restantes
-            </ng-template>
-            <button class="btn btn-warning buttonRedondeo" [ngbTooltip]="cuotaTip"><i class="fa fa-comment-o"></i> 12</button> 
+            <button class="btn btn-warning buttonRedondeo" [ngbTooltip]="cuotaTip"><i class="fa fa-comment-o"></i> 123</button> 
         </div>
         <div class="col-lg-2" layout-align="end center">
             <button type="button" class="btn btn-danger" (click)="logout()" style="float: right;"><i class="fa fa-sign-out"></i> Salir</button>&nbsp;
@@ -55,3 +53,9 @@
             </div>
         </div>
 </div>
+<ng-template #cuotaTip>
+    Couta SMS restantes
+ </ng-template>
+<ng-template #usuarioActivo>
+    Session iniciada por {{this.logged.nombre}}
+ </ng-template>
