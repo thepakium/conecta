@@ -11,8 +11,14 @@
         [items]="filtros" required
         bindLabel="etiqueta"
         placeholder="Seleccione destinatarios"
-        (change)='filtrar($event)'
-        >
+        (change)='filtrar($event)' >
+    </ng-select>
+	<ng-select [searchable]="true" 
+        [items]="subfiltros" [hidden]="ocultaSubFiltro"
+        bindLabel="etiqueta"
+        placeholder="Refina selección destinatarios"
+        (change)='subfiltrar($event)'
+		[(ngModel)]="subfiltro" >
     </ng-select>
     <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#usersModal" >{{selected.length}} usuarios seleccionados</button>
 

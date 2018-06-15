@@ -25,17 +25,24 @@ export class MsjdirComponent implements OnInit {
   datos: any;
   dest: any;
   fecha: Date;
+  ocultaSubFiltro = true;
   filtros: Filtro[];
   subfiltros: Filtro[] = [{
+                          tipo: 'all',
+                          nombre: '',
+                          etiqueta: 'Todos'
+                        },
+						{
                           tipo: 'sexo',
-                          nombre: 'Hombre',
+                          nombre: 'Masculino',
                           etiqueta: 'Solo Hombres'
                         },
                         {
                           tipo: 'sexo',
-                          nombre: 'Mujer',
+                          nombre: 'Femenino',
                           etiqueta: 'Solo Mujeres'
                         }];
+  subfiltro: Filtro = this.subfiltros[0];
   selected: Usuario[] = [];
   subselected: Usuario[] = [];
   timeout: any;
@@ -94,14 +101,14 @@ export class MsjdirComponent implements OnInit {
   limpiarCaracteres (texto) {
       return texto.replace(/[àáä]/g, 'a' )
                   .replace(/[ÀÁÄ]/g, 'A' )
-                  .replace(/[àéë]/ig, 'e' )
-                  .replace(/[ÈÉË]/ig, 'E' )
-                  .replace(/[ìïï]/ig, 'i' )
-                  .replace(/[ÌÍÏ]/ig, 'I' )
-                  .replace(/[òóö]/ig, 'o' )
-                  .replace(/[ÒÓÖ]/ig, 'O' )
-                  .replace(/[ùúü]/ig, 'u' )
-                  .replace(/[ÙÚÜ]/ig, 'U' )
+                  .replace(/[àéë]/g, 'e' )
+                  .replace(/[ÈÉË]/g, 'E' )
+                  .replace(/[ìïï]/g, 'i' )
+                  .replace(/[ÌÍÏ]/g, 'I' )
+                  .replace(/[òóö]/g, 'o' )
+                  .replace(/[ÒÓÖ]/g, 'O' )
+                  .replace(/[ùúü]/g, 'u' )
+                  .replace(/[ÙÚÜ]/g, 'U' )
                   .replace('ñ', 'n' )
                   .replace('Ñ', 'N' );
   }
@@ -132,27 +139,52 @@ export class MsjdirComponent implements OnInit {
   filtrar(event) {
     this.selected.splice(0, this.selected.length);
     this.subselected.splice(0, this.subselected.length);
-    this.usuarios.forEach( quien => {
+	this.subfiltro = this.subfiltros[0];
       switch (event.tipo) {
         case 'organizacion':
-          if ( quien.organizacion === event.nombre ) {
-            this.selected.push( quien );
-            this.subselected.push( quien );
-          }
+			this.ocultaSubFiltro = false;
+			this.usuarios.forEach( quien => {
+			  if ( quien.organizacion === event.nombre ) {
+				this.selected.push( quien );
+				this.subselected.push( quien );
+			  }
+			});
           break;
         case 'barrio':
-          if ( quien.barrio === event.nombre ) {
-            this.selected.push( quien );
-            this.subselected.push( quien );
-          }
+			this.ocultaSubFiltro = false;
+			this.usuarios.forEach( quien => {
+			  if ( quien.barrio === event.nombre ) {
+				this.selected.push( quien );
+				this.subselected.push( quien );
+			  }
+			});
           break;
         case 'sexo':
-          if ( quien.genero === event.nombre ) {
-            this.selected.push ( quien );
-          }
+			this.ocultaSubFiltro = true;
+			this.usuarios.forEach( quien => {
+			  if ( quien.genero === event.nombre ) {
+				this.selected.push ( quien );
+			  }
+			});
+          break;
+      
+    } 
+  }
+  
+   subfiltrar(event) {
+    this.selected.splice(0, this.selected.length);
+      switch (event.tipo) {
+        case 'all':
+		  this.selected = this.subselected ;
+          break;
+        case 'sexo':
+			this.subselected.forEach( quien => {
+			  if ( quien.genero === event.nombre ) {
+				this.selected.push ( quien );
+			  }
+			} );
           break;
       }
-    } );
   }
 
   onSelect({ selected }) {
