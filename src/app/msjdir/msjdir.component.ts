@@ -26,7 +26,18 @@ export class MsjdirComponent implements OnInit {
   dest: any;
   fecha: Date;
   filtros: Filtro[];
+  subfiltros: Filtro[] = [{
+                          tipo: 'sexo',
+                          nombre: 'Hombre',
+                          etiqueta: 'Solo Hombres'
+                        },
+                        {
+                          tipo: 'sexo',
+                          nombre: 'Mujer',
+                          etiqueta: 'Solo Mujeres'
+                        }];
   selected: Usuario[] = [];
+  subselected: Usuario[] = [];
   timeout: any;
   form = new Formulario();
   categorias = [];
@@ -47,7 +58,7 @@ export class MsjdirComponent implements OnInit {
   }
 
   enviarMensaje( ) {
-    const datos = { mensaje: this.mensaje ,
+    const datos = { mensaje: this.limpiarCaracteres(this.mensaje) ,
                     usuario: this.logged,
                     categoria: this.categoria,
                     quienes: this.selected,
@@ -72,12 +83,27 @@ export class MsjdirComponent implements OnInit {
   }
 
   cambiarTexto(  ) {
-	  if( !this.c2) this.c2 = 0;
-    this.cambio = this.mensaje.replace('##(nombre)', this.selected[this.c2].nombre )
-						.replace('##(apelli)', this.selected[this.c2].apellidoP )
-						.replace('#@', (this.selected[this.c2].genero === 'Femenino') ? 'a' : 'o' )
-						.replace('##(barrio)', this.selected[this.c2].barrio );
-    
+    if ( !this.c2) { this.c2 = 0; }
+    this.cambio = this.limpiarCaracteres(this.mensaje.replace(/\#\#\(nombre\)/ig, this.selected[this.c2].nombre.substring(0, 10) )
+            .replace(/\#\#\(apelli\)/ig, this.selected[this.c2].apellidoP.substring(0, 10) )
+            .replace('#@', (this.selected[this.c2].genero === 'Femenino') ? 'a' : 'o' )
+            .replace(/\#\#\(barrio\)/ig, this.selected[this.c2].barrio.substring(0, 10) )
+            .replace(/@\s/g, (this.selected[this.c2].genero === 'Femenino') ? 'a' : 'o' ));
+  }
+
+  limpiarCaracteres (texto) {
+      return texto.replace(/[àáä]/g, 'a' )
+                  .replace(/[ÀÁÄ]/g, 'A' )
+                  .replace(/[àéë]/ig, 'e' )
+                  .replace(/[ÈÉË]/ig, 'E' )
+                  .replace(/[ìïï]/ig, 'i' )
+                  .replace(/[ÌÍÏ]/ig, 'I' )
+                  .replace(/[òóö]/ig, 'o' )
+                  .replace(/[ÒÓÖ]/ig, 'O' )
+                  .replace(/[ùúü]/ig, 'u' )
+                  .replace(/[ÙÚÜ]/ig, 'U' )
+                  .replace('ñ', 'n' )
+                  .replace('Ñ', 'N' );
   }
 
   // customSearchFn(term: string, item: Usuario) {
@@ -105,16 +131,19 @@ export class MsjdirComponent implements OnInit {
 
   filtrar(event) {
     this.selected.splice(0, this.selected.length);
+    this.subselected.splice(0, this.subselected.length);
     this.usuarios.forEach( quien => {
       switch (event.tipo) {
         case 'organizacion':
           if ( quien.organizacion === event.nombre ) {
             this.selected.push( quien );
+            this.subselected.push( quien );
           }
           break;
         case 'barrio':
           if ( quien.barrio === event.nombre ) {
             this.selected.push( quien );
+            this.subselected.push( quien );
           }
           break;
         case 'sexo':

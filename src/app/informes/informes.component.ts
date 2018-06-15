@@ -116,7 +116,11 @@ export class InformesComponent implements OnInit {
   cambiarTexto( texto: string , quien = null ) {
       if ( quien ) {
 
-        return texto.replace('##(nombre)', quien.nombre ).replace('##(apelli)', quien.apellidoP ).replace('##(barrio)', quien.barrio );
+        return texto.replace(/\#\#\(nombre\)/ig, quien.nombre.substring(0, 10) )
+                    .replace(/\#\#\(apelli\)/ig, quien.apellidoP.substring(0, 10) )
+                    .replace('#@', (quien.genero === 'Femenino') ? 'a' : 'o' )
+                    .replace(/\#\#\(barrio\)/ig, quien.barrio.substring(0, 10) )
+                    .replace(/@\s/g, (quien.genero === 'Femenino') ? 'a ' : 'o ' );
       }
 
       return texto;
