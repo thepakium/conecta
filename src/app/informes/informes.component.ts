@@ -17,11 +17,7 @@ export class InformesComponent implements OnInit {
   mensajes = [];
   mensaje: Mensaje;
   logged: Username;
-  Contador_estates: Estates[];
-  Contador_categorias: Estatesc[];
   loadingIndicator = true;
-  vacio = false;
-  vacioc = false;
   mes: number;
   meses = [ {id: 1, name: 'Enero'},
             {id: 2, name: 'Febrero'},
@@ -50,33 +46,45 @@ export class InformesComponent implements OnInit {
               ]
             }
            ];
-  public pieChartLabels: string[] = [];
-  public pieChartData: number[] = [];
+  public etiquetas_Chart_Estados: string[] = [];
+  public data_Chart_Estados: number[] = [];
   public pieChartType = 'pie';
-  public pieChartOptions = { //intento de titulo enmarcado
+  public opciones_Chart_Estados = { // intento de titulo enmarcado
     title: {
       text: 'MENSAJES',
       display: true
     },
-	legend: {
-            display: true,
-			position:	'left'
-            
-	}
+    legend: {
+        display: true,
+        position:	'right'
+    }
   };
-  public pieChartLabels_c: string[] = [];
-  public pieChartData_c: number[] = [];
-  public pieChartOptions_c = { //intento de titulo enmarcado
+  public etiquetas_Chart_Categoria: string[] = [];
+  public data_Chart_Categoria: number[] = [];
+  public opciones_Chart_Categoria = { // intento de titulo enmarcado
     title: {
       text: 'CATEGORIAS',
       display: true
     },
-	legend: {
-            display: true,
-			position:	'right'
-            
-	}
+    legend: {
+        display: true,
+        position:	'right',
+        labels: { fontSize: 9 }
+    }
   };
+  public etiquetas_Chart_Mes: string[] = [];
+  public data_Chart_Mes: number[] = [];
+  public opciones_Chart_Mes = { // intento de titulo enmarcado
+    title: {
+      text: 'MENSUAL',
+      display: true
+    },
+    legend: {
+        display: true,
+        position:	'left'
+    }
+  };
+
   Fechas_mes_to_php () {
     let  fechaInicio = new Date( 2018, this.mes-1 , 1 ,0,0,1 ).toISOString().substr(0, 19).replace('T', ' ');
     let fechaFinal = new Date( 2018, this.mes , 1 ,0,0,1).toISOString().substr(0, 19).replace('T', ' ');
@@ -86,6 +94,7 @@ export class InformesComponent implements OnInit {
     this.buscarconteocategorias(fechaInicio, fechaFinal );
     this.buscarMensajes(fechaInicio, fechaFinal );
   }
+
   // events
   public chartClicked(e: any): void {
     console.log(e);
@@ -101,67 +110,53 @@ export class InformesComponent implements OnInit {
   ngOnInit() {
      this.logged = JSON.parse(localStorage.getItem('user'));
      this.buscarMensajes();
-     this.buscarconteoestados();
-     this.buscarconteocategorias();
+     this.buscarConteoEstados();
+     this.buscarConteoCategorias();
+     this.buscarConteoMensual();
+
   }
-  buscarconteocategorias(fecha1 = null, fecha2 = null) {
-    this.pieChartLabels_c = [];
-    const datos = { tipo: 'contador_categorias', usuario: this.logged, fechainicio: fecha1, fechafinal: fecha2};
-    console.log("pasaconst con valor : ", datos)
-    this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => {
-        console.log("pasaPhpCat",data)
-        if ( data.length > 0 ) {
-          this.vacioc = false;
-          this.Contador_categorias = data;
-          const clonec = []; 
-          for (let i = 0; i < this.Contador_categorias.length; i++) {
-            clonec[i] = this.Contador_categorias[i].cuantosc;
-            this.pieChartLabels_c.push(this.Contador_categorias[i].categoria);
-            }
-          this.pieChartData_c = clonec;
-          console.log("datac: ",this.pieChartData_c)
-        } else {
-          console.log("no regresó")
-          this.vacioc = true;
-        }
-      } );
-    }
-  buscarconteoestados(fecha1 = null, fecha2 = null) {
-      this.pieChartLabels = [];
-      const datos = { tipo: 'contador_estados', usuario: this.logged, fechainicio: fecha1, fechafinal: fecha2};
+
+  buscarConteoCategorias(fecha1 = null, fecha2 = null) {
+      const datos = { tipo: 'contador', formato: 'categoria', usuario: this.logged, fechainicio: fecha1, fechafinal: fecha2};
       this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => {
-          if ( data.length > 0 ) {
-            this.vacio = false;
-            this.Contador_estates = data;
-            const cloneb = []; //  JSON.parse(JSON.stringify(this.pieChartData));
-            for (let i = 0; i < this.Contador_estates.length; i++) {
-              cloneb[i] = this.Contador_estates[i].cuantose;
-              this.pieChartLabels.push(this.Contador_estates[i].estado);
-              }
-            this.pieChartData = cloneb;
-          } else {
-            this.vacio = true;
-          }
+          const clone = data.valores;
+          this.data_Chart_Categoria = clone;
+          data.titulos.forEach( item => this.etiquetas_Chart_Categoria.push( item ) );
         } );
-      }
+  }
+
+  buscarConteoEstados(fecha1 = null, fecha2 = null) {
+      const datos = { tipo: 'contador', formato: 'estado', usuario: this.logged, fechainicio: fecha1, fechafinal: fecha2};
+      this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => {
+          const clone = data.valores;
+          this.data_Chart_Estados = clone;
+          data.titulos.forEach( item => this.etiquetas_Chart_Estados.push( item ) );
+        } );
+  }
+
+  buscarConteoMensual(fecha1 = null, fecha2 = null) {
+      const datos = { tipo: 'contador', formato: 'mes', usuario: this.logged, fechainicio: fecha1, fechafinal: fecha2};
+      this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => {
+          const clone = data.valores;
+          this.data_Chart_Mes = clone;
+          data.titulos.forEach( item => this.etiquetas_Chart_Mes.push( item ) );
+        } );
+  }
 
   buscarDetalleMensajes( valor ) {
-    // console.log( valor );
-    this.mensaje = valor;
+      this.mensaje = valor;
       const datos = { tipo: 'mensajes', usuario: this.logged, filtro: { tipo: 'camada', valor: valor.camada} };
       this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
               data => { this.mensajes = data;
-               console.log(data);
               setTimeout(() => { this.loadingIndicator = false; }, 1500); });
-      }
+  }
 
   buscarMensajes(fecha1 = null, fecha2 = null) {
       const datos = { tipo: 'mensajes', usuario: this.logged, agrupacion: 'destinatarios' , fechainicio: fecha1, fechafinal: fecha2 };
       this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
               data => { this.datarecibida = data;
-              // console.log(this.datarecibida);
               setTimeout(() => { this.loadingIndicator = false; }, 1500); });
-      }
+  }
 
   cambiarTexto( texto: string , quien = null ) {
       if ( quien ) {
@@ -175,13 +170,4 @@ export class InformesComponent implements OnInit {
 
       return texto;
     }
-}
-
-interface Estates {
-  estado: string;
-  cuantose: string;
-}
-interface Estatesc {
-  categoria: string;
-  cuantosc: string;
 }

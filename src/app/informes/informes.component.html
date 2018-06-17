@@ -1,53 +1,55 @@
 <app-header></app-header>
 <div>    
 <div class="row">        
-    <div class="col-2 ">
-          <ng-select [searchable]="false" 
-          [items]="meses"
-          [multiple]="false"
-          bindLabel="name"
-          bindValue="id"
-          [(ngModel)]="mes"
-          placeholder="Seleccione mes"
-          (change)="Fechas_mes_to_php()"
-          [ngModelOptions]="{standalone: true}" >
-            </ng-select>
-    </div>
-    <div class="col-5">
+    <div class="col-4">
         <div [hidden]="!vacio"> Sin Datos para el mes</div>
         <div [hidden]="vacio" >
             <canvas baseChart 
-                    [data]="pieChartData"
-                    [labels]="pieChartLabels"
+                    [data]="data_Chart_Mes"
+                    [labels]="etiquetas_Chart_Mes"
                     [chartType]="pieChartType"
                     [colors]="pieChartColors"
-                    [options]="pieChartOptions"
+                    [options]="opciones_Chart_Mes"
                     (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)">
             </canvas>
         </div>
     </div>
-    <div class="col-5">
-            <div [hidden]="!vacio"> Sin Datos para el mes</div>
-            <div [hidden]="vacio" >
-                <canvas baseChart 
-                        [data]="pieChartData_c"
-                        [labels]="pieChartLabels_c"
-                        [chartType]="pieChartType"
-                        [colors]="pieChartColors"
-                        [options]="pieChartOptions_c"
-                        (chartHover)="chartHovered($event)"
-                        (chartClick)="chartClicked($event)">
-                </canvas>
-            </div>
+    <div class="col-4">
+        <div [hidden]="!vacio"> Sin Datos para el mes</div>
+        <div [hidden]="vacio" >
+            <canvas baseChart 
+                    [data]="data_Chart_Estados"
+                    [labels]="etiquetas_Chart_Estados"
+                    [chartType]="pieChartType"
+                    [colors]="pieChartColors"
+                    [options]="opciones_Chart_Estados"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
+            </canvas>
         </div>
+    </div>
+    <div class="col-4">
+        <div [hidden]="!vacio"> Sin Datos para el mes</div>
+        <div [hidden]="vacio" >
+            <canvas baseChart 
+                [data]="data_Chart_Categoria"
+                [labels]="etiquetas_Chart_Categoria"
+                [chartType]="pieChartType"
+                [colors]="pieChartColors"
+                [options]="opciones_Chart_Categoria"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+            </canvas>
+        </div>
+    </div>
 </div>
 
     <ngx-datatable
       style="width: 90%"
       class="material"
       [rows]="datarecibida"
-	  [groupRowsBy]="'fecha'"
+	  [groupRowsBy]="'fechaOrdenable'"
       [columnMode]="'force'"
       [headerHeight]="40"
       [footerHeight]="50"

@@ -110,7 +110,7 @@
                 </ngx-datatable-column>
                 <ngx-datatable-column name="Nombre">
                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                          {{value}} <span [innerHTML]="row['apellido']"></span>
+                          {{value}} <span [innerHTML]="row['apellidoP']"></span>
                     </ng-template>
                 </ngx-datatable-column>
                 <ngx-datatable-column name="Genero"></ngx-datatable-column>
@@ -130,7 +130,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <h5 class="modal-title" id="usersModalLabel">Para: 
-	  <select id="chan" [(ngModel)]="c2" (change)='cambiarTexto();' ><option *ngFor="let opt of selected; let i = index" [value]='i'  >{{opt.nombre}}</option></select></h5>
+	  <select id="selector" [(ngModel)]="c2" (change)='cambiarTexto();' ><option *ngFor="let opt of selected; let i = index" [value]='i'  >{{opt.usuario}}</option></select></h5>
       <div class="modal-body">
         <div class="speech-bubble">
           <h2 style="padding:15px;">{{ cambio }}</h2>
