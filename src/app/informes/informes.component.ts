@@ -19,6 +19,7 @@ export class InformesComponent implements OnInit {
   logged: Username;
   loadingIndicator = true;
   mes: number;
+  filtroBusqueda: Filtro = new Filtro;
   meses = [ {id: 1, name: 'Enero'},
             {id: 2, name: 'Febrero'},
             {id: 3, name: 'Marzo'},
@@ -46,9 +47,10 @@ export class InformesComponent implements OnInit {
               ]
             }
            ];
+  public pieChartType = 'pie';
+  datosEstado: Dato;
   public etiquetas_Chart_Estados: string[] = [];
   public data_Chart_Estados: number[] = [];
-  public pieChartType = 'pie';
   public opciones_Chart_Estados = { // intento de titulo enmarcado
     title: {
       text: 'MENSAJES',
@@ -59,6 +61,7 @@ export class InformesComponent implements OnInit {
         position:	'right'
     }
   };
+  datosCategoria: Dato;
   public etiquetas_Chart_Categoria: string[] = [];
   public data_Chart_Categoria: number[] = [];
   public opciones_Chart_Categoria = { // intento de titulo enmarcado
@@ -72,6 +75,7 @@ export class InformesComponent implements OnInit {
         labels: { fontSize: 9 }
     }
   };
+  datosMes: Dato;
   public etiquetas_Chart_Mes: string[] = [];
   public data_Chart_Mes: number[] = [];
   public opciones_Chart_Mes = { // intento de titulo enmarcado
@@ -85,61 +89,93 @@ export class InformesComponent implements OnInit {
     }
   };
 
-  Fechas_mes_to_php () {
-    let  fechaInicio = new Date( 2018, this.mes-1 , 1 ,0,0,1 ).toISOString().substr(0, 19).replace('T', ' ');
-    let fechaFinal = new Date( 2018, this.mes , 1 ,0,0,1).toISOString().substr(0, 19).replace('T', ' ');
-    // console.log("F i",fechaInicio);
-    // console.log("F F",fechaFinal);
-    this.buscarconteoestados(fechaInicio, fechaFinal );
-    this.buscarconteocategorias(fechaInicio, fechaFinal );
-    this.buscarMensajes(fechaInicio, fechaFinal );
-  }
-
-  // events
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
-
-  public chartHovered(e: any): void {
-    console.log(e);
-  }
-
   constructor(private busquedaService: BusquedaService) {
   }
 
   ngOnInit() {
      this.logged = JSON.parse(localStorage.getItem('user'));
-     this.buscarMensajes();
-     this.buscarConteoEstados();
-     this.buscarConteoCategorias();
-     this.buscarConteoMensual();
-
+     this.buscarDatos();
   }
 
-  buscarConteoCategorias(fecha1 = null, fecha2 = null) {
-      const datos = { tipo: 'contador', formato: 'categoria', usuario: this.logged, fechainicio: fecha1, fechafinal: fecha2};
+  buscarDatos () {
+    this.buscarConteoEstados( this.filtroBusqueda );
+    this.buscarConteoCategorias( this.filtroBusqueda );
+    this.buscarConteoMensual( this.filtroBusqueda );
+    this.buscarMensajes( this.filtroBusqueda );
+  }
+
+  // events
+  public chartClicked(e: any , tipo: string): void {
+    if (e.active.length > 0) {
+      const chart = e.active[0]._chart;
+      const activePoints = chart.getElementAtEvent(e.event);
+      if ( activePoints.length > 0) {
+       // get the internal index of slice in pie chart
+       const clickedElementIndex = activePoints[0]._index;
+       const label = chart.data.labels[clickedElementIndex];
+       // get value by index
+       const value = chart.data.datasets[0].data[clickedElementIndex];
+       switch ( tipo ) {
+         case 'mensual':
+            const anoInicio = this.datosMes.year[clickedElementIndex];
+            const mesInicio = this.datosMes.month[clickedElementIndex];
+            const anoTermino = (mesInicio < 12) ? anoInicio : anoInicio + 1;
+            const mesTermino = (mesInicio < 12) ? +mesInicio + +1 : 1;
+            this.filtroBusqueda.fechaInicio = `${anoInicio}${(mesInicio < 10) ? 0 : ''}${mesInicio}01`;
+            this.filtroBusqueda.fechaTermino = `${anoTermino}${(mesTermino < 10) ? 0 : ''}${mesTermino}01`;
+            this.filtroBusqueda.nombreFecha = label;
+            break;
+          case 'categoria':
+            this.filtroBusqueda.categoria = this.datosCategoria.id[clickedElementIndex];
+            this.filtroBusqueda.nombreCategoria = label;
+            break;
+          case 'estado':
+            this.filtroBusqueda.estado = this.datosEstado.id[clickedElementIndex];
+            this.filtroBusqueda.nombreEstado = label;
+            break;
+       }
+        this.buscarDatos();
+
+      }
+     }
+  }
+
+  public chartHovered(e: any): void {
+    // console.log(e);
+  }
+
+  borrarFiltros() {
+    this.filtroBusqueda = new Filtro;
+    this.buscarDatos();
+  }
+
+  buscarConteoCategorias(filtro = null) {
+    this.etiquetas_Chart_Categoria.splice(0, this.etiquetas_Chart_Categoria.length);
+      const datos = { tipo: 'contador', formato: 'categoria', usuario: this.logged, filtro: filtro};
       this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => {
-          const clone = data.valores;
-          this.data_Chart_Categoria = clone;
-          data.titulos.forEach( item => this.etiquetas_Chart_Categoria.push( item ) );
+          this.datosCategoria = data;
+          this.data_Chart_Categoria = data.valores;
+          this.etiquetas_Chart_Categoria.push( ...data.titulos );
         } );
   }
 
-  buscarConteoEstados(fecha1 = null, fecha2 = null) {
-      const datos = { tipo: 'contador', formato: 'estado', usuario: this.logged, fechainicio: fecha1, fechafinal: fecha2};
+  buscarConteoEstados(filtro = null) {
+    this.etiquetas_Chart_Estados.splice(0, this.etiquetas_Chart_Estados.length);
+      const datos = { tipo: 'contador', formato: 'estado', usuario: this.logged, filtro: filtro};
       this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => {
-          const clone = data.valores;
-          this.data_Chart_Estados = clone;
-          data.titulos.forEach( item => this.etiquetas_Chart_Estados.push( item ) );
+          this.datosEstado = data;
+          this.data_Chart_Estados = data.valores;
+          this.etiquetas_Chart_Estados.push( ...data.titulos );
         } );
   }
 
-  buscarConteoMensual(fecha1 = null, fecha2 = null) {
-      const datos = { tipo: 'contador', formato: 'mes', usuario: this.logged, fechainicio: fecha1, fechafinal: fecha2};
+  buscarConteoMensual(filtro = null) {
+    this.etiquetas_Chart_Mes.splice(0, this.etiquetas_Chart_Mes.length);
+      const datos = { tipo: 'contador', formato: 'mes', usuario: this.logged, filtro: filtro};
       this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => {
-          const clone = data.valores;
-          this.data_Chart_Mes = clone;
-          data.titulos.forEach( item => this.etiquetas_Chart_Mes.push( item ) );
+          this.datosMes = data;
+          this.data_Chart_Mes = data.valores;
+          this.etiquetas_Chart_Mes.push( ...data.titulos);
         } );
   }
 
@@ -151,8 +187,8 @@ export class InformesComponent implements OnInit {
               setTimeout(() => { this.loadingIndicator = false; }, 1500); });
   }
 
-  buscarMensajes(fecha1 = null, fecha2 = null) {
-      const datos = { tipo: 'mensajes', usuario: this.logged, agrupacion: 'destinatarios' , fechainicio: fecha1, fechafinal: fecha2 };
+  buscarMensajes(filtro = null) {
+      const datos = { tipo: 'mensajes', usuario: this.logged, agrupacion: 'destinatarios' , filtro: filtro };
       this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
               data => { this.datarecibida = data;
               setTimeout(() => { this.loadingIndicator = false; }, 1500); });
@@ -170,4 +206,23 @@ export class InformesComponent implements OnInit {
 
       return texto;
     }
+}
+
+class Filtro {
+  tipo: string;
+  fechaInicio: string;
+  fechaTermino: string;
+  nombreFecha: string;
+  categoria: string;
+  nombreCategoria: string;
+  estado: string;
+  nombreEstado; string;
+}
+
+interface Dato {
+  titulos: string[];
+  valores: string[];
+  id: string[];
+  year: number[];
+  month: number[];
 }

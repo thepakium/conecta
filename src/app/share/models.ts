@@ -56,3 +56,4 @@ export class Mensaje {
   mensaje: string;
   enviador: string;
 }
+

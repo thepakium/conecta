@@ -1,9 +1,14 @@
 <app-header></app-header>
 <div>    
+<div class="row">
+    <div class="col-12 centered">
+            <button type="button" class="btn btn-primary " (click)='borrarFiltros()' >Borrar Filtros</button>
+    </div>
+</div>
 <div class="row">        
     <div class="col-4">
-        <div [hidden]="!vacio"> Sin Datos para el mes</div>
-        <div [hidden]="vacio" >
+        <div [hidden]="!filtroBusqueda.nombreFecha"> Filtrando por {{filtroBusqueda.nombreFecha}}</div>
+        <div [hidden]="filtroBusqueda.nombreFecha" >
             <canvas baseChart 
                     [data]="data_Chart_Mes"
                     [labels]="etiquetas_Chart_Mes"
@@ -11,13 +16,13 @@
                     [colors]="pieChartColors"
                     [options]="opciones_Chart_Mes"
                     (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)">
+                    (chartClick)="chartClicked($event,'mensual')">
             </canvas>
         </div>
     </div>
     <div class="col-4">
-        <div [hidden]="!vacio"> Sin Datos para el mes</div>
-        <div [hidden]="vacio" >
+        <div [hidden]="!filtroBusqueda.nombreEstado"> Filtrando por {{filtroBusqueda.nombreEstado}}</div>
+        <div [hidden]="filtroBusqueda.nombreEstado" >
             <canvas baseChart 
                     [data]="data_Chart_Estados"
                     [labels]="etiquetas_Chart_Estados"
@@ -25,13 +30,13 @@
                     [colors]="pieChartColors"
                     [options]="opciones_Chart_Estados"
                     (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)">
+                    (chartClick)="chartClicked($event,'estado')">
             </canvas>
         </div>
     </div>
     <div class="col-4">
-        <div [hidden]="!vacio"> Sin Datos para el mes</div>
-        <div [hidden]="vacio" >
+        <div [hidden]="!filtroBusqueda.nombreCategoria"> Filtrando por {{filtroBusqueda.nombreCategoria}}</div>
+        <div [hidden]="filtroBusqueda.nombreCategoria" >
             <canvas baseChart 
                 [data]="data_Chart_Categoria"
                 [labels]="etiquetas_Chart_Categoria"
@@ -39,7 +44,7 @@
                 [colors]="pieChartColors"
                 [options]="opciones_Chart_Categoria"
                 (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)">
+                (chartClick)="chartClicked($event,'categoria')">
             </canvas>
         </div>
     </div>
