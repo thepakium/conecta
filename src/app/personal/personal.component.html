@@ -29,7 +29,7 @@
 	  <ngx-datatable-column>
 		<ng-template ngx-datatable-cell-template let-row="row">
 		  
-		  <button #btnElement class="btn-warning btn" data-toggle="modal" data-target="#gestionaModal" (click)="buscarUsuarios(row.id)"><i class="fa fa-pencil-square-o"></i></button>
+		  <button #btnElement class="btn-warning btn" data-toggle="modal" data-target="#gestionaModal" (click)="buscarUsuarios(row.id)"><i class="fa fa-pencil-square-o"></i></button>&nbsp;
 		  <button #btnElement class="btn-danger btn" data-toggle="modal" data-target="#eliminaModal" (click)="borrar(row.id, row.barrio, 'barrio')"><i class="fa fa-trash"></i></button>
 		</ng-template>
 		

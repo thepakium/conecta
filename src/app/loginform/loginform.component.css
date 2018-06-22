@@ -15,7 +15,7 @@ div.input label {
 	top: 0;
 	transform: translateY(-50%);
 	left: 10px;
-	background: white;
+	background: rgb(143, 130, 130);
     padding: 5px 2px;
     font-family: 'Ubuntu';
 }

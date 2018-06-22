@@ -65,5 +65,9 @@
 	margin-bottom: 20px
 }
 .form-group label {
-	color: #fff;
+	color: #555;
+}
+.label {
+	font-family: 'Futura PT';
+	color: #555;
 }

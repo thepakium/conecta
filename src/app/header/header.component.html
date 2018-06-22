@@ -8,10 +8,10 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-10">
-            <button type="button" class="btn disabled" [ngbTooltip]="usuarioActivo"><i class="fa fa-user"></i> {{this.logged.nombre}}</button>&nbsp;
-            <button type="button" class="btn btn-success" [routerLink]="['/mensajes']" ><i class="fa fa-comment-o"></i> Mensajeria</button>&nbsp;
-            <button type="button" class="btn btn-primary" [routerLink]="['/reportes']" ><i class="fa fa-area-chart"></i> Reportes</button>&nbsp;
-            <button type="button" class="btn btn-secondary" [routerLink]="['/personas']" ><i class="fa fa-user-circle-o"></i> Personas</button>&nbsp;
+            <button type="button" class="btn disabled" [ngbTooltip]="admin"><i class="fa fa-user"></i> {{this.logged.nombre}}</button>&nbsp;
+            <button type="button" class="btn btn-success" [routerLink]="['/mensajes']" [ngbTooltip]="redmen"><i class="fa fa-comment-o"></i> Mensajeria</button>&nbsp;
+            <button type="button" class="btn btn-primary" [routerLink]="['/reportes']" [ngbTooltip]="repo" ><i class="fa fa-area-chart"></i> Reportes</button>&nbsp;
+            <button type="button" class="btn btn-secondary" [routerLink]="['/personas']"[ngbTooltip]="perso" ><i class="fa fa-user-circle-o"></i> Personas</button>&nbsp;
             <!--BOTON COUTA SMS-->
             <button class="btn btn-warning buttonRedondeo" [ngbTooltip]="cuotaTip"><i class="fa fa-comment-o"></i> 123</button> 
         </div>
@@ -53,6 +53,18 @@
             </div>
         </div>
 </div>
+<ng-template #admin>
+    Administrador
+ </ng-template>
+<ng-template #redmen>
+    Redactar mensaje
+ </ng-template>
+<ng-template #repo>
+    Reporte Reflexión Mensajes utilizados
+ </ng-template>
+<ng-template #perso>
+    Administra tus listas de usuarios
+ </ng-template>
 <ng-template #cuotaTip>
     Couta SMS restantes
  </ng-template>

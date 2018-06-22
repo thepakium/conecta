@@ -19,6 +19,7 @@ export class InformesComponent implements OnInit {
   logged: Username;
   loadingIndicator = true;
   mes: number;
+  
   filtroBusqueda: Filtro = new Filtro;
   meses = [ {id: 1, name: 'Enero'},
             {id: 2, name: 'Febrero'},
@@ -54,11 +55,16 @@ export class InformesComponent implements OnInit {
   public opciones_Chart_Estados = { // intento de titulo enmarcado
     title: {
       text: 'MENSAJES',
-      display: true
+      display: true,
+      fontColor: 'white'
     },
     legend: {
         display: true,
-        position:	'right'
+        position:	'right',
+        labels: {
+          fontColor: 'white'
+          }
+
     }
   };
   datosCategoria: Dato;
@@ -67,12 +73,16 @@ export class InformesComponent implements OnInit {
   public opciones_Chart_Categoria = { // intento de titulo enmarcado
     title: {
       text: 'CATEGORIAS',
-      display: true
+      display: true,
+      fontColor: 'white'
     },
     legend: {
         display: true,
         position:	'right',
-        labels: { fontSize: 9 }
+        labels: { 
+          fontSize: 9, 
+          fontColor: 'white'
+          } 
     }
   };
   datosMes: Dato;
@@ -81,7 +91,8 @@ export class InformesComponent implements OnInit {
   public opciones_Chart_Mes = { // intento de titulo enmarcado
     title: {
       text: 'MENSUAL',
-      display: true
+      display: true,
+      fontColor: 'white'
     },
     legend: {
         display: true,
@@ -142,6 +153,13 @@ export class InformesComponent implements OnInit {
 
   public chartHovered(e: any): void {
     // console.log(e);
+  }
+
+  exporta_mes() {
+    window.open(`http://www.ahoraconectados.cl/sms/export_repo_mes.php`, '_blank')
+  }
+  exporta_año() {
+    window.open(`http://www.ahoraconectados.cl/sms/export_repo_year.php`, '_blank')
   }
 
   borrarFiltros() {
