@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, FormsModule} from '@angular/forms';
-import {NgSelectModule, NgOption} from '@ng-select/ng-select';
+import { FormControl, FormGroup, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgSelectModule, NgOption } from '@ng-select/ng-select';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../environments/environment';
 import { BusquedaService } from '../share/busqueda.service';
 import { Usuario, Formulario, Username } from 'src/app/share/models';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-msjdir',
@@ -32,7 +32,7 @@ export class MsjdirComponent implements OnInit {
                           nombre: '',
                           etiqueta: 'Todos'
                         },
-						{
+                        {
                           tipo: 'sexo',
                           nombre: 'Masculino',
                           etiqueta: 'Solo Hombres'
@@ -139,50 +139,49 @@ export class MsjdirComponent implements OnInit {
   filtrar(event) {
     this.selected.splice(0, this.selected.length);
     this.subselected.splice(0, this.subselected.length);
-	this.subfiltro = this.subfiltros[0];
-      switch (event.tipo) {
-        case 'organizacion':
-			this.ocultaSubFiltro = false;
-			this.usuarios.forEach( quien => {
-			  if ( quien.organizacion === event.nombre ) {
-				this.selected.push( quien );
-				this.subselected.push( quien );
-			  }
-			});
-          break;
-        case 'barrio':
-			this.ocultaSubFiltro = false;
-			this.usuarios.forEach( quien => {
-			  if ( quien.barrio === event.nombre ) {
-				this.selected.push( quien );
-				this.subselected.push( quien );
-			  }
-			});
-          break;
-        case 'sexo':
-			this.ocultaSubFiltro = true;
-			this.usuarios.forEach( quien => {
-			  if ( quien.genero === event.nombre ) {
-				this.selected.push ( quien );
-			  }
-			});
-          break;
-      
-    } 
+    this.subfiltro = this.subfiltros[0];
+        switch (event.tipo) {
+          case 'organizacion':
+            this.ocultaSubFiltro = false;
+            this.usuarios.forEach( quien => {
+              if ( quien.organizacion === event.nombre ) {
+              this.selected.push( quien );
+              this.subselected.push( quien );
+              }
+            });
+            break;
+          case 'barrio':
+            this.ocultaSubFiltro = false;
+            this.usuarios.forEach( quien => {
+              if ( quien.barrio === event.nombre ) {
+              this.selected.push( quien );
+              this.subselected.push( quien );
+              }
+            });
+            break;
+          case 'sexo':
+            this.ocultaSubFiltro = true;
+            this.usuarios.forEach( quien => {
+              if ( quien.genero === event.nombre ) {
+              this.selected.push ( quien );
+              }
+            });
+            break;
+      }
   }
-  
+
    subfiltrar(event) {
     this.selected.splice(0, this.selected.length);
       switch (event.tipo) {
         case 'all':
-		  this.selected = this.subselected ;
+          this.selected = this.subselected ;
           break;
         case 'sexo':
-			this.subselected.forEach( quien => {
-			  if ( quien.genero === event.nombre ) {
-				this.selected.push ( quien );
-			  }
-			} );
+          this.subselected.forEach( quien => {
+            if ( quien.genero === event.nombre ) {
+            this.selected.push ( quien );
+            }
+          } );
           break;
       }
   }
