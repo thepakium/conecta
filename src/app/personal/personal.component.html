@@ -29,8 +29,8 @@
 	  <ngx-datatable-column>
 		<ng-template ngx-datatable-cell-template let-row="row">
 		  
-		  <button #btnElement class="btn-warning btn" data-toggle="modal" data-target="#gestionaModal" (click)="buscarUsuarios(row.id)"><i class="fa fa-pencil-square-o"></i></button>&nbsp;
-		  <button #btnElement class="btn-danger btn" data-toggle="modal" data-target="#eliminaModal" (click)="borrar(row.id, row.barrio, 'barrio')"><i class="fa fa-trash"></i></button>
+		  <button #btnElement class="btn-warning btn" (click)="gestiona(gestionaModal, row.id)"><i class="fa fa-pencil-square-o"></i></button>&nbsp;
+		  <button #btnElement class="btn-danger btn"  (click)="borrar(row.id, row.barrio, 'barrio',eliminaModal)"><i class="fa fa-trash"></i></button>
 		</ng-template>
 		
 		<ngx-datatable-footer>
@@ -49,11 +49,14 @@
 	  </ngx-datatable-column>
 	</ngx-datatable>
 </div>
-			
-<div class="modal fade" id="gestionaModal" tabindex="-1" role="dialog" aria-labelledby="gestionaModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <h2 class="modal-title" id="gestionaModalLabel">Gestion Barrio </h2>
+
+<ng-template #gestionaModal let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h2 class="modal-title">Gestion Barrio </h2>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
         <div class="modal-body">
             <div>
 				<ngx-datatable
@@ -74,118 +77,114 @@
 				  <ngx-datatable-column name="Telefono"></ngx-datatable-column>
 				  <ngx-datatable-column>
             <ng-template ngx-datatable-cell-template let-row="row">
-              <button #btnElement class="btn-warning btn" data-toggle="modal" data-target="#ingresoModal" (click)="accion(row)"><i class="fa fa-pencil-square-o"></i></button>
-              <button #btnElement class="btn-danger btn" data-toggle="modal" data-target="#eliminaModal" (click)="borrar(row.id, row.nombre, 'cliente')"><i class="fa fa-trash"></i></button>
+              <button #btnElement class="btn-warning btn" (click)="accion(ingresoModal,row)"><i class="fa fa-pencil-square-o"></i></button>
+              <button #btnElement class="btn-danger btn" (click)="borrar(row.id, row.nombre, 'cliente',eliminaModal)"><i class="fa fa-trash"></i></button>
             </ng-template>
 				  </ngx-datatable-column>
 				</ngx-datatable>
 			</div>
-			<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ingresoModal" (click)="accion()">Agregar nuevo Usuario</button>
+			<button type="button" class="btn btn-warning" (click)="accion(ingresoModal)">Agregar nuevo Usuario</button>
         </div> <!-- close modal body -->  
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-light" (click)="c('Close click')">Cerrar</button>
         </div> <!-- close modal footer -->
-      </div> <!-- close modal content -->
-    </div> <!-- close modal dialog -->
-</div> <!-- close modal  -->
+</ng-template>
   
-     
-<div class="modal fade" id="ingresoModal" tabindex="-1" role="dialog" aria-labelledby="ingresoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <h5 class="modal-title" id="ingresoModalLabel">Ingreso usuario </h5>
-        <div class="modal-body">
-            <div class="row">
-              <div class="col-sm-4">
-                    <label for="nombre">Nombre</label>
-                    <input type="string" required class="form-control" id="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
-                    <!-- <div class="alert alert-danger" [hidden]="nombre">Valor Requerido</div> -->
-              </div>
-              <div class="col-sm-4">
-                    <label for="apellidoP">Apellido Paterno</label>
-                    <input  type="string" required class="form-control" id="apellioP" [(ngModel)]="newUser.apellidoP" placeholder="Ingrese Apellido Paterno"/> 
-              </div>
-              <div class="col-sm-4">
-                    <label for="apellidoM">Apellido Materno</label>
-                    <input  type="string" required class="form-control" id="apellidoM" [(ngModel)]="newUser.apellidoM" placeholder="Ingrese Apellido Materno"/> 
-              </div>
+<ng-template #ingresoModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">{{modifica?'Modifica':'Ingresa'}} Usuario</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-4">
+                  <label for="nombre">Nombre</label>
+                  <input type="string" required class="form-control" id="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
+                  <!-- <div class="alert alert-danger" [hidden]="nombre">Valor Requerido</div> -->
             </div>
-            <div class="row">
-              <div class="col-sm-4">
-                    <label for="genero">Genero:</label>
-                    <ng-select [searchable]="false" 
-                      [items]="generos" required
+            <div class="col-sm-4">
+                  <label for="apellidoP">Apellido Paterno</label>
+                  <input  type="string" required class="form-control" id="apellidoP" [(ngModel)]="newUser.apellidoP" placeholder="Ingrese Apellido Paterno"/> 
+            </div>
+            <div class="col-sm-4">
+                  <label for="apellidoM">Apellido Materno</label>
+                  <input  type="string" required class="form-control" id="apellidoM" [(ngModel)]="newUser.apellidoM" placeholder="Ingrese Apellido Materno"/> 
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+                  <label for="genero">Genero:</label>
+                  <ng-select [searchable]="false" 
+                    [items]="generos" required
+                    [multiple]="false"
+                    [(ngModel)]="newUser.genero"
+                    id="genero"
+                    placeholder="Seleccione genero" >
+                  </ng-select>
+              </div>
+            <div class="col-sm-4">
+                  <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                  <input  type="date" required class="form-control" [(ngModel)]="newUser.fechaNacimiento"/> 
+            </div>
+            <div class="col-sm-4">
+                  <label for="mail">Mail:</label>
+                  <input  type="mail" required class="form-control"[(ngModel)]="newUser.email" placeholder="Ingrese Mail"/> 
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+                  <label for="telefono">Teléfono:</label>
+                  <input type="number" required class="form-control"[(ngModel)]="newUser.telefono" placeholder="Ingrese Telefono" minlength="9" maxlength="9"/>
+            </div>
+            <div class="col-sm-4">
+                  <label for="organizacion">Seleccione Organizacion:</label>
+                  <ng-select [searchable]="true" 
+                      [items]="organizaciones" required
+                      bindLabel="nombre"
+                      bindValue="id"
+                      id="organizacion"
                       [multiple]="false"
-                      [(ngModel)]="newUser.genero"
-                      id="genero"
-                      placeholder="Seleccione genero" >
+                      placeholder="Seleccione organizacion"
+                      [(ngModel)]="organizacion"  
+                      (ngModelChange)="buscaBarrio($event)" >
+                  </ng-select>
+            </div>
+            <div class="col-sm-4">
+                  <label for="barrio">Seleccione Barrio:</label>
+                  <ng-select [searchable]="true" 
+                      [items]="barrios" required
+                      bindLabel="nombre"
+                      bindValue="id"
+                      id="barrio"
+                      [multiple]="false"
+                      placeholder="Seleccione barrio"
+                      [(ngModel)]="newUser.id_barrio" >
                     </ng-select>
-                </div>
-              <div class="col-sm-4">
-                    <label for="fecha_nacimiento">Fecha de nacimiento:</label>
-                    <input  type="date" required class="form-control" [(ngModel)]="newUser.fechaNacimiento"/> 
-              </div>
-              <div class="col-sm-4">
-                    <label for="mail">Mail:</label>
-                    <input  type="mail" required class="form-control"[(ngModel)]="newUser.email" placeholder="Ingrese Mail"/> 
-              </div>
             </div>
-            <div class="row">
-              <div class="col-sm-4">
-                    <label for="telefono">Teléfono:</label>
-                    <input type="number" required class="form-control"[(ngModel)]="newUser.telefono" placeholder="Ingrese Telefono" minlength="9" maxlength="9"/>
-              </div>
-              <div class="col-sm-4">
-                    <label for="organizacion">Seleccione Organizacion:</label>
-                    <ng-select [searchable]="true" 
-                        [items]="organizaciones" required
-                        bindLabel="nombre"
-                        bindValue="id"
-                        id="organizacion"
-                        [multiple]="false"
-                        placeholder="Seleccione organizacion"
-                        [(ngModel)]="organizacion"  
-                        (ngModelChange)="buscaBarrio($event)" >
-                    </ng-select>
-              </div>
-              <div class="col-sm-4">
-                    <label for="barrio">Seleccione Barrio:</label>
-                    <ng-select [searchable]="true" 
-                        [items]="barrios" required
-                        bindLabel="nombre"
-                        bindValue="id"
-                        id="barrio"
-                        [multiple]="false"
-                        placeholder="Seleccione barrio"
-                        [(ngModel)]="newUser.id_barrio" >
-                      </ng-select>
-              </div>
-            </div>
-        </div> <!-- close modal body -->  
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" (click)="ingresaUsuario()"  >Guardar</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        </div> <!-- close modal footer -->
-      </div> <!-- close modal content -->
-    </div> <!-- close modal dialog -->
-</div> <!-- close modal  -->
-  
-     
-<div class="modal fade" id="eliminaModal" tabindex="-1" role="dialog" aria-labelledby="eliminaModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <h2 class="modal-title" id="eliminaModalLabel">Confirmación </h2>
-        <div class="modal-body">
-            <div class="row">
-              <h5>Seguro desea eliminar al {{victima?.tipo}} {{victima?.quien}}</h5>
-            </div>
-           
-        </div> <!-- close modal body -->  
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" (click)="elimina()"  >Eliminar</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        </div> <!-- close modal footer -->
-      </div> <!-- close modal content -->
-    </div> <!-- close modal dialog -->
-</div> <!-- close modal  -->
-  
+          </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="ingresaUsuario()"  >Guardar</button>      
+      <button type="button" class="btn btn-light" (click)="c('Close click')">Cancelar</button>
+    </div>
+  </ng-template>
+
+<ng-template #eliminaModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Confirmación</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+          <h5>Seguro desea eliminar al {{victima?.tipo}} {{victima?.quien}}</h5>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="elimina()"  >Eliminar</button>      
+      <button type="button" class="btn btn-light" (click)="cancela()">Cancelar</button>
+    </div>
+  </ng-template>
