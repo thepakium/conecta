@@ -119,6 +119,11 @@ export class PersonalComponent implements OnInit {
     if ( this.victima.tipo === 'cliente' ) {  this.gestiona(); }
   }
 
+  cancelo() {
+    this.modalIngresaRef.close();
+    this.gestiona();
+  }
+
   accion ( modal, dato = null ) {
     this.modalGestionRef.close();
     this.modalIngresaRef = this.modalService.open( modal, { size: 'lg' });
