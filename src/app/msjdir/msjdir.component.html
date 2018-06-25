@@ -58,12 +58,17 @@
           <td>(a)/(o)</td>
         </tr>
       </table></ng-template>
-    <span class="badge badge-pill badge-info" placement="top" [ngbTooltip]="tipContent" >Abrev.</span>
+    <span class="badge badge-pill badge-dark" placement="top" [ngbTooltip]="tipContent" >Abrev.</span>
+    <span class="badge badge-pill badge-primary" placement="top" (click)="modificar_nombre()" [ngbTooltip]="InsertaNo" >Nombre</span>
+    <span class="badge badge-pill badge-success" placement="top" (click)="modificar_apellido()" [ngbTooltip]="InsertaAp" >Apellido</span>
+    <span class="badge badge-pill badge-warning" placement="top" (click)="modificar_barrio()" [ngbTooltip]="InsertaBa" >Barrio</span>
+    <span class="badge badge-pill badge-info" placement="top" (click)="modificar_at()" [ngbTooltip]="InsertaAt" >@</span>
     <textarea rows="5" class="form-control" required maxlength="160" [(ngModel)]="mensaje" placeholder="Escriba Mensaje"></textarea>
       {{ 160 - mensaje.length }} carácteres restantes
     </div>
     
     <div class="form-group">
+        <span class="badge badge-pill badge-danger" placement="bottom" (click)="borrar_msj()" [ngbTooltip]="Borrar" >Borrar</span>
       <button data-toggle="modal" data-target="#previewModal" class="btn btn-default" (click)='cambiarTexto()'
 	  [disabled]="!((selected?.length>0)&&categoria&&mensaje)">{{fecha?'Programar':'Revisar'}}</button> &nbsp; 
       <label>Programar envío</label>
@@ -143,3 +148,19 @@
     </div>
   </div>
 </div>
+
+<ng-template #InsertaNo>
+    Insertar Comodín Nombre
+ </ng-template>
+<ng-template #InsertaAp>
+    Insertar Comodín Apellido
+ </ng-template>
+<ng-template #InsertaBa>
+    Insertar Comodín Barrio
+ </ng-template>
+<ng-template #InsertaAt>
+    Insertar Comodín '#@' para A/O según genero, Estimad#@ = Estimada o Estimado según género receptor
+ </ng-template>
+<ng-template #Borrar>
+    Borrar Cuerpo del mensaje
+ </ng-template>

@@ -158,7 +158,7 @@ export class InformesComponent implements OnInit {
   exporta_mes() {
     window.open(`http://www.ahoraconectados.cl/sms/export_repo_mes.php`, '_blank')
   }
-  exporta_año() {
+  exporta_year() {
     window.open(`http://www.ahoraconectados.cl/sms/export_repo_year.php`, '_blank')
   }
 
