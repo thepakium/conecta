@@ -1,7 +1,17 @@
 
     <div class="row">
+        <div class="col-lg-3 col-centered">
+            <a class="navbar-brand centerT"><img src="../../assets/images/logo-conectados.svg" width="400px"> </a>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-2 col-centered">
-          <a class="navbar-brand"><img src="../../assets/images/logo-conectados.svg" width="150px"> </a>
+            <p class="text">INICIAR SESIÓN</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2 col-centered">
+         
           <form (submit)="loginUser()">
             <div class="input">
                 <label>Usuario</label>
@@ -10,9 +20,10 @@
             <div class="input">
                   <label>Password</label>
                   <input type="password" [(ngModel)]="ingreso.pass" [ngModelOptions]="{standalone: true}" placeholder="Password">
-                </div>
-            <div class ="input">
+                <p></p>
+                <div class="col-lg-2col-centered">
                 <input type="submit" value="Ingresar">
+                </div>
             </div>
             
           </form>

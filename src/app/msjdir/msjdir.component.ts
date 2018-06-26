@@ -98,7 +98,7 @@ export class MsjdirComponent implements OnInit {
   }
   modificar_apellido(){
     this.paso=this.mensaje
-    console.log(this.mensaje=this.paso+"##(apellido)");
+    console.log(this.mensaje=this.paso+"##(apelli)");
   }
   modificar_barrio(){
     this.paso=this.mensaje
