@@ -6,6 +6,9 @@
                 <button type="button" class="btn btn-success" [routerLink]="['/mensajes']" [ngbTooltip]="redmen"><i class="fa fa-comment-o"></i> Mensajeria</button>&nbsp;
                 <button type="button" class="btn btn-primary" [routerLink]="['/reportes']" [ngbTooltip]="repo" ><i class="fa fa-area-chart"></i> Reportes</button>&nbsp;
                 <button type="button" class="btn btn-secondary" [routerLink]="['/personas']"[ngbTooltip]="perso" ><i class="fa fa-user-circle-o"></i> Personas</button>&nbsp;
+                
+                <button  type="button" *ngIf="logged.perfil=='admin'" class="btn btn-primary" [routerLink]="['/perfiles']"[ngbTooltip]="perfil"><i class="fa fa-vcard-o"></i> Perfiles</button>&nbsp;
+            
                 <button class="btn btn-warning buttonRedondeo" [ngbTooltip]="cuotaTip"><i class="fa fa-comment-o"></i> 123</button> 
             </div> 
             <div class="col-2" layout-align="end center">
