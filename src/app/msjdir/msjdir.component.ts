@@ -22,6 +22,7 @@ export class MsjdirComponent implements OnInit {
   mensaje = '';
   c2: any;
   cambio = '';
+  paso="";
   datos: any;
   dest: any;
   fecha: Date;
@@ -88,7 +89,29 @@ export class MsjdirComponent implements OnInit {
        }
      } );
   }
-
+  borrar_msj(){
+    this.mensaje="";
+  }
+  modificar_nombre(){
+    this.paso=this.mensaje
+    console.log(this.mensaje=this.paso+"##(nombre)");
+  }
+  modificar_apellido(){
+    this.paso=this.mensaje
+    console.log(this.mensaje=this.paso+"##(apellido)");
+  }
+  modificar_barrio(){
+    this.paso=this.mensaje
+    console.log(this.mensaje=this.paso+"##(barrio)");
+  }
+  modificar_at(){
+    this.paso=this.mensaje
+    console.log(this.mensaje=this.paso+"#@");
+  }
+  modificar_firma(){
+    this.paso=this.mensaje
+    console.log(this.mensaje=this.paso+' -Firma-');
+  }
   cambiarTexto(  ) {
     if ( !this.c2) { this.c2 = 0; }
     this.cambio = this.limpiarCaracteres(this.mensaje.replace(/\#\#\(nombre\)/ig, this.selected[this.c2].nombre.substring(0, 10) )
