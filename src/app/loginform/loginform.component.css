@@ -3,7 +3,7 @@
     float: none;
     margin: 0 auto;
 }
-.this{
+.centerT{
 	justify-content: center;
 }
 div.input {
@@ -15,9 +15,9 @@ div.input label {
 	top: 0;
 	transform: translateY(-50%);
 	left: 10px;
-	background: rgb(143, 130, 130);
+	background: rgb(253, 253, 253);
     padding: 5px 2px;
-    font-family: 'Ubuntu';
+    font-family: 'Futura PT';
 }
 
 div.input input {
@@ -51,12 +51,12 @@ div.input {
 	font-style: normal
 }
 #fullPage {
-	background: url(/wp-content/themes/conectadosCL/images/resources/1.jpg) no-repeat !important;
+	background: rgb(150, 149, 149);
 }
 .navbar {
-	background: #fff;
+	background: rgb(150, 149, 149);
 	margin-bottom: 20px
 }
 .form-group label {
-	color: #fff;
+	color: rgb(207, 28, 28);
 }
