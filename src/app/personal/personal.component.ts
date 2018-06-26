@@ -61,8 +61,18 @@ export class PersonalComponent implements OnInit {
 
   ingresaUsuario() {
     const datos = { tipo: this.modifica ? 'actualiza' : 'registra', usuario: this.logged, cliente: this.newUser };
-    this.busquedaService.ingresaDatos( JSON.stringify(datos) , data => console.log(data) );
-
+    this.busquedaService.ingresaDatos( JSON.stringify(datos) , data => {
+      console.log(data);
+        if (data ) {
+            this.toastr.success( this.newUser.nombre + ' ' + data , null, {
+                timeOut: 3000,
+            });
+            this.newUser = new Usuario;
+          }
+        }
+      );
+      this.modalIngresaRef.close();
+      this.gestiona();
   }
 
   elimina() {
