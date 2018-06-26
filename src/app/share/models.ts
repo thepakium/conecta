@@ -29,8 +29,13 @@ export class Username {
     id: number;
     nombre: string;
     apellido: string;
-    usernames: string;
+    username: string;
     genero: string;
+    telefono: string;
+    mail: string;
+    perfil: string;
+    organizacion: string;
+    barrios: any;
   }
 
 export class Categoria {

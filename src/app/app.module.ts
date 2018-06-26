@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginformComponent } from './loginform/loginform.component';
 import { FooterComponent } from './footer/footer.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MsjdirComponent } from './msjdir/msjdir.component';
 import { PersonalComponent } from './personal/personal.component';
@@ -21,6 +20,7 @@ import { AuthGuard } from './share';
 import { InformesComponent } from './informes/informes.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ChartsModule } from 'ng2-charts';
+import { PerfilesComponent } from './perfiles/perfiles.component';
 
 
 // AoT requires an exported function for factories
@@ -41,6 +41,9 @@ const appRoutes: Routes = [
     path: 'reportes', canActivate: [AuthGuard],    component: InformesComponent
   },
   {
+    path: 'perfiles', canActivate: [AuthGuard],    component: PerfilesComponent
+  },
+  {
     path: '**',
     component: NoEncontradoComponent
   }
@@ -53,11 +56,11 @@ const appRoutes: Routes = [
     HeaderComponent,
     LoginformComponent,
     FooterComponent,
-    DashboardComponent,
     MsjdirComponent,
     PersonalComponent,
     NoEncontradoComponent,
     InformesComponent,
+    PerfilesComponent,
 
   ],
   imports: [

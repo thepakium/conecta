@@ -1,0 +1,155 @@
+<app-header></app-header>
+<div>
+  <ngx-datatable
+    #myTable
+		style="width: 90%"
+		class="material expandable"
+		[rows]="usuarios"
+		[columnMode]="'force'"
+		[headerHeight]="40"
+		[footerHeight]="50"
+		[rowHeight]="'100%'"
+    [loadingIndicator]="loadingIndicator"
+    [limit]="6"
+		>
+	  <ngx-datatable-row-detail [rowHeight]="70" #myDetailRow >
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+        <div style="padding-left:35px;">
+          <div><strong>{{row.nm_orgs}}</strong></div>
+          <div>{{row.nm_barrios}}</div>
+        </div>
+      </ng-template>
+    </ngx-datatable-row-detail>
+     
+    <ngx-datatable-column
+      [width]="50"
+      [resizeable]="false"
+      [sortable]="false"
+      [draggable]="false"
+      [canAutoResize]="false">
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        <a *ngIf="row.perfil != 'admin'"
+          href="javascript:void(0)"
+          [class.datatable-icon-right]="!expanded"
+          [class.datatable-icon-down]="expanded"
+          title="Mostrar Barrios asociados"
+          (click)="toggleExpandRow(row)">
+        </a>
+      </ng-template>
+    </ngx-datatable-column>
+	  <ngx-datatable-column name="Usuario"></ngx-datatable-column>
+	  <ngx-datatable-column name="Mail"></ngx-datatable-column>
+	  <ngx-datatable-column name="Username"></ngx-datatable-column>
+	  <ngx-datatable-column name="Perfil"></ngx-datatable-column>
+	  <ngx-datatable-column>
+		<ng-template ngx-datatable-cell-template let-row="row">
+		  
+		  <button #btnElement class="btn-warning btn" (click)="gestiona(ingresoModal, row)"><i class="fa fa-pencil-square-o"></i></button>&nbsp;
+		  <button #btnElement class="btn-danger btn"  (click)="borrar(row,eliminaModal)"><i class="fa fa-trash"></i></button>
+		</ng-template>
+		
+	  </ngx-datatable-column>
+	</ngx-datatable>
+</div>
+
+
+<ng-template #ingresoModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">{{modifica?'Modifica':'Ingresa'}} Usuario</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="row">
+          <div class="col-sm-4">
+                <label for="nombre">Nombre</label>
+                <input type="string" required class="form-control" id="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
+                <!-- <div class="alert alert-danger" [hidden]="nombre">Valor Requerido</div> -->
+          </div>
+          <div class="col-sm-4">
+                <label for="apellido">Apellido</label>
+                <input  type="string" required class="form-control" id="apellido" [(ngModel)]="newUser.apellido" placeholder="Ingrese Apellido"/> 
+          </div>
+          <div class="col-sm-4">
+                <label for="username">Username</label>
+                <input  type="string" required class="form-control" id="username" [(ngModel)]="newUser.username" placeholder="Ingrese Username"/> 
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+                <label for="genero">Genero:</label>
+                <ng-select [searchable]="false" 
+                  [items]="generos" required
+                  [multiple]="false"
+                  [(ngModel)]="newUser.genero"
+                  id="genero"
+                  placeholder="Seleccione genero" >
+                </ng-select>
+            </div>
+            <div class="col-sm-4">
+                  <label for="mail">Mail:</label>
+                  <input  type="mail" class="form-control"[(ngModel)]="newUser.mail" placeholder="Ingrese Mail"/> 
+            </div>
+            <div class="col-sm-4">
+              <label for="genero">Perfil:</label>
+              <ng-select [searchable]="false" 
+                [items]="perfiles" required
+                [multiple]="false"
+                [(ngModel)]="newUser.perfil"
+                id="perfil"
+                placeholder="Seleccione perfil" >
+              </ng-select>
+            </div>
+        </div>
+        <div *ngIf="newUser.perfil == 'user'" class="row">
+          <div class="col-sm-4">
+                <label for="organizacion">Seleccione Organizacion:</label>
+                <ng-select [searchable]="true" 
+                    [items]="organizaciones" required
+                    bindLabel="nombre"
+                    bindValue="id"
+                    id="organizacion"
+                    [multiple]="false"
+                    placeholder="Seleccione organizacion"
+                    [(ngModel)]="newUser.organizacion"  
+                    (ngModelChange)="buscaBarrio($event)" >
+                </ng-select>
+          </div>
+          <div class="col-sm-8">
+                <label for="barrio">Seleccione Barrio:</label>
+                <ng-select [searchable]="true" 
+                    [items]="barrios" required
+                    bindLabel="nombre"
+                    bindValue="id"
+                    id="barrio"
+                    [multiple]="true"
+                    placeholder="Seleccione barrio"
+                    [(ngModel)]="newUser.barrios" >
+                  </ng-select>
+          </div>
+        </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="ingresaUsuario()"  >Guardar</button>      
+    <button type="button" class="btn btn-light" (click)="d('Cross click')">Cancelar</button>
+  </div>
+</ng-template>
+
+<ng-template #eliminaModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Confirmación</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="row">
+        <h5>Seguro desea eliminar a {{victima?.quien}}</h5>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="elimina()"  >Eliminar</button>      
+    <button type="button" class="btn btn-light" (click)="d('Cross click')">Cancelar</button>
+  </div>
+</ng-template>
