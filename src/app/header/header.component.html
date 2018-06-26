@@ -1,23 +1,27 @@
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
         <div class="container">
-            <a class="navbar-brand"><img src="../../assets/images/logo-conectados.svg" width="150px"> </a>
-
+            <div class="col-10">
+                <a class="navbar-brand"><img src="../../assets/images/logo-conectados.svg" width="150px"> </a>
+                <button type="button" class="btn disabled" [ngbTooltip]="admin"><i class="fa fa-user"></i> {{this.logged.nombre}}</button>&nbsp;
+                <button type="button" class="btn btn-success" [routerLink]="['/mensajes']" [ngbTooltip]="redmen"><i class="fa fa-comment-o"></i> Mensajeria</button>&nbsp;
+                <button type="button" class="btn btn-primary" [routerLink]="['/reportes']" [ngbTooltip]="repo" ><i class="fa fa-area-chart"></i> Reportes</button>&nbsp;
+                <button type="button" class="btn btn-secondary" [routerLink]="['/personas']"[ngbTooltip]="perso" ><i class="fa fa-user-circle-o"></i> Personas</button>&nbsp;
+                <button class="btn btn-warning buttonRedondeo" [ngbTooltip]="cuotaTip"><i class="fa fa-comment-o"></i> 123</button> 
+            </div> 
+            <div class="col-2" layout-align="end center">
+                <button type="button" class="btn btn-danger" (click)="logout()" style="float: right;"><i class="fa fa-sign-out"></i> Salir</button>&nbsp;
+            </div> 
+            
         </div>
 </nav>
 <!--BOTONERA NAVEGACIÓN-->
 <div class="container">
     <div class="row">
         <div class="col-lg-10">
-            <button type="button" class="btn disabled" [ngbTooltip]="admin"><i class="fa fa-user"></i> {{this.logged.nombre}}</button>&nbsp;
-            <button type="button" class="btn btn-success" [routerLink]="['/mensajes']" [ngbTooltip]="redmen"><i class="fa fa-comment-o"></i> Mensajeria</button>&nbsp;
-            <button type="button" class="btn btn-primary" [routerLink]="['/reportes']" [ngbTooltip]="repo" ><i class="fa fa-area-chart"></i> Reportes</button>&nbsp;
-            <button type="button" class="btn btn-secondary" [routerLink]="['/personas']"[ngbTooltip]="perso" ><i class="fa fa-user-circle-o"></i> Personas</button>&nbsp;
+
             <!--BOTON COUTA SMS-->
-            <button class="btn btn-warning buttonRedondeo" [ngbTooltip]="cuotaTip"><i class="fa fa-comment-o"></i> 123</button> 
         </div>
-        <div class="col-lg-2" layout-align="end center">
-            <button type="button" class="btn btn-danger" (click)="logout()" style="float: right;"><i class="fa fa-sign-out"></i> Salir</button>&nbsp;
-        </div>   
+         
     </div>   
 <br>
 <br>

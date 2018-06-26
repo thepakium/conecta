@@ -63,6 +63,7 @@
     <span class="badge badge-pill badge-success" placement="top" (click)="modificar_apellido()" [ngbTooltip]="InsertaAp" >Apellido</span>
     <span class="badge badge-pill badge-warning" placement="top" (click)="modificar_barrio()" [ngbTooltip]="InsertaBa" >Barrio</span>
     <span class="badge badge-pill badge-info" placement="top" (click)="modificar_at()" [ngbTooltip]="InsertaAt" >@</span>
+    <span class="badge badge-pill badge-info" placement="top" (click)="modificar_firma()" [ngbTooltip]="InsertaFi" >Firma</span>
     <textarea rows="5" class="form-control" required maxlength="160" [(ngModel)]="mensaje" placeholder="Escriba Mensaje"></textarea>
       {{ 160 - mensaje.length }} carácteres restantes
     </div>
@@ -149,6 +150,9 @@
   </div>
 </div>
 
+<ng-template #InsertaFi>
+    Insertar Firma Barrio
+ </ng-template>
 <ng-template #InsertaNo>
     Insertar Comodín Nombre
  </ng-template>
