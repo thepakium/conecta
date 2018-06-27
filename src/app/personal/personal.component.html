@@ -29,8 +29,8 @@
 	  <ngx-datatable-column>
 		<ng-template ngx-datatable-cell-template let-row="row">
 		  
-		  <button #btnElement class="btn-warning btn" (click)="gestiona(gestionaModal, row.id)"><i class="fa fa-pencil-square-o"></i></button>&nbsp;
-		  <button #btnElement class="btn-danger btn"  (click)="borrar(row.id, row.barrio, 'barrio',eliminaModal)"><i class="fa fa-trash"></i></button>
+		  <button #btnElement class="btn-warning btn" (click)="gestiona(gestionaModal, row.id)"[ngbTooltip]="Editar"><i class="fa fa-pencil-square-o"></i></button>&nbsp;
+		  <button #btnElement class="btn-danger btn"  (click)="borrar(row.id, row.barrio, 'barrio',eliminaModal)"[ngbTooltip]="Borrar"><i class="fa fa-trash"></i></button>
 		</ng-template>
 		
 		<ngx-datatable-footer>
@@ -77,8 +77,8 @@
 				  <ngx-datatable-column name="Telefono"></ngx-datatable-column>
 				  <ngx-datatable-column>
             <ng-template ngx-datatable-cell-template let-row="row">
-              <button #btnElement class="btn-warning btn" (click)="accion(ingresoModal,row)"><i class="fa fa-pencil-square-o"></i></button>
-              <button #btnElement class="btn-danger btn" (click)="borrar(row.id, row.nombre, 'cliente',eliminaModal)"><i class="fa fa-trash"></i></button>
+              <button #btnElement class="btn-warning btn" (click)="accion(ingresoModal,row)"><i class="fa fa-pencil-square-o"[ngbTooltip]="Editar"></i></button>
+              <button #btnElement class="btn-danger btn" (click)="borrar(row.id, row.nombre, 'cliente',eliminaModal)"[ngbTooltip]="Borrar"><i class="fa fa-trash"></i></button>
             </ng-template>
 				  </ngx-datatable-column>
 				</ngx-datatable>
@@ -188,3 +188,9 @@
       <button type="button" class="btn btn-light" (click)="cancela()">Cancelar</button>
     </div>
   </ng-template>
+  <ng-template #Editar>
+    Editar
+ </ng-template>
+  <ng-template #Borrar>
+    Borrar
+ </ng-template>

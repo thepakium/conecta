@@ -58,18 +58,18 @@
           <td>(a)/(o)</td>
         </tr>
       </table></ng-template>
-    <span class="badge badge-pill badge-dark" placement="top" [ngbTooltip]="tipContent" >Abrev.</span>&nbsp; 
+    
     <span class="badge badge badge-primary" placement="top" (click)="modificar_nombre()" [ngbTooltip]="InsertaNo" >Nombre</span>&nbsp; 
     <span class="badge badge badge-success" placement="top" (click)="modificar_apellido()" [ngbTooltip]="InsertaAp" >Apellido</span>&nbsp; 
     <span class="badge badge badge-warning" placement="top" (click)="modificar_barrio()" [ngbTooltip]="InsertaBa" >Barrio</span>&nbsp; 
     <span class="badge badge badge-info" placement="top" (click)="modificar_at()" [ngbTooltip]="InsertaAt" >@</span>&nbsp; 
     <span class="badge badge badge-secondary" placement="top" (click)="modificar_firma()" [ngbTooltip]="InsertaFi" >Firma</span>
     <textarea rows="5" class="form-control" required maxlength="160" [(ngModel)]="mensaje" placeholder="Escriba Mensaje"></textarea>
-      {{ 160 - mensaje.length }} carácteres restantes
+     {{mensaje.length}} carácteres usados de {{ 160 - mensaje.length }} restantes    &nbsp;&nbsp; <span class="badge badge badge-danger"(click)="borrar_msj()" [ngbTooltip]="Borrar" >Borrar</span> 
+
     </div>
-    
+
     <div class="form-group">
-        <span class="badge badge badge-danger" placement="bottom" (click)="borrar_msj()" [ngbTooltip]="Borrar" >Borrar</span>&nbsp; 
       <button data-toggle="modal" data-target="#previewModal" class="btn btn-default" (click)='cambiarTexto()'
 	  [disabled]="!((selected?.length>0)&&categoria&&mensaje)">{{fecha?'Programar':'Revisar'}}</button> &nbsp; 
       <label>Programar envío</label>&nbsp; 
