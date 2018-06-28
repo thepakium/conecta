@@ -91,34 +91,41 @@ export class PerfilesComponent implements OnInit {
     this.buscarUsuarios();
   }
 
-  gestiona(content , quien  ) {
-    this.modifica = true;
-    this.newUser = new Username;
-    this.newUser.id = quien.id;
-    this.newUser.apellido = quien.apellido;
-    this.newUser.nombre = quien.nombre;
-    this.newUser.username = quien.username;
-    this.newUser.genero = quien.genero;
-    this.newUser.perfil = quien.perfil;
-    this.newUser.mail = quien.mail;
-    this.newUser.organizacion = quien.id_orgs;
-    this.newUser.barrios = quien.id_barrios ? quien.id_barrios.split(',') : [];
-    this.buscaBarrio( this.newUser.organizacion );
+  gestiona(content , quien = null  ) {
+    if( quien ) {
+      this.modifica = true;
+      this.newUser = new Username;
+      this.newUser.id = quien.id;
+      this.newUser.apellido = quien.apellido;
+      this.newUser.nombre = quien.nombre;
+      this.newUser.username = quien.username;
+      this.newUser.genero = quien.genero;
+      this.newUser.perfil = quien.perfil;
+      this.newUser.mail = quien.mail;
+      this.newUser.organizacion = quien.id_orgs;
+      this.newUser.barrios = quien.id_barrios ? quien.id_barrios.split(',') : [];
+      this.buscaBarrio( this.newUser.organizacion );
+    } else {
+      this.modifica = false;
+    }
 
     this.modalGestionRef = this.modalService.open( content, { size: 'lg' });
   }
 
   ingresaUsuario() {
-    const datos = { tipo: this.modifica ? 'modifica' : 'registra', usuario: this.logged, cliente: this.newUser };
+    if( this.newUser && this.newUser.perfil === 'admin' ) {
+      this.newUser.organizacion = null;
+      this.newUser.barrios = [];  
+    }
+    const datos = { tipo: this.modifica ? 'modifica' : 'registra', usuario: this.logged, cliente: this.newUser , modelo: 'p' };
     this.busquedaService.ingresaDatos( JSON.stringify(datos) , data => {
-      console.log(data);
         if (data && data.substring(0, 5) !== 'Error' ) {
             this.toastr.success( this.newUser.nombre + ' ' + data , null, {
                 timeOut: 3000,
             });
             this.newUser = new Username;
           } else {
-            this.toastr.error( this.newUser.nombre + ' ' + data , null, {
+            this.toastr.error( data + ' Usuario ' + this.newUser.nombre , null, {
               timeOut: 3000,
           });
           }
