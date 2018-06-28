@@ -22,7 +22,6 @@ export class MsjdirComponent implements OnInit {
   mensaje = '';
   c2: any;
   cambio = '';
-  paso="";
   datos: any;
   dest: any;
   fecha: Date;
@@ -89,35 +88,37 @@ export class MsjdirComponent implements OnInit {
        }
      } );
   }
-  borrar_msj(){
-    this.mensaje="";
+
+  modificar(valor) {
+    switch (valor) {
+      case 'nombre':
+        this.mensaje += '##(nombre)';
+      break;
+      case 'apellido':
+        this.mensaje += '##(apelli)';
+      break;
+      case 'barrio':
+        this.mensaje += '##(barrio)';
+      break;
+      case 'at':
+        this.mensaje += '#@';
+      break;
+      case 'firma':
+        this.mensaje += ' -Firma-';
+      break;
+      case 'borrar':
+        this.mensaje = '';
+      break;
+    }
   }
-  modificar_nombre(){
-    this.paso=this.mensaje
-    console.log(this.mensaje=this.paso+"##(nombre)");
-  }
-  modificar_apellido(){
-    this.paso=this.mensaje
-    console.log(this.mensaje=this.paso+"##(apelli)");
-  }
-  modificar_barrio(){
-    this.paso=this.mensaje
-    console.log(this.mensaje=this.paso+"##(barrio)");
-  }
-  modificar_at(){
-    this.paso=this.mensaje
-    console.log(this.mensaje=this.paso+"#@");
-  }
-  modificar_firma(){
-    this.paso=this.mensaje
-    console.log(this.mensaje=this.paso+' -Firma-');
-  }
+
   cambiarTexto(  ) {
     if ( !this.c2) { this.c2 = 0; }
     this.cambio = this.limpiarCaracteres(this.mensaje.replace(/\#\#\(nombre\)/ig, this.selected[this.c2].nombre.substring(0, 10) )
             .replace(/\#\#\(apelli\)/ig, this.selected[this.c2].apellidoP.substring(0, 10) )
             .replace('#@', (this.selected[this.c2].genero === 'Femenino') ? 'a' : 'o' )
             .replace(/\#\#\(barrio\)/ig, this.selected[this.c2].barrio.substring(0, 10) )
+            .replace(/\-firma\-/ig, this.selected[this.c2].firma )
             .replace(/@\s/g, (this.selected[this.c2].genero === 'Femenino') ? 'a' : 'o' ));
   }
 
@@ -126,7 +127,7 @@ export class MsjdirComponent implements OnInit {
                   .replace(/[ÀÁÄ]/g, 'A' )
                   .replace(/[àéë]/g, 'e' )
                   .replace(/[ÈÉË]/g, 'E' )
-                  .replace(/[ìïï]/g, 'i' )
+                  .replace(/[ìíï]/g, 'i' )
                   .replace(/[ÌÍÏ]/g, 'I' )
                   .replace(/[òóö]/g, 'o' )
                   .replace(/[ÒÓÖ]/g, 'O' )
@@ -154,10 +155,10 @@ export class MsjdirComponent implements OnInit {
   buscarUsuario() {
     const datos = { tipo: 'usuario', usuario: this.logged };
     this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => { this.usuarios = data;
+      console.log(data);
       setTimeout(() => { this.loadingIndicator = false; }, 1500); }
     );
   }
-
 
   filtrar(event) {
     this.selected.splice(0, this.selected.length);

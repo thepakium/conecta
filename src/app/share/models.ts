@@ -20,6 +20,7 @@ export class Usuario {
     rut: string;
     fechaNacimiento: Date;
     organizacion: string;
+    firma: string;
     barrio: string;
     id_barrio: number;
     activo: boolean;
