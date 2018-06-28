@@ -51,7 +51,7 @@
 	  </ngx-datatable-column>
 	</ngx-datatable>
 </div>
-
+<button type="button" class="btn btn-warning" (click)="gestiona(ingresoModal)">Agregar nuevo Cliente</button>
 
 <ng-template #ingresoModal let-c="close" let-d="dismiss">
   <div class="modal-header">
@@ -61,19 +61,20 @@
     </button>
   </div>
   <div class="modal-body">
+    <form #userForm="ngForm"  novalidate>
       <div class="row">
           <div class="col-sm-4">
                 <label for="nombre">Nombre</label>
-                <input type="string" required class="form-control" id="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
+                <input type="string" required class="form-control" id="nombre" name="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
                 <!-- <div class="alert alert-danger" [hidden]="nombre">Valor Requerido</div> -->
           </div>
           <div class="col-sm-4">
                 <label for="apellido">Apellido</label>
-                <input  type="string" required class="form-control" id="apellido" [(ngModel)]="newUser.apellido" placeholder="Ingrese Apellido"/> 
+                <input  type="string" required class="form-control" id="apellido" name="apellido" [(ngModel)]="newUser.apellido" placeholder="Ingrese Apellido"/> 
           </div>
           <div class="col-sm-4">
                 <label for="username">Username</label>
-                <input  type="string" required class="form-control" id="username" [(ngModel)]="newUser.username" placeholder="Ingrese Username"/> 
+                <input  type="string" required class="form-control" id="username" name="username" [(ngModel)]="newUser.username" placeholder="Ingrese Username"/> 
           </div>
         </div>
         <div class="row">
@@ -84,12 +85,13 @@
                   [multiple]="false"
                   [(ngModel)]="newUser.genero"
                   id="genero"
+                  name="genero"
                   placeholder="Seleccione genero" >
                 </ng-select>
             </div>
             <div class="col-sm-4">
                   <label for="mail">Mail:</label>
-                  <input  type="mail" class="form-control"[(ngModel)]="newUser.mail" placeholder="Ingrese Mail"/> 
+                  <input  type="mail" id="mail" name="mail" class="form-control"[(ngModel)]="newUser.mail" placeholder="Ingrese Mail"/> 
             </div>
             <div class="col-sm-4">
               <label for="genero">Perfil:</label>
@@ -98,6 +100,7 @@
                 [multiple]="false"
                 [(ngModel)]="newUser.perfil"
                 id="perfil"
+                name="perfil"
                 placeholder="Seleccione perfil" >
               </ng-select>
             </div>
@@ -110,6 +113,7 @@
                     bindLabel="nombre"
                     bindValue="id"
                     id="organizacion"
+                    name="organizacion"
                     [multiple]="false"
                     placeholder="Seleccione organizacion"
                     [(ngModel)]="newUser.organizacion"  
@@ -123,15 +127,17 @@
                     bindLabel="nombre"
                     bindValue="id"
                     id="barrio"
+                    name="barrio"
                     [multiple]="true"
                     placeholder="Seleccione barrio"
                     [(ngModel)]="newUser.barrios" >
                   </ng-select>
           </div>
         </div>
+      </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-success" (click)="ingresaUsuario()"  >Guardar</button>      
+    <button type="button" class="btn btn-success" [disabled]="!userForm.valid" (click)="ingresaUsuario()"  >Guardar</button>      
     <button type="button" class="btn btn-light" (click)="d('Cross click')">Cancelar</button>
   </div>
 </ng-template>
