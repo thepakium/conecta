@@ -24,6 +24,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.logged = JSON.parse(localStorage.getItem('user'));
     this.retirarboton();
+	
+	console.log( this.logged );
   }
 
   moverin(): void {

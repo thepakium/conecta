@@ -65,16 +65,16 @@
       <div class="row">
           <div class="col-sm-4">
                 <label for="nombre">Nombre</label>
-                <input type="string" required class="form-control" id="nombre" name="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
+                <input type="text" required class="form-control" id="nombre" name="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
                 <!-- <div class="alert alert-danger" [hidden]="nombre">Valor Requerido</div> -->
           </div>
           <div class="col-sm-4">
                 <label for="apellido">Apellido</label>
-                <input  type="string" required class="form-control" id="apellido" name="apellido" [(ngModel)]="newUser.apellido" placeholder="Ingrese Apellido"/> 
+                <input  type="text" required class="form-control" id="apellido" name="apellido" [(ngModel)]="newUser.apellido" placeholder="Ingrese Apellido"/> 
           </div>
           <div class="col-sm-4">
                 <label for="username">Username</label>
-                <input  type="string" required class="form-control" id="username" name="username" [(ngModel)]="newUser.username" placeholder="Ingrese Username"/> 
+                <input  type="text" required class="form-control" id="username" name="username" [(ngModel)]="newUser.username" placeholder="Ingrese Username"/> 
           </div>
         </div>
         <div class="row">
@@ -91,7 +91,7 @@
             </div>
             <div class="col-sm-4">
                   <label for="mail">Mail:</label>
-                  <input  type="mail" id="mail" name="mail" class="form-control"[(ngModel)]="newUser.mail" placeholder="Ingrese Mail"/> 
+                  <input  type="text" id="mail" name="mail" email class="form-control"[(ngModel)]="newUser.mail" placeholder="Ingrese Mail"/> 
             </div>
             <div class="col-sm-4">
               <label for="genero">Perfil:</label>

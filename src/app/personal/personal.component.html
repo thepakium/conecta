@@ -98,20 +98,20 @@
       </button>
     </div>
     <div class="modal-body">
-      <form #userForm="ngForm" novalidate>
+      <form #userForm="ngForm"  novalidate>
           <div class="row">
             <div class="col-sm-4">
                   <label for="nombre">Nombre</label>
-                  <input type="string" required class="form-control" id="nombre" name="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
+                  <input type="text" required class="form-control" id="nombre" name="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
                   <!-- <div class="alert alert-danger" [hidden]="nombre">Valor Requerido</div> -->
             </div>
             <div class="col-sm-4">
                   <label for="apellidoP">Apellido Paterno</label>
-                  <input  type="string" required class="form-control" id="apellidoP" name="apellidoP" [(ngModel)]="newUser.apellidoP" placeholder="Ingrese Apellido Paterno"/> 
+                  <input  type="text" required class="form-control" id="apellidoP" name="apellidoP" [(ngModel)]="newUser.apellidoP" placeholder="Ingrese Apellido Paterno"/> 
             </div>
             <div class="col-sm-4">
                   <label for="apellidoM">Apellido Materno</label>
-                  <input  type="string" class="form-control" id="apellidoM" name="apellidoM" [(ngModel)]="newUser.apellidoM" placeholder="Ingrese Apellido Materno"/> 
+                  <input  type="text" class="form-control" id="apellidoM" name="apellidoM" [(ngModel)]="newUser.apellidoM" placeholder="Ingrese Apellido Materno"/> 
             </div>
           </div>
           <div class="row">
@@ -132,13 +132,13 @@
             </div>
             <div class="col-sm-4">
                   <label for="mail">Mail:</label>
-                  <input type="mail" id="mail" name="mail" class="form-control"[(ngModel)]="newUser.email" placeholder="Ingrese Mail"/> 
+                  <input type="text" id="mail" name="mail" class="form-control"[(ngModel)]="newUser.email" email placeholder="Ingrese Mail"/> 
             </div>
           </div>
           <div class="row">
             <div class="col-sm-4">
                   <label for="telefono">Teléfono:</label>
-                  <input type="number" id="telefono" name="telefono" required class="form-control"[(ngModel)]="newUser.telefono" placeholder="Ingrese Telefono" minlength="9" maxlength="9"/>
+                  <input type="number" id="telefono" name="telefono" required class="form-control"[(ngModel)]="newUser.telefono" placeholder="Ingrese Telefono"  />
             </div>
             <div class="col-sm-4">
                   <label for="organizacion">Seleccione Organizacion:</label>
