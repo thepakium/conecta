@@ -98,19 +98,20 @@
       </button>
     </div>
     <div class="modal-body">
-        <div class="row">
+      <form #userForm="ngForm" novalidate>
+          <div class="row">
             <div class="col-sm-4">
                   <label for="nombre">Nombre</label>
-                  <input type="string" required class="form-control" id="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
+                  <input type="string" required class="form-control" id="nombre" name="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
                   <!-- <div class="alert alert-danger" [hidden]="nombre">Valor Requerido</div> -->
             </div>
             <div class="col-sm-4">
                   <label for="apellidoP">Apellido Paterno</label>
-                  <input  type="string" required class="form-control" id="apellidoP" [(ngModel)]="newUser.apellidoP" placeholder="Ingrese Apellido Paterno"/> 
+                  <input  type="string" required class="form-control" id="apellidoP" name="apellidoP" [(ngModel)]="newUser.apellidoP" placeholder="Ingrese Apellido Paterno"/> 
             </div>
             <div class="col-sm-4">
                   <label for="apellidoM">Apellido Materno</label>
-                  <input  type="string" class="form-control" id="apellidoM" [(ngModel)]="newUser.apellidoM" placeholder="Ingrese Apellido Materno"/> 
+                  <input  type="string" class="form-control" id="apellidoM" name="apellidoM" [(ngModel)]="newUser.apellidoM" placeholder="Ingrese Apellido Materno"/> 
             </div>
           </div>
           <div class="row">
@@ -121,22 +122,23 @@
                     [multiple]="false"
                     [(ngModel)]="newUser.genero"
                     id="genero"
+                    name="genero"
                     placeholder="Seleccione genero" >
                   </ng-select>
               </div>
             <div class="col-sm-4">
                   <label for="fecha_nacimiento">Fecha de nacimiento:</label>
-                  <input  type="date" class="form-control" [(ngModel)]="newUser.fechaNacimiento"/> 
+                  <input  type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" [(ngModel)]="newUser.fechaNacimiento"/> 
             </div>
             <div class="col-sm-4">
                   <label for="mail">Mail:</label>
-                  <input  type="mail" class="form-control"[(ngModel)]="newUser.email" placeholder="Ingrese Mail"/> 
+                  <input type="mail" id="mail" name="mail" class="form-control"[(ngModel)]="newUser.email" placeholder="Ingrese Mail"/> 
             </div>
           </div>
           <div class="row">
             <div class="col-sm-4">
                   <label for="telefono">Teléfono:</label>
-                  <input type="number" required class="form-control"[(ngModel)]="newUser.telefono" placeholder="Ingrese Telefono" minlength="9" maxlength="9"/>
+                  <input type="number" id="telefono" name="telefono" required class="form-control"[(ngModel)]="newUser.telefono" placeholder="Ingrese Telefono" minlength="9" maxlength="9"/>
             </div>
             <div class="col-sm-4">
                   <label for="organizacion">Seleccione Organizacion:</label>
@@ -145,6 +147,7 @@
                       bindLabel="nombre"
                       bindValue="id"
                       id="organizacion"
+                      name="organizacion"
                       [multiple]="false"
                       placeholder="Seleccione organizacion"
                       [(ngModel)]="organizacion"  
@@ -158,15 +161,17 @@
                       bindLabel="nombre"
                       bindValue="id"
                       id="barrio"
+                      name="barrio"
                       [multiple]="false"
                       placeholder="Seleccione barrio"
                       [(ngModel)]="newUser.id_barrio" >
                     </ng-select>
             </div>
           </div>
+      </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="ingresaUsuario()"  >Guardar</button>      
+      <button type="button" class="btn btn-success" [disabled]="!userForm.valid" (click)="ingresaUsuario()"  >Guardar</button>      
       <button type="button" class="btn btn-light" (click)="cancelo()">Cancelar</button>
     </div>
   </ng-template>
