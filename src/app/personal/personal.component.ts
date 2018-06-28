@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 import { Usuario, Username, Victima } from 'src/app/share/models';
 import { ToastrService } from 'ngx-toastr';
 import { BusquedaService } from 'src/app/share/busqueda.service';
@@ -12,6 +13,7 @@ import {NgbModal, NgbActiveModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap'
 export class PersonalComponent implements OnInit {
 
   usuarios: Usuario[];
+  registerForm: FormGroup;
   usuario: Usuario;
   logged: Username;
   agrupaciones = [];
@@ -31,12 +33,33 @@ export class PersonalComponent implements OnInit {
 
   constructor(  private busquedaService: BusquedaService ,
                 private toastr: ToastrService,
+				private formBuilder: FormBuilder,
                 private modalService: NgbModal ) { }
 
   ngOnInit() {
     this.logged = JSON.parse(localStorage.getItem('user'));
     this.buscarGrupoUsuarios();
     this.buscarOrganizaciones();
+	this.myGroup = new FormGroup({
+       telefono: new FormControl('', Validators.compose([
+		Validators.maxLength(10),
+		Validators.minLength(9),
+		Validators.required
+	]))
+    });
+	var telefono: new FormControl('', Validators.compose([
+		Validators.maxLength(10),
+		Validators.minLength(9),
+		Validators.required
+	]));
+	this.registerForm = this.formBuilder.group({
+            
+            telefono: new FormControl('', Validators.compose([
+		Validators.maxLength(10),
+		Validators.minLength(9),
+		Validators.required
+	])),
+        });
 
   }
 
@@ -62,7 +85,6 @@ export class PersonalComponent implements OnInit {
   ingresaUsuario() {
     const datos = { tipo: this.modifica ? 'actualiza' : 'registra', usuario: this.logged, cliente: this.newUser };
     this.busquedaService.ingresaDatos( JSON.stringify(datos) , data => {
-      console.log(data);
         if (data ) {
             this.toastr.success( this.newUser.nombre + ' ' + data , null, {
                 timeOut: 3000,
