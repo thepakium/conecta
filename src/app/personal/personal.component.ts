@@ -80,7 +80,7 @@ export class PersonalComponent implements OnInit {
   }
 
   ingresaUsuario() {
-    const datos = { tipo: this.modifica ? 'actualiza' : 'registra', usuario: this.logged, cliente: this.newUser };
+    const datos = { tipo: this.modifica ? 'actualiza' : 'registra', usuario: this.logged, cliente: this.newUser , modelo: 'c' };
     this.busquedaService.ingresaDatos( JSON.stringify(datos) , data => {
         if (data ) {
             this.toastr.success( this.newUser.nombre + ' ' + data , null, {
