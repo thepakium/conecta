@@ -14,6 +14,7 @@ export class PersonalComponent implements OnInit {
 
   usuarios: Usuario[];
   registerForm: FormGroup;
+  myGroup: FormGroup;
   usuario: Usuario;
   logged: Username;
   agrupaciones = [];
@@ -33,23 +34,29 @@ export class PersonalComponent implements OnInit {
 
   constructor(  private busquedaService: BusquedaService ,
                 private toastr: ToastrService,
-				private formBuilder: FormBuilder,
+                private formBuilder: FormBuilder,
                 private modalService: NgbModal ) { }
 
   ngOnInit() {
     this.logged = JSON.parse(localStorage.getItem('user'));
     this.buscarGrupoUsuarios();
     this.buscarOrganizaciones();
-
-
-	this.registerForm = this.formBuilder.group({
-            
+      this.myGroup = new FormGroup({
             telefono: new FormControl('', Validators.compose([
-		Validators.maxLength(10),
-		Validators.minLength(9),
-		Validators.required
-	])),
+                                            Validators.maxLength(10),
+                                            Validators.minLength(9),
+                                            Validators.required
+                                        ])
+                                    ),
         });
+  this.registerForm = this.formBuilder.group({
+            telefono: new FormControl('', Validators.compose([
+                                            Validators.maxLength(10),
+                                            Validators.minLength(9),
+                                            Validators.required
+                                          ])
+                                      ),
+              });
 
   }
 
@@ -73,7 +80,7 @@ export class PersonalComponent implements OnInit {
   }
 
   ingresaUsuario() {
-    const datos = { tipo: this.modifica ? 'actualiza' : 'registra', usuario: this.logged, cliente: this.newUser };
+    const datos = { tipo: this.modifica ? 'actualiza' : 'registra', usuario: this.logged, cliente: this.newUser , modelo: 'c' };
     this.busquedaService.ingresaDatos( JSON.stringify(datos) , data => {
         if (data ) {
             this.toastr.success( this.newUser.nombre + ' ' + data , null, {

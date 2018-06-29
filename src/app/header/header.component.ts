@@ -17,15 +17,13 @@ export class HeaderComponent implements OnInit {
   sugerencias = 'escriba aqui su comentario';
   estado = 'btn btn-primary float-top-s';
   logged: Username;
-  constructor(private router: Router,config: NgbTooltipConfig) { 
+  constructor(private router: Router, config: NgbTooltipConfig) {
     config.placement = 'bottom';
   }
 
   ngOnInit() {
     this.logged = JSON.parse(localStorage.getItem('user'));
     this.retirarboton();
-	
-	console.log( this.logged );
   }
 
   moverin(): void {
