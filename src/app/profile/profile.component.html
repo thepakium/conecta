@@ -1,0 +1,22 @@
+<app-header></app-header>
+<div class="row">
+  <div class="col-sm-4">
+
+      <button type="button" class="btn btn-link btn-block"><i class="fa fa-user-circle-o" style="font-size:150px;color:#672146;;"></i>
+      </button>
+  </div>
+  <div class="col-sm-6">
+    <h1>{{logged.nombre}} <b> {{logged.apellido}}</b></h1> <p></p>
+    <h2>
+        perfil      :{{logged.perfil}}<p></p>
+        Mensajes {{this.perfil[0].estado}}s este mes {{this.perfil[0].valor}}
+    </h2>   
+  </div>
+</div>
+<div class="row">
+   <button type="button" class="btn btn-link btn-block">Cambiar Contraseña</button>
+   <button type="button" class="btn btn-link btn-block">Cambiar Firma</button>
+   <button type="button" class="btn btn-link btn-block">Crear Meta</button>
+
+</div>
+   

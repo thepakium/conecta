@@ -40,18 +40,8 @@ export class PersonalComponent implements OnInit {
     this.logged = JSON.parse(localStorage.getItem('user'));
     this.buscarGrupoUsuarios();
     this.buscarOrganizaciones();
-	this.myGroup = new FormGroup({
-       telefono: new FormControl('', Validators.compose([
-		Validators.maxLength(10),
-		Validators.minLength(9),
-		Validators.required
-	]))
-    });
-	var telefono: new FormControl('', Validators.compose([
-		Validators.maxLength(10),
-		Validators.minLength(9),
-		Validators.required
-	]));
+
+
 	this.registerForm = this.formBuilder.group({
             
             telefono: new FormControl('', Validators.compose([

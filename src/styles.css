@@ -30,7 +30,7 @@
 }
 
 .ng-valid[required], .ng-valid.required  {
-	border-left: 5px solid #42A948; /* green */
+	border-left: 5px solid rgb(36, 201, 45); /* green */
   }
   
 .ng-invalid:not(form)  {
@@ -57,9 +57,7 @@
 	font-weight: 700;
 	font-style: normal
 }
-#fullPage {
-	background: url(/wp-content/themes/conectadosCL/images/resources/1.jpg) no-repeat !important;
-}
+
 .navbar {
 	background: #fff;
 	margin-bottom: 20px

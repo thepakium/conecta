@@ -1,0 +1,14 @@
+@font-face {
+	font-family: 'Futura PT';
+	src: url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Book.eot");
+	src: url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Book.eot?#iefix") format("embedded-opentype"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Book.woff2") format("woff2"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Book.woff") format("woff"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Book.ttf") format("truetype"), url("/wp-content/themes/conectadosCL/css/font/FuturaPT-Book.svg#FuturaPT-Book") format("svg");
+	font-weight: normal;
+	font-style: normal
+}
+.mt-0 {
+	margin-top: 0 !important;
+  }
+  
+  .ml-1 {
+	margin-left: (100px) !important;
+  }

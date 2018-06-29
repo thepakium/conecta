@@ -56,13 +56,13 @@ export class InformesComponent implements OnInit {
     title: {
       text: 'MENSAJES',
       display: true,
-      fontColor: 'white'
+      fontColor: 'black'
     },
     legend: {
         display: true,
         position:	'right',
         labels: {
-          fontColor: 'white'
+          fontColor: 'black'
           }
 
     }
@@ -74,14 +74,14 @@ export class InformesComponent implements OnInit {
     title: {
       text: 'CATEGORIAS',
       display: true,
-      fontColor: 'white'
+      fontColor: 'black'
     },
     legend: {
         display: true,
         position:	'right',
         labels: { 
           fontSize: 9, 
-          fontColor: 'white'
+          fontColor: 'black'
           } 
     }
   };
@@ -92,7 +92,7 @@ export class InformesComponent implements OnInit {
     title: {
       text: 'MENSUAL',
       display: true,
-      fontColor: 'white'
+      fontColor: 'black'
     },
     legend: {
         display: true,
