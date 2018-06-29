@@ -1,5 +1,6 @@
 <app-header></app-header>
 <div>
+<div class="offset-1 col-11" >
   <ngx-datatable
     #myTable
 		style="width: 90%"
@@ -50,9 +51,9 @@
 		
 	  </ngx-datatable-column>
 	</ngx-datatable>
-</div>
 <button type="button" class="btn btn-warning" (click)="gestiona(ingresoModal)">Agregar nuevo Cliente</button>
-
+</div>
+</div>
 <ng-template #ingresoModal let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">{{modifica?'Modifica':'Ingresa'}} Usuario</h4>
@@ -140,6 +141,7 @@
     <button type="button" class="btn btn-success" [disabled]="!userForm.valid" (click)="ingresaUsuario()"  >Guardar</button>      
     <button type="button" class="btn btn-light" (click)="d('Cross click')">Cancelar</button>
   </div>
+
 </ng-template>
 
 <ng-template #eliminaModal let-c="close" let-d="dismiss">
