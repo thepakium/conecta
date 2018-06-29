@@ -17,13 +17,14 @@ export class HeaderComponent implements OnInit {
   sugerencias = 'escriba aqui su comentario';
   estado = 'btn btn-primary float-top-s';
   logged: Username;
-  constructor(private router: Router, config: NgbTooltipConfig) {
+  constructor(private router: Router,private busquedaService: BusquedaService, config: NgbTooltipConfig) {
     config.placement = 'bottom';
   }
 
   ngOnInit() {
     this.logged = JSON.parse(localStorage.getItem('user'));
     this.retirarboton();
+	this.buscarCuota();
   }
 
   moverin(): void {
@@ -42,6 +43,12 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('conecta2In');
     localStorage.removeItem('user');
     this.router.navigate(['/login']);
+  }
+  
+  buscarCuota() {
+    const datos = { tipo: 'cuota', usuario: this.logged }; 
+    this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => console.log( data )
+    );
   }
 
   send() {}

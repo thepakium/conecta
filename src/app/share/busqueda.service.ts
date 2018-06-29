@@ -10,7 +10,12 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class BusquedaService {
 
-  constructor(private http: Http) { }
+  cuota$: Observable<any>;
+  private dataStore: {
+    cuota: any
+  };
+
+  constructor(private http: Http) { this.dataStore = { cuota: [] }; }
 
   ingresaDatos( tipo , cb ) {
     const req = new XMLHttpRequest();
@@ -34,6 +39,15 @@ export class BusquedaService {
     };
 
     req.send('data=' +  btoa(encodeURIComponent( tipo )) );
+  }
+  
+  
+  obtenerCuota( datos: string ) {
+    const apiURL = `${environment.apiUrl}/getData.php`;
+	const formData: FormData = new FormData();
+    formData.append('data', btoa(encodeURIComponent( datos )) );
+    return this.http.post( apiURL, formData )
+    .subscribe( data => console.log( data) , error => console.log('No se obtuvo cuota.'));
   }
 
   enviarMsj( datos: string): Observable<any> {
