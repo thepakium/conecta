@@ -12,28 +12,28 @@ import { BusquedaService } from 'src/app/share/busqueda.service';
 export class ProfileComponent implements OnInit {
   logged: Username;
   loadingIndicator = true;
-  perfil: Dato;
+  cantidades: Dato[];
   constructor(private router: Router,private busquedaService: BusquedaService) { }
 
   ngOnInit() {
     this.logged = JSON.parse(localStorage.getItem('user'));
     this.buscarprofile();
-    console.log( this.perfil);
+    // console.log( this.perfil);
     //console.log( this.logged );
   }
 
   buscarprofile() {
     const datos = { tipo: 'sumarioPerfil', usuario: this.logged };
     this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
-                data => { this.perfil = data;
-                        console.log (data);
+                data => { this.cantidades = data;
+                        // console.log (data);
                           setTimeout(() => { this.loadingIndicator = false; }, 1500);
                         }
     );
   }
 }
 interface Dato {
-  estado: string[];
-  valor: string[];
+  estado: string;
+  valor: string;
 
 }
