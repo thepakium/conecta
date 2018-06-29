@@ -155,7 +155,6 @@ export class MsjdirComponent implements OnInit {
   buscarUsuario() {
     const datos = { tipo: 'usuario', usuario: this.logged };
     this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => { this.usuarios = data;
-      console.log(data);
       setTimeout(() => { this.loadingIndicator = false; }, 1500); }
     );
   }

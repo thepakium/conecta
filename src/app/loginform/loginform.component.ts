@@ -31,7 +31,6 @@ export class LoginformComponent implements OnInit {
             localStorage.setItem('conecta2In', 'true');
             this.toastr.success(
                 'Con Conectados estás a un mensaje de distancia.' , 'Acceso concedido', { timeOut: 3000 });
-            console.log( respuesta );
             localStorage.setItem('user', JSON.stringify(respuesta[0]));
             this.router.navigate(['/mensajes']);
         } else {

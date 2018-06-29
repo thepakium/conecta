@@ -60,11 +60,10 @@ const appRoutes: Routes = [
     PersonalComponent,
     NoEncontradoComponent,
     InformesComponent,
-    PerfilesComponent,
-
+    PerfilesComponent
   ],
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
     BrowserModule,
     HttpModule,
     HttpClientModule,
