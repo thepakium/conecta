@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BusquedaService } from '../share/busqueda.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Usuario, Username } from 'src/app/share/models';
 import {NgbTooltipConfig} from '@ng-bootstrap/ng-bootstrap';
 
@@ -17,14 +18,19 @@ export class HeaderComponent implements OnInit {
   sugerencias = 'escriba aqui su comentario';
   estado = 'btn btn-primary float-top-s';
   logged: Username;
-  constructor(private router: Router,private busquedaService: BusquedaService, config: NgbTooltipConfig) {
+  cuota: any;
+  public cuota$: Observable<Number>;
+
+  constructor(  private router: Router,
+                private busquedaService: BusquedaService,
+                config: NgbTooltipConfig) {
     config.placement = 'bottom';
   }
 
   ngOnInit() {
     this.logged = JSON.parse(localStorage.getItem('user'));
     this.retirarboton();
-	this.buscarCuota();
+    this.buscarCuota();
   }
 
   moverin(): void {
@@ -44,11 +50,11 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('user');
     this.router.navigate(['/login']);
   }
-  
+
   buscarCuota() {
-    const datos = { tipo: 'cuota', usuario: this.logged }; 
-    this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => console.log( data )
-    );
+    const datos = { tipo: 'cuota', usuario: this.logged };
+    this.cuota$ = this.busquedaService.obtenerCuota( JSON.stringify(datos) );
+
   }
 
   send() {}

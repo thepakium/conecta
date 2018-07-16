@@ -9,7 +9,7 @@
                 
                 <button  type="button" *ngIf="logged.perfil=='admin'" class="btn btn-primary" [routerLink]="['/perfiles']"[ngbTooltip]="perfil"><i class="fa fa-vcard-o"></i> Perfiles</button>&nbsp;
             
-                <button class="btn btn-warning buttonRedondeo" *ngIf="logged.perfil!='admin'" [ngbTooltip]="cuotaTip"><i class="fa fa-comment-o"></i> 123</button> 
+                <button class="btn btn-warning buttonRedondeo" *ngIf="logged.perfil!='admin'" [ngbTooltip]="cuotaTip"><i class="fa fa-comment-o"></i> {{(cuota$ | async) }}</button> 
             </div> 
             <div class="col-2" layout-align="end center">
                 <button type="button" class="btn btn-danger" (click)="logout()" style="float: right;"><i class="fa fa-sign-out"></i> Salir</button>&nbsp;
