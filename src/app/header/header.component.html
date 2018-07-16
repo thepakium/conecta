@@ -1,7 +1,7 @@
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
         <div class="container">
             <div class="col-10">
-                <a class="navbar-brand"><a href="/sms/login/mensajes"><img src="../../assets/images/logo-conectados.svg" width="150px"> </a></a>
+                <a class="navbar-brand"><a href="/sms/login/"><img src="../../assets/images/logo-conectados.svg" width="150px"> </a></a>
                 <button type="button" class="btn disabled" [routerLink]="['/profile']" [ngbTooltip]="admin"><i class="fa fa-user"></i> {{this.logged.nombre}}</button>&nbsp;
                 <button type="button" class="btn btn-success" [routerLink]="['/mensajes']" [ngbTooltip]="redmen"><i class="fa fa-comment-o"></i> Mensajeria</button>&nbsp;
                 <button type="button" class="btn btn-primary" [routerLink]="['/reportes']" [ngbTooltip]="repo" ><i class="fa fa-area-chart"></i> Reportes</button>&nbsp;
@@ -61,7 +61,7 @@
         </div>
 </div>
 <ng-template #admin>
-    Administrador
+    {{logged.perfil}}
  </ng-template>
 <ng-template #redmen>
     Redactar mensaje
