@@ -10,7 +10,7 @@
     <h2>
         perfil      :{{logged.perfil}}
         <p *ngFor="let c of cantidades;" > Mensajes {{c.estado}}s este mes {{c.valor}}</p>
-		<p *ngIf="cantidades.length == 0"> Sin Mensajes creados este mes</p>
+		    <p *ngIf="cantidades?.length == 0"> Sin Mensajes creados este mes</p>
     </h2>   
   </div>
 </div>

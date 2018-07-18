@@ -18,15 +18,12 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.logged = JSON.parse(localStorage.getItem('user'));
     this.buscarprofile();
-    // console.log( this.perfil);
-    //console.log( this.logged );
   }
 
   buscarprofile() {
     const datos = { tipo: 'sumarioPerfil', usuario: this.logged };
     this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
                 data => { this.cantidades = data;
-                        // console.log (data);
                           setTimeout(() => { this.loadingIndicator = false; }, 1500);
                         }
     );

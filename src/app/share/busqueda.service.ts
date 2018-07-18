@@ -4,13 +4,15 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { environment } from '../../environments/environment';
 import { map, catchError } from 'rxjs/operators';
+// import { HttpClient } from '@angular/common/http/src/client';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BusquedaService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+  }
 
   ingresaDatos( tipo , cb ) {
     const req = new XMLHttpRequest();
@@ -34,6 +36,14 @@ export class BusquedaService {
     };
 
     req.send('data=' +  btoa(encodeURIComponent( tipo )) );
+  }
+
+  obtenerCuota( datos: string ) {
+    const apiURL = `${environment.apiUrl}/getData.php`;
+    const formData: FormData = new FormData();
+    formData.append('data', btoa(encodeURIComponent( datos )) );
+    return this.http.post( apiURL, formData )
+    .pipe(map( (cuota: any) => cuota.text() ));
   }
 
   enviarMsj( datos: string): Observable<any> {
