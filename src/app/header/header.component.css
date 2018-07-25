@@ -77,13 +77,46 @@ header{
 	font-weight: 700;
 	font-style: normal
 }
-#fullPage {
-	background: url(/wp-content/themes/conectadosCL/images/resources/1.jpg) no-repeat !important;
-}
-.navbar {
-	background: #fff;
-	margin-bottom: 20px
-}
+
+
 .form-group label {
 	color: rgb(32, 31, 31);
+}
+
+.navbar{
+
+    width: 15%;
+    border-bottom-color: #999;
+
+    z-index: 1000;
+    padding-top: 10px;
+}
+
+.navbar ul{
+    background-color: #4F0D2F;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+}
+.navbar ul li{
+    padding: 5px 10px;
+    border-bottom: 1px solid #333;
+}
+.navbar ul li a{
+    color: #fff;
+    text-decoration: none;
+}
+.navbar ul li a i{
+    color: #fff;
+    padding: 0px 10px;
+}
+
+.navbar .dropdown-menu a{
+    background-color: #4F0D2F;
+
+}
+.navbar ul dropdown-toggle{
+    text-decoration: none;
+    color: rgb(170, 12, 12);
 }
