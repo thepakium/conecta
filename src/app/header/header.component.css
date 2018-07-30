@@ -87,14 +87,14 @@ header{
 
     width: 15%;
     border-bottom-color: #999;
-
+    align-items: right;
     z-index: 1000;
     padding-top: 10px;
 }
 
 .navbar ul{
-    background-color: #4F0D2F;
-    list-style: none;
+    background-color: #FFF;
+
     padding: 0;
     margin: 0;
 
@@ -103,20 +103,12 @@ header{
     padding: 5px 10px;
     border-bottom: 1px solid #333;
 }
-.navbar ul li a{
-    color: #fff;
+.navbar ul a{
+    color: #4F0D2F;
     text-decoration: none;
 }
-.navbar ul li a i{
-    color: #fff;
+.navbar ul a i{
+    color: #4F0D2F;
     padding: 0px 10px;
 }
 
-.navbar .dropdown-menu a{
-    background-color: #4F0D2F;
-
-}
-.navbar ul dropdown-toggle{
-    text-decoration: none;
-    color: rgb(170, 12, 12);
-}

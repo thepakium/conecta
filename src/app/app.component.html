@@ -1,6 +1,11 @@
-<div id="fullPage">
-
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
-
-</div>
+<body>
+    <div class="col-2">
+        <div class="top-left"><div class="sidebar-header">    <img src="../../assets/images/logo-conectados.svg" width="150px" >
+          </div></div>
+        <div class="bottom"><app-sidemenu></app-sidemenu></div>
+    </div>
+    <div id="right" class="col-10">
+        <div class="top-right"></div>
+        <div class="bottom"><router-outlet></router-outlet></div>
+    </div>
+</body>

@@ -1,0 +1,23 @@
+html {
+    height: 100%;
+}
+.sidebar-header{
+    padding: 20px 40px ;
+    
+}
+   
+    body {
+  
+        overflow: hidden;  /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/
+
+        display: flex;
+
+    }
+    
+ 
+    
+    .bottom {
+        
+        flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
+        overflow-y: auto;  /*adds scroll to this container*/
+    }

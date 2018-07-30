@@ -22,6 +22,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ChartsModule } from 'ng2-charts';
 import { PerfilesComponent } from './perfiles/perfiles.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SidemenuComponent } from './sidemenu/sidemenu.component';
 
 
 // AoT requires an exported function for factories
@@ -66,6 +67,7 @@ const appRoutes: Routes = [
     InformesComponent,
     PerfilesComponent,
     ProfileComponent,
+    SidemenuComponent,
 
   ],
   imports: [
