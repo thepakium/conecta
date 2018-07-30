@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BusquedaService } from '../share/busqueda.service';
 
 @Component({
-  selector: 'app-loginform',
+  selector: 'app-root',
   templateUrl: './loginform.component.html',
   styleUrls: ['./loginform.component.css']
   , providers: [BusquedaService]

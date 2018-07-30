@@ -1,6 +1,8 @@
 <app-header></app-header>
-
-<div class="col-10 m-auto" >
+<H2><i class="fa fa-comment-o"></i>   <strong> ENVIAR </strong>SMS</H2>
+<div class="col-12 m-auto" >
+  <div class="container" >     
+      <div class="row -uno"><strong>Paso 1 :  </strong ><i>  ¿A quién?</i></div>
         
   <div class="form-group">
     <label for="destinatario">Seleccione agrupación destinatarios:</label>
@@ -22,7 +24,10 @@
     <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#usersModal" >{{selected.length}} usuarios seleccionados</button>
 
   </div>
-
+  </div>
+  <div class="container" > 
+      <div class="row -dos"><strong>Paso 2 :  </strong ><i>  Seleccionar una categoría</i></div>
+        
   <div class="form-group">
     <label for="categoria">Seleccione categoria:</label>
     <ng-select [searchable]="true" 
@@ -32,7 +37,10 @@
               [(ngModel)]="categoria" >
     </ng-select>
   </div>
-
+  </div>
+  <div class="container" > 
+      <div class="row -tres"><strong>Paso 3 :  </strong ><i>  Escriba su mensaje</i></div>
+     
   <div class="form-group">
     <label for="mensaje">Escriba su mensaje:</label>&nbsp;
     <span class="badge badge badge-primary" placement="top" (click)="modificar('nombre')" [ngbTooltip]="InsertaNo" >Nombre</span>&nbsp; 
@@ -55,6 +63,7 @@
       <span [hidden]="selected?.length>0"> Debe seleccionar Destinatarios<br></span>
       <span [hidden]="categoria"> Debe seleccionar Categoria<br></span>
       <span [hidden]="mensaje"> Debe escribir mensaje</span>
+    </div>
     </div>
 </div>
 

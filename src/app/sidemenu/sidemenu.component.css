@@ -1,8 +1,9 @@
 .wrapper {
-
+    margin-top: 50px;
     width: 100%;
     align-items: stretch;
 }
+
 .nav-item {
     background-color: #4F0D2F;
     padding: -50px 20px;

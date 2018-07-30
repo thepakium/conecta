@@ -20,6 +20,23 @@
 	font-weight: 700;
 	font-style: normal
 }
-
-
+.h2 i {
+	padding: 10px 30px;
+}
+.row {
+	background-color: #4F0D2F;
+	color: #fff;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding: 10px 30px;
+	}
+.row i {
+	padding: 0px 10px;
+}
+.container{
+	border: 2px;
+	border-color: black;
+	border-radius: 5px;
+	background-color: beige;
+	}
 
