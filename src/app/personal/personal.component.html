@@ -18,12 +18,12 @@
           <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
             <div style="padding-left:5px;">
               
-                <b> Fundación: {{group.value[0].organizacion}}</b>
+                <b> Organización: {{group.value[0].organizacion}}</b>
                                    
             </div>
           </ng-template>
-        </ngx-datatable-group-header>
-	  <ngx-datatable-column name="Barrio"></ngx-datatable-column>
+        </ngx-datatable-group-header> 
+	  <ngx-datatable-column name="Barrio"></ngx-datatable-column><!-- debe llamarse Grupo-->
 	  <ngx-datatable-column name="Hombres"></ngx-datatable-column>
 	  <ngx-datatable-column name="Mujeres"></ngx-datatable-column>
 	  <ngx-datatable-column name="Total"></ngx-datatable-column>

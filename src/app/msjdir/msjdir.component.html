@@ -2,10 +2,10 @@
 <H2><i class="fa fa-comment-o"></i>   <strong> ENVIAR </strong>SMS</H2>
 <div class="col-12 m-auto" >
   <div class="container" >     
-      <div class="row -uno"><strong>Paso 1 :  </strong ><i>  ¿A quién?</i></div>
+      <div class="row"><strong>Paso 1 :  </strong ><i>  Escoge a tu destinatario</i></div>
         
   <div class="form-group">
-    <label for="destinatario">Seleccione agrupación destinatarios:</label>
+    <label for="destinatario">Buscar Persona o Lista /// Seleccionar listado  :</label>
     <ng-select [searchable]="true" 
         [items]="filtros" required
         bindLabel="etiqueta"
@@ -26,10 +26,10 @@
   </div>
   </div>
   <div class="container" > 
-      <div class="row -dos"><strong>Paso 2 :  </strong ><i>  Seleccionar una categoría</i></div>
+      <div class="row"><strong>Paso 2 :  </strong ><i>  Selecciona una categoría</i></div>
         
   <div class="form-group">
-    <label for="categoria">Seleccione categoria:</label>
+    <label for="categoria">Selecciona categoria:</label>
     <ng-select [searchable]="true" 
               [items]="categorias" required
               bindLabel="categoria"
@@ -39,7 +39,7 @@
   </div>
   </div>
   <div class="container" > 
-      <div class="row -tres"><strong>Paso 3 :  </strong ><i>  Escriba su mensaje</i></div>
+      <div class="row"><strong>Paso 3 :  </strong ><i>  Escribe tu mensaje</i></div>
      
   <div class="form-group">
     <label for="mensaje">Escriba su mensaje:</label>&nbsp;

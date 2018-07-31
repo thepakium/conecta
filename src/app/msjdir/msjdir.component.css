@@ -23,8 +23,11 @@
 .h2 i {
 	padding: 10px 30px;
 }
+.button {
+	padding: 50px 50px;
+}
 .row {
-	background-color: #4F0D2F;
+	background-color: #878787;
 	color: #fff;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;

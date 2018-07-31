@@ -81,11 +81,11 @@ header{
 
 
 .navbar ul a{
-    color: #4F0D2F;
+    color: rgb(0, 0, 0);
     text-decoration: none;
 }
 .navbar ul a i{
-    color: #4F0D2F;
+    color: rgb(0, 0, 0);
     padding: 0px 10px;
 }
 .navbar-collapse{
