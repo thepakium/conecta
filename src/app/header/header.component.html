@@ -29,18 +29,18 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                        <a class="nav-link">10.000{{this.cuota}}
+                        <a class="nav-link">{{(cuota$ | async) }}
                                 <i class="fa fa-comments">                
                                 </i>
                               </a>
                 </li>
                 <a class="nav-link" [routerLink]="['/profile']"><i class="fa fa-user">                 
-                    </i>{{this.logged.nombre}} </a>
+                    </i>{{logged.nombre}} </a>
             </ul>
         </div>
     </nav>
 <!--BOTON CONTACTO FLOAT -->
-<button type="button" class={{this.estado}} (mouseover)="moverin()" (mouseleave)="moverout()" data-toggle="modal" data-target="#contactoModal" >
+<button type="button" class={{estado}} (mouseover)="moverin()" (mouseleave)="moverout()" data-toggle="modal" data-target="#contactoModal" >
     <div layout="row" layout-padding>
         <div flex><b><i class="material-icons">phone</i>+569 3587 2165</b><br></div>
         <div flex><b><i class="material-icons">mail</i>soporte@ahoraconectados.cl</b></div>

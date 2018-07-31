@@ -4,16 +4,16 @@
   <div class="container" >     
       <div class="row"><strong>Paso 1 :  </strong ><i>  Escoge a tu destinatario</i></div>
         
-  <div class="form-group">
-    <label for="destinatario">Buscar Persona o Lista /// Seleccionar listado  :</label>
-    <ng-select [searchable]="true" 
+  <label for="destinatario">Buscar Persona o Lista /// Seleccionar listado  :</label>
+  <div class="input-group mb-3">
+    <ng-select [searchable]="true" class="col-6"
         [items]="filtros" required
         bindLabel="etiqueta"
         [clearable]=false
         placeholder="Seleccione destinatarios"
         (change)='filtrar($event)' >
       </ng-select>
-      <ng-select [searchable]="true" 
+      <ng-select [searchable]="true" class="input-group-append col-6"
       [items]="subfiltros" [hidden]="ocultaSubFiltro"
       bindLabel="etiqueta"
       [clearable]=false
@@ -21,9 +21,9 @@
         (change)='subfiltrar($event)'
 		[(ngModel)]="subfiltro" >
     </ng-select>
-    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#usersModal" >{{selected.length}} usuarios seleccionados</button>
-
+    
   </div>
+  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#usersModal" >{{selected.length}} usuarios seleccionados</button>
   </div>
   <div class="container" > 
       <div class="row"><strong>Paso 2 :  </strong ><i>  Selecciona una categoría</i></div>
@@ -80,7 +80,7 @@
       <div class="modal-body">
         <ngx-datatable
           class="material"
-          [rows]="usuarios"
+          [rows]="newUsuarios"
           [columnMode]="'force'"
           [headerHeight]="40"
           [footerHeight]="50"

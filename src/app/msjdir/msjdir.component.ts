@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 export class MsjdirComponent implements OnInit {
 
   usuarios: Usuario[];
+  newUsuarios: Usuario[];
   usuario: Usuario;
   logged: Username;
   categoria: any;
@@ -154,8 +155,10 @@ export class MsjdirComponent implements OnInit {
 
   buscarUsuario() {
     const datos = { tipo: 'usuario', usuario: this.logged };
-    this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => { this.usuarios = data;
-      setTimeout(() => { this.loadingIndicator = false; }, 1500); }
+    this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => {
+        this.usuarios = data;
+        this.newUsuarios = data;
+        setTimeout(() => { this.loadingIndicator = false; }, 1500); }
     );
   }
 
@@ -191,28 +194,31 @@ export class MsjdirComponent implements OnInit {
             });
             break;
       }
-  }
+      this.newUsuarios = this.selected;
+    }
 
-   subfiltrar(event) {
-    this.selected.splice(0, this.selected.length);
+    subfiltrar(event) {
+      this.selected.splice(0, this.selected.length);
       switch (event.tipo) {
         case 'all':
-          this.selected = this.subselected ;
-          break;
+        this.selected = this.subselected ;
+        break;
         case 'sexo':
-          this.subselected.forEach( quien => {
-            if ( quien.genero === event.nombre ) {
+        this.subselected.forEach( quien => {
+          if ( quien.genero === event.nombre ) {
             this.selected.push ( quien );
-            }
-          } );
-          break;
+          }
+        } );
+        break;
       }
+      this.newUsuarios = this.selected;
   }
 
   onSelect({ selected }) {
 
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
+    this.newUsuarios = this.selected;
   }
 
   onActivate(event) {
