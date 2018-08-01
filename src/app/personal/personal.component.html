@@ -34,8 +34,8 @@
 	  <ngx-datatable-column>
 		<ng-template ngx-datatable-cell-template let-row="row">
 		  
-		  <button #btnElement class="btn-warning btn" (click)="gestiona(gestionaModal, row.id)"[ngbTooltip]="Editar"><i class="fa fa-pencil-square-o"></i></button>&nbsp;
-		  <button #btnElement class="btn-danger btn"  (click)="borrar(row.id, row.barrio, 'barrio',eliminaModal)"[ngbTooltip]="Borrar"><i class="fa fa-trash"></i></button>
+		  <button #btnElement class="btn-warning btn btn-xs" (click)="gestiona(gestionaModal, row.id)"[ngbTooltip]="Editar"><i class="fa fa-pencil-square-o"></i></button>&nbsp;
+		  <button #btnElement class="btn-danger btn btn-xs"  (click)="borrar(row.id, row.barrio, 'barrio',eliminaModal)"[ngbTooltip]="Borrar"><i class="fa fa-trash"></i></button>
 		</ng-template>
 		
 		<ngx-datatable-footer>
