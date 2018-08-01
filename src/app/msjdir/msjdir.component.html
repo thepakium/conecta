@@ -81,7 +81,6 @@
 </div>
 </div>
 </body>
-
 <div class="modal fade" id="usersModal" tabindex="-1" role="dialog" aria-labelledby="usersModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -105,7 +104,7 @@
           [selectionType]="'checkbox'"
           (activate)="onActivate($event)"
           (select)='onSelect($event)'>
-                <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                <ngx-datatable-column [width]="30" [sortable]="true" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
                     <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
                         <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
                     </ng-template>
@@ -118,9 +117,9 @@
                           {{value}} <span [innerHTML]="row['apellidoP']"></span>
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="Genero"></ngx-datatable-column>
-                <ngx-datatable-column name="Barrio"></ngx-datatable-column>
-                <ngx-datatable-column name="Organizacion"></ngx-datatable-column>
+                <ngx-datatable-column [canAutoResize]="true" name="Genero"></ngx-datatable-column>
+                <ngx-datatable-column [canAutoResize]="true" name="Barrio"></ngx-datatable-column>
+                <ngx-datatable-column [canAutoResize]="true" name="Organizacion"></ngx-datatable-column>
         </ngx-datatable>
                 
       </div>

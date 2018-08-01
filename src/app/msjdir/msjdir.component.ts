@@ -190,11 +190,12 @@ export class MsjdirComponent implements OnInit {
             this.usuarios.forEach( quien => {
               if ( quien.genero === event.nombre ) {
               this.selected.push ( quien );
+              this.subselected.push( quien );
               }
             });
             break;
       }
-      this.newUsuarios = this.selected;
+      this.newUsuarios = [...this.selected];
     }
 
     subfiltrar(event) {
@@ -211,14 +212,15 @@ export class MsjdirComponent implements OnInit {
         } );
         break;
       }
-      this.newUsuarios = this.selected;
+      this.newUsuarios = [...this.selected];
   }
 
-  onSelect({ selected }) {
-
-    this.selected.splice(0, this.selected.length);
-    this.selected.push(...selected);
-    this.newUsuarios = this.selected;
+  onSelect({ seleccionados }) {
+console.log(seleccionados);
+    this.selected.splice(0, seleccionados.length);
+    // this.selected.push(...seleccionados);
+	this.selected = [...seleccionados];
+    this.newUsuarios = [...seleccionados];
   }
 
   onActivate(event) {
