@@ -1,6 +1,12 @@
 <app-header></app-header>
+<body>
+    <div class="col-2">
+        <div class="bottom"><app-sidemenu></app-sidemenu></div>
+    </div>
+    <div class="col-10">
+        <div class="bottom">
 <div>
-<div class="offset-1 col-11" >
+
   <ngx-datatable
     #myTable
 		style="width: 90%"
@@ -54,6 +60,8 @@
 <button type="button" class="btn btn-warning" (click)="gestiona(ingresoModal)">Agregar nuevo Cliente</button>
 </div>
 </div>
+</div>
+</body>
 <ng-template #ingresoModal let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">{{modifica?'Modifica':'Ingresa'}} Usuario</h4>

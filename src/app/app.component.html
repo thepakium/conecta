@@ -1,13 +1,6 @@
-<body>
-        
-    <div class="col-2"*ngIf="logged">
-        <div id="left" class="col-2"*ngIf="logged">
-        <div class="logo"><img src="../../assets/images/logo-conectados.svg" width="155px" ></div>
-        </div>
-        <div class="bottom"><app-sidemenu *ngIf="logged"></app-sidemenu></div>
-    </div>
-    <div id="right" class="col-10">
-        <div class="top-right"></div>
-        <div class="bottom"><router-outlet></router-outlet></div>
-    </div>
-</body>
+<div id="fullPage">
+
+         <router-outlet></router-outlet>
+        <app-footer></app-footer>
+       
+</div>
