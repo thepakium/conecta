@@ -10,7 +10,7 @@
   <div class="container" >     
       <div class="row"><strong>Paso 1 :  </strong ><i>  Escoge a tu destinatario</i></div>
         
-  <label for="destinatario">Buscar Persona o Lista /// Seleccionar listado  :</label>
+  <label for="destinatario">Buscar Persona /// Seleccionar listado  :</label>
   <div class="input-group mb-3">
     <ng-select [searchable]="true" class="col-6"
         [items]="filtros" required
@@ -52,7 +52,7 @@
     <label for="mensaje">Escriba su mensaje:</label>&nbsp;
     <span class="badge badge badge-primary" placement="top" (click)="modificar('nombre')" [ngbTooltip]="InsertaNo" >Nombre</span>&nbsp; 
     <span class="badge badge badge-success" placement="top" (click)="modificar('apellido')" [ngbTooltip]="InsertaAp" >Apellido</span>&nbsp; 
-    <span class="badge badge badge-warning" placement="top" (click)="modificar('barrio')" [ngbTooltip]="InsertaBa" >Barrio</span>&nbsp; 
+    <span class="badge badge badge-warning" placement="top" (click)="modificar('barrio')" [ngbTooltip]="InsertaBa" >Grupo</span>&nbsp; 
     <span class="badge badge badge-info" placement="top" (click)="modificar('at')" [ngbTooltip]="InsertaAt" >@</span>&nbsp; 
     <span class="badge badge badge-secondary" placement="top" (click)="modificar('firma')" [ngbTooltip]="InsertaFi" >Firma</span>
     <textarea rows="5" class="form-control" required maxlength="160" [(ngModel)]="mensaje" placeholder="Escriba Mensaje"></textarea>
@@ -133,7 +133,8 @@
 <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <h5 class="modal-title" id="usersModalLabel">Para: 
+      <h2 class="modal-title"><strong>Paso 5 :  </strong ><i>  Confirmar y enviar</i></h2>
+      <h5 class="modal-body" id="usersModalLabel">Para: 
 	  <select id="selector" [(ngModel)]="c2" (change)='cambiarTexto();' ><option *ngFor="let opt of selected; let i = index" [value]='i'  >{{opt.usuario}}</option></select></h5>
       <div class="modal-body">
         <div class="speech-bubble">
@@ -150,7 +151,7 @@
 
 
 <ng-template #InsertaFi>
-    Insertar Firma Barrio
+    Insertar Firma Organización
  </ng-template>
 <ng-template #InsertaNo>
     Insertar Comodín Nombre
@@ -159,7 +160,7 @@
     Insertar Comodín Apellido
  </ng-template>
 <ng-template #InsertaBa>
-    Insertar Comodín Barrio
+    Insertar Comodín Grupo
  </ng-template>
 <ng-template #InsertaAt>
     Insertar Comodín '#@' para A/O según genero, Estimad#@ = Estimada o Estimado según género receptor

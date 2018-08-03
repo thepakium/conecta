@@ -33,6 +33,13 @@
 	border-top-right-radius: 5px;
 	padding: 10px 30px;
 	}
+.modal-title {
+	background-color: #878787;
+	color: #fff;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	padding: 10px 30px;
+	}
 .row i {
 	padding: 0px 10px;
 }
