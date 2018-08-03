@@ -31,3 +31,8 @@
     .button #btnElement{
         padding: 50px 50px;
     }
+    .ngx-datatable-row {
+
+        vertical-align: top;
+        border-top: 1px solid #0054a8;
+     }

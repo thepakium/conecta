@@ -85,7 +85,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="usersModalLabel">Usuarios seleccionados</h5>
+        <h4 class="modal-title" id="usersModalLabel"><i class="fa fa-user-o"></i>    Usuarios seleccionados</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -94,17 +94,16 @@
         <ngx-datatable
           class="material"
           [rows]="newUsuarios"
-          [columnMode]="'force'"
           [headerHeight]="40"
           [footerHeight]="50"
           [rowHeight]="40"
           [loadingIndicator]="loadingIndicator"
-          [limit]="6"
+          [limit]="50"
           [selected]="selected"
           [selectionType]="'checkbox'"
           (activate)="onActivate($event)"
           (select)='onSelect($event)'>
-                <ngx-datatable-column [width]="30" [sortable]="true" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                <ngx-datatable-column class="material" [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
                     <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
                         <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
                     </ng-template>
