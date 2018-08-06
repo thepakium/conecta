@@ -69,3 +69,17 @@
 	font-family: 'Futura PT';
 	color: #555;
 }
+
+	.datatable-header  {
+        background-color: #878787;
+        color: #fff;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+		text-size-adjust: 100%;
+		text-align: center;
+		-webkit-text-fill-color: #fff 
+		}
+	.datatable-body {
+			background-color: beige;
+			text-align: left;
+		}

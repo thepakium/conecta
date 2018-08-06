@@ -41,9 +41,10 @@
     </nav>
 <!--BOTON CONTACTO FLOAT -->
 <button type="button" class={{estado}} (mouseover)="moverin()" (mouseleave)="moverout()" data-toggle="modal" data-target="#contactoModal" >
-    <div layout="row" layout-padding>
-        <div flex><b><i class="material-icons">phone</i>+569 3587 2165</b><br></div>
-        <div flex><b><i class="material-icons">mail</i>soporte@ahoraconectados.cl</b></div>
+    <div class="sopo">
+        <div flex class="sopo_end"><i class="fa fa-handshake-o"></i>  Soporte</div>
+        <div flex class="sopo_end"><i class="material-icons">phone</i>  +569 3587 2165</div>
+        <div flex class="sopo_end"><i class="material-icons">mail</i>  soporte@ahoraconectados.cl</div>
     </div>
 </button>
 
@@ -51,7 +52,7 @@
 <div class="modal fade" id="contactoModal" tabindex="-1" role="dialog" aria-labelledby="contactoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
-            <h5 class="modal-title" id="contactoModalLabel"><h1>Problemas Sugerencias</h1></h5>
+            <div class="row"><h2>Problemas Sugerencias</h2><div>
             <form>
             <div class="modal-body">
                 <div class="form-group">

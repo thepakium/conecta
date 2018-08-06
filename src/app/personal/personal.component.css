@@ -36,6 +36,9 @@
         vertical-align: top;
         border-top: 1px solid #0054a8;
      }
+     :host-context(.ngx-datatable){
+         background-color: #0054a8;
+     }
      .h2 i {
         padding: 10px 30px;
     }

@@ -1,11 +1,13 @@
 
 <app-header></app-header>
+
 <body>
     <div class="col-2">
         <div class="bottom"><app-sidemenu></app-sidemenu></div>
     </div>
     <div class="col-10">
         <div class="bottom">
+          
 	<ngx-datatable
 		style="width: 90%"
 		class="material"
@@ -16,7 +18,8 @@
 		[footerHeight]="10"
     [rowHeight]="40"
 		[loadingIndicator]="loadingIndicator"
-		[groupExpansionDefault]="true"
+    [groupExpansionDefault]="true"
+    [limit]="50"
 		>
 	  <ngx-datatable-group-header [rowHeight]="150" #myGroupHeader >
           <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
@@ -57,7 +60,8 @@
 </body>
 <ng-template #gestionaModal let-c="close" let-d="dismiss">
       <div class="modal-header">
-        <h2 class="modal-title">Gestión Grupo </h2>
+
+        <div class="row"><i class="fa fa-users"></i><strong>Gestión  </strong ><i> Grupo</i></div>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>

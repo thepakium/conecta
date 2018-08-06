@@ -2,7 +2,7 @@ header{
     text-align: center;
     padding: 20px 0;
     font-size: 30px;
-    border-bottom: 2px solid #eee
+    border-bottom: 2px solid #eee;
     
 }
 .float-left {
@@ -14,34 +14,35 @@ header{
       background-color:#0C9;
       color:#FFF;
       border-radius:25px;
-      text-align:center;
+      text-underline-position: above;
       box-shadow: 2px 2px 3px #999;
+      vertical-align:-100;
   }
   .float-top-s {
     position:fixed;
       width:280px;
-      height:110px;
-      top:-15px;
+      height:130px;
+      bottom:0px;
       right:0px;
       background-color:#672146;
       color:#FFF;
       border-radius:25px;
       text-align:left;
-      vertical-align: middle;
-      box-shadow: 2px 2px 3px #999;
+      vertical-align:-100;
+      z-index:9999
   }
   .float-top-h {
     position:fixed;
       width:280px;
-      height:110px;
-      top:-100px;
+      height:130px;
+      bottom:-90px;
       right:0px;
-      background-color:#672146;
+      background-color:rgba(103, 33, 70,0.50);
       color:#FFF;
       border-radius:25px;
       text-align:left;
-      vertical-align: middle;
-      box-shadow: 2px 2px 3px #999;
+      vertical-align: top;
+      z-index:9999
   }
   .colorUrbanismo{
       background-color: rgb(151, 215, 0)
@@ -79,7 +80,12 @@ header{
 }
 
 
-
+.sopo{
+    padding: 0px 10px;
+}
+.sopo_end{
+    padding: 5px 0px;
+}
 .navbar ul a{
     color: rgb(0, 0, 0);
     text-decoration: none;
@@ -89,6 +95,9 @@ header{
     padding: 0px 10px;
 }
 .navbar-collapse{
+    background-color: #FFF;
+}
+.modal-body{
     background-color: #FFF;
 }
 .navbar-nav{
@@ -107,3 +116,10 @@ header{
 .navbar-toggle {
     z-index:3;
 }
+.row {
+    background-color: #878787;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 10px 30px;
+    }
