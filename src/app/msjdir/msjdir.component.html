@@ -85,7 +85,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="usersModalLabel"><i class="fa fa-user-o"></i>    Usuarios seleccionados</h4>
+        <div class="row"><strong>Usuarios  </strong ><i> seleccionados</i></div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -132,7 +132,7 @@
 <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <h2 class="modal-title"><strong>Paso 5 :  </strong ><i>  Confirmar y enviar</i></h2>
+        <div class="row"><strong>Paso 5 :  </strong ><i>  Confirmar y enviar</i></div>
       <h5 class="modal-body" id="usersModalLabel">Para: 
 	  <select id="selector" [(ngModel)]="c2" (change)='cambiarTexto();' ><option *ngFor="let opt of selected; let i = index" [value]='i'  >{{opt.usuario}}</option></select></h5>
       <div class="modal-body">

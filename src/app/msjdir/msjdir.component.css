@@ -26,6 +26,13 @@
 .button {
 	padding: 50px 50px;
 }
+.speech-bubble{	
+	border-top-color: beige;
+	background-color: beige;
+}
+.speech-bubble:after {
+	border-top-color: beige;	
+}
 .row {
 	background-color: #878787;
 	color: #fff;
@@ -36,13 +43,13 @@
 .modal-title i{
 	padding: 0px 10px;
 }
-.modal-body {
-	background-color: #fff;
+.modal-header {
+	background-color: #878787;
 }
 .modal-body .ngx-datatable{
 	background-color: beige;
 }
-.modal-body .ngx-datatable-row{
+.modal-body .ngx-datatable header{
 	background-color: yellow;
 }
 

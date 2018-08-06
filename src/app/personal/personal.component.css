@@ -36,3 +36,47 @@
         vertical-align: top;
         border-top: 1px solid #0054a8;
      }
+     .h2 i {
+        padding: 10px 30px;
+    }
+    .button {
+        padding: 50px 50px;
+    }
+    .row {
+        background-color: #878787;
+        color: #fff;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        padding: 10px 30px;
+        }
+    .modal-title i{
+        padding: 0px 10px;
+    }
+    .modal-header {
+        background-color: #878787;
+    }
+    .modal-body .ngx-datatable{
+        background-color: beige;
+    }
+    .modal-body .ngx-datatable header{
+        background-color: yellow;
+    }
+    
+    .modal-title {
+        background-color: #878787;
+        color: #fff;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        padding: 10px 20px;
+        }
+    .row i {
+        padding: 0px 10px;
+    }
+    .container{
+        border: 2px;
+        border-color: black;
+        border-radius: 5px;
+        background-color: beige;
+        padding-bottom: 10px;
+        }
+    

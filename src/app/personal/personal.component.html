@@ -14,11 +14,12 @@
 		[columnMode]="'force'"
 		[headerHeight]="40"
 		[footerHeight]="10"
+    [rowsHeight]="40"
     [rowHeight]="40"
 		[loadingIndicator]="loadingIndicator"
 		[groupExpansionDefault]="true"
 		>
-	  <ngx-datatable-group-header [rowHeight]="50" #myGroupHeader >
+	  <ngx-datatable-group-header [rowHeight]="150" #myGroupHeader >
           <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
             <div style="padding-left:5px;">
                 <b> Organización: {{group.value[0].organizacion}}</b>
@@ -30,11 +31,11 @@
 	  <ngx-datatable-column name="Hombres"></ngx-datatable-column>
 	  <ngx-datatable-column name="Mujeres"></ngx-datatable-column>
 	  <ngx-datatable-column name="Total"></ngx-datatable-column>
-	  <ngx-datatable-column>
+	  <ngx-datatable-column name= "funciones">
 		<ng-template ngx-datatable-cell-template let-row="row">
 		  
-		  <button #btnElement class="btn-warning btn btn-xs" (click)="gestiona(gestionaModal, row.id)"[ngbTooltip]="Editar"><i class="fa fa-pencil-square-o"></i></button>&nbsp;
-		  <button #btnElement class="btn-danger btn btn-xs"  (click)="borrar(row.id, row.barrio, 'barrio',eliminaModal)"[ngbTooltip]="Borrar"><i class="fa fa-trash"></i></button>
+		  <button #btnElement class="btn btn-link" (click)="gestiona(gestionaModal, row.id)"[ngbTooltip]="Editar"><i class="fa fa-pencil"></i></button>&nbsp;
+		  <button #btnElement class="btn btn-link"  (click)="borrar(row.id, row.barrio, 'barrio',eliminaModal)"[ngbTooltip]="Borrar"><i class="fa fa-trash"></i></button>
 		</ng-template>
 		
 		<ngx-datatable-footer>
@@ -57,7 +58,7 @@
 </body>
 <ng-template #gestionaModal let-c="close" let-d="dismiss">
       <div class="modal-header">
-        <h2 class="modal-title">Gestion Barrio </h2>
+        <h2 class="modal-title">Gestión Grupo </h2>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -73,7 +74,7 @@
 					[footerHeight]="50"
 					[rowHeight]="'100%'"
 					[loadingIndicator]="loadingIndicator"
-					[limit]="6"
+					[limit]="10"
 					>
 				  <ngx-datatable-column name="Organizacion"></ngx-datatable-column>
 				  <ngx-datatable-column name="Barrio"></ngx-datatable-column>
