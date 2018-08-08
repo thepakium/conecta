@@ -26,12 +26,21 @@
 .button {
 	padding: 50px 50px;
 }
+.centrado{
+	text-align: center
+}
 .speech-bubble{	
 	border-top-color: beige;
 	background-color: beige;
+	padding: 50px 50px;
+	text-align: center
 }
 .speech-bubble:after {
 	border-top-color: beige;	
+}
+.beige{
+	background-color: beige;
+	padding: 10px 10px
 }
 .row {
 	background-color: #878787;

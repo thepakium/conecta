@@ -23,7 +23,7 @@
 		>
 	  <ngx-datatable-group-header [rowHeight]="150" #myGroupHeader >
           <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
-            <div style="padding-left:5px;">
+            <div style="padding-left:10px;">
                 <b> Organización: {{group.value[0].organizacion}}</b>
         
             </div>
@@ -67,6 +67,9 @@
           </button>
       </div>
         <div class="modal-body">
+            <button type="button" class="btn btn-warning" (click)="accion(ingresoModal)">Agregar nuevo Usuario</button>
+
+
             <div>
 				<ngx-datatable
 					style="width: 90%"
@@ -86,14 +89,15 @@
 				  <ngx-datatable-column name="Telefono"></ngx-datatable-column>
 				  <ngx-datatable-column>
             <ng-template ngx-datatable-cell-template let-row="row">
-              <button #btnElement class="btn-warning btn" (click)="accion(ingresoModal,row)"><i class="fa fa-pencil-square-o"[ngbTooltip]="Editar"></i></button>
-              <button #btnElement class="btn-danger btn" (click)="borrar(row.id, row.nombre, 'cliente',eliminaModal)"[ngbTooltip]="Borrar"><i class="fa fa-trash"></i></button>
+              <button #btnElement class="btn btn-link" (click)="accion(ingresoModal,row)"><i class="fa fa-pencil-square-o"[ngbTooltip]="Editar"></i></button>
+              <button #btnElement class="btn btn-link" (click)="borrar(row.id, row.nombre, 'cliente',eliminaModal)"[ngbTooltip]="Borrar"><i class="fa fa-trash"></i></button>
             </ng-template>
 				  </ngx-datatable-column>
-				</ngx-datatable>
-			</div>
-			<button type="button" class="btn btn-warning" (click)="accion(ingresoModal)">Agregar nuevo Usuario</button>
-        </div> <!-- close modal body -->  
+        </ngx-datatable>
+        </div>
+      </div>
+
+			 <!-- close modal body -->  
         <div class="modal-footer">
             <button type="button" class="btn btn-light" (click)="c('Close click')">Cerrar</button>
         </div> <!-- close modal footer -->
@@ -101,17 +105,18 @@
   
 <ng-template #ingresoModal let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h4 class="modal-title">{{modifica?'Modifica':'Ingresa'}} Usuario</h4>
+
+      <div class="row"><i class="fa fa-user"></i>{{modifica?'Modifica':'Ingresa'}}<i> Usuario</i></div>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
       <form #userForm="ngForm"  novalidate>
-          <div class="row">
-            <div class="col-sm-4">
+          <div class="beige row">
+            <div class="green col-sm-4">
                   <label for="nombre">Nombre</label>
-                  <input type="text" required class="form-control" id="nombre" name="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
+                  <input type="text" required class="form-control"  id="nombre" name="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
                   <!-- <div class="alert alert-danger" [hidden]="nombre">Valor Requerido</div> -->
             </div>
             <div class="col-sm-4">
@@ -123,7 +128,7 @@
                   <input  type="text" class="form-control" id="apellidoM" name="apellidoM" [(ngModel)]="newUser.apellidoM" placeholder="Ingrese Apellido Materno"/> 
             </div>
           </div>
-          <div class="row">
+          <div class="beige row">
             <div class="col-sm-4">
                   <label for="genero">Genero:</label>
                   <ng-select [searchable]="false" 
@@ -144,7 +149,7 @@
                   <input type="text" id="mail" name="mail" class="form-control"[(ngModel)]="newUser.email" email placeholder="Ingrese Mail"/> 
             </div>
           </div>
-          <div class="row">
+          <div class="beige row">
             <div class="col-sm-4">
                   <label for="telefono">Teléfono:</label>
                   <input type="number" id="telefono" name="telefono" required class="form-control"[(ngModel)]="newUser.telefono" placeholder="Ingrese Telefono"  />
@@ -187,19 +192,19 @@
 
 <ng-template #eliminaModal let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h4 class="modal-title">Confirmación</h4>
+      <div class="row"><i class="fa fa-close"></i><i> Confirmación</i></div>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-        <div class="row">
-          <h5>Seguro desea eliminar al {{victima?.tipo}} {{victima?.quien}}</h5>
+        <div class="beige row">
+          ¿ Seguro desea eliminar al {{victima?.tipo}} {{victima?.quien}} ?
         </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="elimina()"  >Eliminar</button>      
-      <button type="button" class="btn btn-light" (click)="cancela()">Cancelar</button>
+      <button type="button" class="btn btn-danger" (click)="elimina()"  >Eliminar</button>      
+      <button type="button" class="btn btn-basic" (click)="cancela()">Cancelar</button>
     </div>
   </ng-template>
   <ng-template #Editar>

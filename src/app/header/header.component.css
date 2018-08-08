@@ -29,7 +29,9 @@ header{
       border-radius:25px;
       text-align:left;
       vertical-align:-100;
-      z-index:9999
+      z-index:9999;
+      outline: none;
+      border: none;
   }
   .float-top-h {
     position:fixed;
@@ -42,19 +44,19 @@ header{
       border-radius:25px;
       text-align:left;
       vertical-align: top;
+      outline: none;
+      border: none;
       z-index:9999
   }
   .colorUrbanismo{
       background-color: rgb(151, 215, 0)
   }
-  .buttonT {
-    background-color:rgb(151, 215, 0);;
-    border: rgb(151, 215, 0);
-    color: rgb(255, 255, 255);
-    padding: 12px 16px;
-    font-size: 16px;
-    cursor: pointer;
-}
+.loat-top-h:active {
+    outline: none;
+    border: none;
+    }
+    
+.button:focus {outline:0;}
 .buttonRedondeo {border-radius: 50%;}
 
 @font-face {
