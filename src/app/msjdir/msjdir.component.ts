@@ -110,6 +110,9 @@ export class MsjdirComponent implements OnInit {
       case 'borrar':
         this.mensaje = '';
       break;
+      case 'plantilla':
+        this.mensaje = '##(nombre) bienvenid#@ a CONECTADOS desde este número te informaremos de las actividades de ##(grupo). Guarda este número en tu celular.  -Firma-';
+      break;
     }
   }
 

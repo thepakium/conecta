@@ -20,7 +20,7 @@ export class PersonalComponent implements OnInit {
   agrupaciones = [];
   organizaciones = [];
   organizacion: number;
-  generos = ['Masculino', 'Femenino'];
+  generos = ['Masculino', 'Femenino','Otro'];
   barrios = [];
   newUser = new Usuario;
   loadingIndicator = true;

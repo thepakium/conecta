@@ -54,6 +54,8 @@
     }
     .modal-header {
         background-color: #878787;
+        color: #fff;
+        padding: 15px 30px;
     }
     .modal-body .ngx-datatable{
         background-color: beige;
@@ -74,6 +76,7 @@
     }
     .container{
         border: 2px;
+        color: #fff;
         border-color: black;
         border-radius: 5px;
         background-color: beige;

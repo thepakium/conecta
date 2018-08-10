@@ -35,7 +35,7 @@
       <div class="row"><strong>Paso 2 :  </strong ><i>  Selecciona una categoría</i></div>
         
   <div class="form-group">
-    <label for="categoria">Selecciona categoria:</label>
+    <label for="categoria">Este campo es obligatorio para continuar.</label>
     <ng-select [searchable]="true" 
               [items]="categorias" required
               bindLabel="categoria"
@@ -55,6 +55,7 @@
     <span class="badge badge badge-warning" placement="top" (click)="modificar('barrio')" [ngbTooltip]="InsertaBa" >Grupo</span>&nbsp; 
     <span class="badge badge badge-info" placement="top" (click)="modificar('at')" [ngbTooltip]="InsertaAt" >@</span>&nbsp; 
     <span class="badge badge badge-secondary" placement="top" (click)="modificar('firma')" [ngbTooltip]="InsertaFi" >Firma</span>
+    <span class="badge badge badge-basic" placement="top" (click)="modificar('plantilla')" [ngbTooltip]="InsertarPLan" >Plantilla</span>
     <textarea rows="5" class="form-control" required maxlength="160" [(ngModel)]="mensaje" placeholder="Escriba Mensaje"></textarea>
      {{mensaje.length}} carácteres usados de {{ 160 - mensaje.length }} restantes    &nbsp;&nbsp; <span class="badge badge badge-danger"(click)="modificar('borrar')" [ngbTooltip]="Borrar" >Borrar</span> 
 
@@ -85,7 +86,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="row"><strong>Usuarios  </strong ><i> seleccionados</i></div>
+        <div class="row"><i class="fa fa-users"></i> <strong>Usuarios  </strong ><i> seleccionados</i></div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -111,13 +112,22 @@
                         <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="Nombre">
+                <ngx-datatable-column name="Nombre"></ngx-datatable-column>
+                <ngx-datatable-column name="Apellido">
                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                          {{value}} <span [innerHTML]="row['apellidoP']"></span>
-                    </ng-template>
+                        {{value}} <span [innerHTML]="row['apellidoP']"></span>
+                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column [canAutoResize]="true" name="Genero"></ngx-datatable-column>
-                <ngx-datatable-column [canAutoResize]="true" name="Barrio"></ngx-datatable-column>
+                <ngx-datatable-column [canAutoResize]="true" name="Género">
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        {{value}} <span [innerHTML]="row['genero']"></span>
+                     </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column [canAutoResize]="true" name="Grupo">
+                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                        {{value}} <span [innerHTML]="row['barrio']"></span>
+                     </ng-template>
+                </ngx-datatable-column>
                 <ngx-datatable-column [canAutoResize]="true" name="Organizacion"></ngx-datatable-column>
         </ngx-datatable>
                 
@@ -142,14 +152,17 @@
         </div>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn-sm btn-success" data-dismiss="modal" (click)="enviarMensaje()" >Enviar</button>
-          <button type="button" class="btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click)="enviarMensaje()" >Enviar</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
 </div>
 
 
+<ng-template #InsertarPLan>
+    Insertar Plantilla Sugerida
+ </ng-template>
 <ng-template #InsertaFi>
     Insertar Firma Organización
  </ng-template>

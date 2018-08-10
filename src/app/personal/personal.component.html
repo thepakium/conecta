@@ -29,11 +29,17 @@
             </div>
           </ng-template>
         </ngx-datatable-group-header> 
-	  <ngx-datatable-column name="Barrio"></ngx-datatable-column><!-- debe llamarse Grupo-->
+        <ngx-datatable-column name="Región"></ngx-datatable-column>
+        <ngx-datatable-column [canAutoResize]="true" name="Grupo">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{value}} <span [innerHTML]="row['barrio']"></span>
+             </ng-template>
+        </ngx-datatable-column>
+
 	  <ngx-datatable-column name="Hombres"></ngx-datatable-column>
 	  <ngx-datatable-column name="Mujeres"></ngx-datatable-column>
 	  <ngx-datatable-column name="Total"></ngx-datatable-column>
-	  <ngx-datatable-column name= "funciones">
+	  <ngx-datatable-column name= "Funciones">
 		<ng-template ngx-datatable-cell-template let-row="row">
 		  
 		  <button #btnElement class="btn btn-link" (click)="gestiona(gestionaModal, row.id)"[ngbTooltip]="Editar"><i class="fa fa-pencil"></i></button>&nbsp;
@@ -78,18 +84,26 @@
 					[columnMode]="'force'"
 					[headerHeight]="40"
 					[footerHeight]="50"
-					[rowHeight]="'100%'"
+          [rowHeight]="40"
 					[loadingIndicator]="loadingIndicator"
-					[limit]="10"
+					[limit]="50"
 					>
 				  <ngx-datatable-column name="Organizacion"></ngx-datatable-column>
-				  <ngx-datatable-column name="Barrio"></ngx-datatable-column>
+          <ngx-datatable-column [canAutoResize]="true" name="Grupo">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  {{value}} <span [innerHTML]="row['barrio']"></span>
+               </ng-template>
+          </ngx-datatable-column>
 				  <ngx-datatable-column name="Genero"></ngx-datatable-column>
 				  <ngx-datatable-column name="Usuario"></ngx-datatable-column>
-				  <ngx-datatable-column name="Telefono"></ngx-datatable-column>
+				  <ngx-datatable-column name="Teléfono">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+              {{value}} <span [innerHTML]="row['telefono']"></span>
+           </ng-template>
+          </ngx-datatable-column>
 				  <ngx-datatable-column>
             <ng-template ngx-datatable-cell-template let-row="row">
-              <button #btnElement class="btn btn-link" (click)="accion(ingresoModal,row)"><i class="fa fa-pencil-square-o"[ngbTooltip]="Editar"></i></button>
+              <button #btnElement class="btn btn-link" (click)="accion(ingresoModal,row)"><i class="fa fa-pencil"[ngbTooltip]="Editar"></i></button>
               <button #btnElement class="btn btn-link" (click)="borrar(row.id, row.nombre, 'cliente',eliminaModal)"[ngbTooltip]="Borrar"><i class="fa fa-trash"></i></button>
             </ng-template>
 				  </ngx-datatable-column>
@@ -106,7 +120,7 @@
 <ng-template #ingresoModal let-c="close" let-d="dismiss">
     <div class="modal-header">
 
-      <div class="row"><i class="fa fa-user"></i>{{modifica?'Modifica':'Ingresa'}}<i> Usuario</i></div>
+      <div class="row"><i class="fa fa-user"></i><strong>{{modifica?'Modifica':'Ingresa'}}</strong><i> Usuario</i></div>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>

@@ -83,3 +83,11 @@
 			background-color: beige;
 			text-align: left;
 		}
+	.datatable-row {
+			background-color: yellow;
+			text-align: left;
+		}
+	.datatable-row{
+			height: 100% !important;
+			background-color: red !important;
+	}

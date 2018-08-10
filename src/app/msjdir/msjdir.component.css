@@ -55,6 +55,9 @@
 .modal-header {
 	background-color: #878787;
 }
+.toastr {
+	background-color: #878787;
+}
 .modal-body .ngx-datatable{
 	background-color: beige;
 }

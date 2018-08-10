@@ -20,7 +20,7 @@ export class PerfilesComponent implements OnInit {
   logged: Username;
   usuarios: Username[] = [];
   loadingIndicator = true;
-  generos = ['Masculino', 'Femenino'];
+  generos = ['Masculino', 'Femenino','Otro'];
   perfiles = ['admin', 'user'];
   private modalGestionRef: NgbModalRef;
   private modalBorraRef: NgbModalRef;
