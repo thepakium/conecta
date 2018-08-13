@@ -29,6 +29,10 @@
 .centrado{
 	text-align: center
 }
+.textcentrado{
+	text-align: center !important;
+	background-color: blue
+}
 .speech-bubble{	
 	border-top-color: beige;
 	background-color: beige;

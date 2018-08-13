@@ -22,11 +22,12 @@
 }
 #fullPage {
 	background: #fff;
+	text-align: center;
 }
 .wrapper {
     margin-top: 50px;
     width: 100%;
-    align-items: stretch;
+    align-items: flex-end;
 }
 .navbar {
 	background: rgb(150, 149, 149);
@@ -52,16 +53,20 @@
 
 .col-centered{
     float: none;
-    margin: 0 auto;
+	margin: 0 auto;
+	text-align: center;
 }
 .centerT{
 	justify-content: center;
 }
+
 div.input {
 	position: relative;
 	font-size: 12px;
 	font-family: 'Futura PT';
 	color:grey;
+	justify-content: center;
+	width: 100%;
 }
 
 div.input label {
@@ -86,6 +91,6 @@ div.input input {
 }
 
 div.input {
-	margin-top: 20px;
+	margin-top: 40px;
 	font-family: 'Futura PT';
 }

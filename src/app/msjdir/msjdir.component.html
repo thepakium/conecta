@@ -104,7 +104,7 @@
           [selectionType]="'checkbox'"
           (activate)="onActivate($event)"
           (select)='onSelect($event)'>
-                <ngx-datatable-column class="material" [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                <ngx-datatable-column class="material" [width]="20" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
                     <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
                         <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
                     </ng-template>
@@ -112,23 +112,16 @@
                         <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="Nombre"></ngx-datatable-column>
-                <ngx-datatable-column name="Apellido">
-                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                        {{value}} <span [innerHTML]="row['apellidoP']"></span>
-                     </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column [canAutoResize]="true" name="Género">
+                <ngx-datatable-column name="Nombre"[width]="110"></ngx-datatable-column>
+                <ngx-datatable-column name="Apellido" prop='apellidoP' [width]="110"></ngx-datatable-column>
+                <ngx-datatable-column [canAutoResize]="true" [width]="100" name="Género">
                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                         {{value}} <span [innerHTML]="row['genero']"></span>
                      </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column [canAutoResize]="true" name="Grupo">
-                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                        {{value}} <span [innerHTML]="row['barrio']"></span>
-                     </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column [canAutoResize]="true" name="Organizacion"></ngx-datatable-column>
+                <ngx-datatable-column name="Grupo" prop='barrio' headerClass="textcentrado" cellClass="textcentrado"></ngx-datatable-column>
+                <ngx-datatable-column [canAutoResize]="true" name="Organización" prop='organizacion' ></ngx-datatable-column>
+                <ngx-datatable-column [canAutoResize]="true" name="Región" prop='region' ></ngx-datatable-column>
         </ngx-datatable>
                 
       </div>

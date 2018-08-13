@@ -59,7 +59,7 @@ export class MsjdirComponent implements OnInit {
           this.logged = JSON.parse(localStorage.getItem('user'));
           setTimeout(() => this.toastr.show('¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas!' +
                                             ' Con Conectados estás a un mensaje de distancia.' ,
-                                            'Bienvenid' + (this.logged.genero === 'Femenino' ? 'a ' : 'o ')  + this.logged.nombre));
+                                            'Bienvenid' + (this.logged.genero === 'Femenino' ? 'a ' : 'o ')  + this.logged.nombre),{"preventDuplicates": true,});
           this.buscarCategoria( );
           this.buscarUsuario();
           this.buscarFiltros();

@@ -81,13 +81,12 @@
 		}
 	.datatable-body {
 			background-color: beige;
-			text-align: left;
+			text-align: center;
 		}
-	.datatable-row {
-			background-color: yellow;
-			text-align: left;
-		}
-	.datatable-row{
-			height: 100% !important;
-			background-color: red !important;
+
+	.datatable-header-cell {
+		text-align: center !important;
+	}
+	.datatable-body-cell {
+		text-align: center !important;
 	}

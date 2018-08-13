@@ -60,10 +60,7 @@
     .modal-body .ngx-datatable{
         background-color: beige;
     }
-    .modal-body .ngx-datatable header{
-        background-color: yellow;
-    }
-    
+
     .modal-title {
         background-color: #878787;
         color: #fff;

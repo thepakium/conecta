@@ -4,15 +4,21 @@
             <a class="navbar-brand centerT col-centered"><img src="../../assets/images/logo-conectados.svg" width="200px"> </a>
 
     </div>
-    <div class="bei col-lg-2 col-centered">
+    <div class="bei col-lg-3 col-centered">
     <div class="row col-centered">
+            <p>
+                    <br>    
+            </p>
         <div class="col">
             <p class="text ">INICIAR SESIÓN</p>
         </div>
     </div>
     <div class="col-centered bei">
         
-         
+        <div class="col">
+            <p>
+                    <br>    
+            </p>
           <form (submit)="loginUser()">
             <div class="input ">
                 <label col-centered>Usuario</label>
@@ -23,12 +29,16 @@
                   <input type="password" [(ngModel)]="ingreso.pass" [ngModelOptions]="{standalone: true}" placeholder="Password">
                 <p></p>
             </div>
-                
-            <div class="col-centered bei">
+            <button type="button" class="btn btn-link btn-block">¿Olvidó su Contraseña?</button>
+            <div class="bot_ing col-centered bei">
                 <input type="submit" value="Ingresar">
+                <p>
+                    <br>    
+            </p>
                 </div>
             
           </form>
+        </div>
     </div>
     </div>
 </div>
