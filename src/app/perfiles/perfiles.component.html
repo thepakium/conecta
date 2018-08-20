@@ -9,9 +9,9 @@
   <button type="button" class="btn btn-warning" (click)="gestiona(ingresoModal)">Agregar nuevo Cliente</button>
   <ngx-datatable
     #myTable
-		style="width: 90%"
+		style="width: 70%"
 		class="material expandable"
-		[rows]="usuarios"
+    [rows]="usuarios"
 
 		[headerHeight]="40"
 		[footerHeight]="50"
@@ -29,8 +29,9 @@
     </ngx-datatable-row-detail>
      
     <ngx-datatable-column
+       name=""
       [width]="50"
-      [resizeable]="false"
+      [resizeable]="true"
       [sortable]="false"
       [draggable]="false"
       [canAutoResize]="false">
@@ -39,16 +40,17 @@
           href="javascript:void(0)"
           [class.datatable-icon-right]="!expanded"
           [class.datatable-icon-down]="expanded"
-          title="Mostrar Barrios asociados"
+          title="Mostrar Grupos asociados"
           (click)="toggleExpandRow(row)">
         </a>
       </ng-template>
     </ngx-datatable-column>
-	  <ngx-datatable-column name="Usuario"></ngx-datatable-column>
-	  <ngx-datatable-column name="Mail"></ngx-datatable-column>
-	  <ngx-datatable-column name="Username"></ngx-datatable-column>
+	  <ngx-datatable-column name="Administrador" prop="usuario" ></ngx-datatable-column>
+
+    <ngx-datatable-column name="Usuario" prop="username"></ngx-datatable-column>
+    <ngx-datatable-column name="Mail"></ngx-datatable-column>
 	  <ngx-datatable-column name="Perfil"></ngx-datatable-column>
-	  <ngx-datatable-column>
+	  <ngx-datatable-column name="Funciones">
 		<ng-template ngx-datatable-cell-template let-row="row">
 		  
 		  <button #btnElement class="btn btn-link" (click)="gestiona(ingresoModal, row)"><i class="fa fa-pencil"></i></button>&nbsp;
@@ -64,14 +66,14 @@
 </body>
 <ng-template #ingresoModal let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">{{modifica?'Modifica':'Ingresa'}} Usuario</h4>
+      <div class="row"><i class="fa fa-user"></i><strong>{{modifica?'Modifica':'Ingresa'}}   </strong><i>  Usuario</i></div>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <form #userForm="ngForm"  novalidate>
-      <div class="row">
+      <div class="beige row">
           <div class="col-sm-4">
                 <label for="nombre">Nombre</label>
                 <input type="text" required class="form-control" id="nombre" name="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
@@ -86,7 +88,7 @@
                 <input  type="text" required class="form-control" id="username" name="username" [(ngModel)]="newUser.username" placeholder="Ingrese Username"/> 
           </div>
         </div>
-        <div class="row">
+        <div class="beige row">
           <div class="col-sm-4">
                 <label for="genero">Genero:</label>
                 <ng-select [searchable]="false" 

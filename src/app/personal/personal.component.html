@@ -21,7 +21,7 @@
     [groupExpansionDefault]="true"
     [limit]="50"
 		>
-	  <ngx-datatable-group-header [rowHeight]="150" #myGroupHeader >
+	  <ngx-datatable-group-header extra [rowHeight]="150" #myGroupHeader >
           <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
             <div style="padding-left:10px;">
                 <b> Organización: {{group.value[0].organizacion}}</b>
@@ -29,14 +29,14 @@
             </div>
           </ng-template>
         </ngx-datatable-group-header> 
-        <ngx-datatable-column name="Región"></ngx-datatable-column>
+        <ngx-datatable-column name="Región" prop="region"></ngx-datatable-column>
         <ngx-datatable-column [canAutoResize]="true" name="Grupo">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 {{value}} <span [innerHTML]="row['barrio']"></span>
              </ng-template>
         </ngx-datatable-column>
 
-	  <ngx-datatable-column name="Hombres" headerClass="textcentrado" [cellClass]="textcentrado"></ngx-datatable-column>
+	  <ngx-datatable-column name="Hombres" ></ngx-datatable-column>
 	  <ngx-datatable-column name="Mujeres"></ngx-datatable-column>
 	  <ngx-datatable-column name="Total"></ngx-datatable-column>
 	  <ngx-datatable-column name= "Funciones">
@@ -78,7 +78,7 @@
 
             <div>
 				<ngx-datatable
-					style="width: 90%"
+					style="width: 100%"
 					class="material"
 					[rows]="usuarios"
 					[columnMode]="'force'"
@@ -94,13 +94,16 @@
                   {{value}} <span [innerHTML]="row['barrio']"></span>
                </ng-template>
           </ngx-datatable-column>
-				  <ngx-datatable-column name="Género" prop="genero"></ngx-datatable-column>
-				  <ngx-datatable-column name="Usuario"></ngx-datatable-column>
+				 
+          <ngx-datatable-column name="Nombre" prop="nombre"></ngx-datatable-column>
+          <ngx-datatable-column name="Apellido" prop="apellidoP"></ngx-datatable-column>
+          
 				  <ngx-datatable-column name="Teléfono">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
               {{value}} <span [innerHTML]="row['telefono']"></span>
            </ng-template>
           </ngx-datatable-column>
+          <ngx-datatable-column name="Género" prop="genero"></ngx-datatable-column>
 				  <ngx-datatable-column name= "Funciones">
             <ng-template ngx-datatable-cell-template let-row="row">
               <button #btnElement class="btn btn-link" (click)="accion(ingresoModal,row)"><i class="fa fa-pencil"[ngbTooltip]="Editar"></i></button>
