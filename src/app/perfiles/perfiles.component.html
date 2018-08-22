@@ -9,7 +9,7 @@
   <button type="button" class="btn btn-warning" (click)="gestiona(ingresoModal)">Agregar nuevo Cliente</button>
   <ngx-datatable
     #myTable
-		style="width: 70%"
+		style="width: 80%"
 		class="material expandable"
     [rows]="usuarios"
 
@@ -45,11 +45,11 @@
         </a>
       </ng-template>
     </ngx-datatable-column>
-	  <ngx-datatable-column name="Administrador" prop="usuario" ></ngx-datatable-column>
+	  <ngx-datatable-column name="Administrador" prop="usuario" [width]="220"></ngx-datatable-column>
 
     <ngx-datatable-column name="Usuario" prop="username"></ngx-datatable-column>
-    <ngx-datatable-column name="Mail"></ngx-datatable-column>
-	  <ngx-datatable-column name="Perfil"></ngx-datatable-column>
+    <ngx-datatable-column name="Mail"[width]="240"></ngx-datatable-column>
+	  <ngx-datatable-column name="Perfil" [width]="70"></ngx-datatable-column>
 	  <ngx-datatable-column name="Funciones">
 		<ng-template ngx-datatable-cell-template let-row="row">
 		  
@@ -90,7 +90,7 @@
         </div>
         <div class="beige row">
           <div class="col-sm-4">
-                <label for="genero">Genero:</label>
+                <label for="género">Genero:</label>
                 <ng-select [searchable]="false" 
                   [items]="generos" required
                   [multiple]="false"
@@ -116,7 +116,7 @@
               </ng-select>
             </div>
         </div>
-        <div *ngIf="newUser.perfil == 'user'" class="row">
+        <div *ngIf="newUser.perfil == 'user'" class="beige row">
           <div class="col-sm-4">
                 <label for="organizacion">Seleccione Organizacion:</label>
                 <ng-select [searchable]="true" 
@@ -132,7 +132,7 @@
                 </ng-select>
           </div>
           <div class="col-sm-8">
-                <label for="barrio">Seleccione Barrio:</label>
+                <label for="barrio">Seleccione Grupo:</label>
                 <ng-select [searchable]="true" 
                     [items]="barrios" required
                     bindLabel="nombre"
@@ -149,7 +149,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-success" [disabled]="!userForm.valid" (click)="ingresaUsuario()"  >Guardar</button>      
-    <button type="button" class="btn btn-light" (click)="d('Cross click')">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="d('Cross click')">Cancelar</button>
   </div>
 
 </ng-template>

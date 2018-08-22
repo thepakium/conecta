@@ -72,3 +72,54 @@ html {
 		flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
 		/*overflow-y: auto;  adds scroll to this container*/
 	}
+	.button #btnElement{
+		padding: 50px 50px;
+}
+.ngx-datatable-row {
+
+		vertical-align: top;
+		border-top: 1px solid #0054a8;
+ }
+ :host-context(.ngx-datatable){
+		 background-color: #0054a8;
+ }
+ .h2 i {
+		padding: 10px 30px;
+}
+.button {
+		padding: 50px 50px;
+}
+.beige{
+		padding: 20px;
+		background-color: beige
+}
+.modal-title i{
+		padding: 0px 10px;
+}
+.modal-header {
+		background-color: #878787;
+		color: #fff;
+		padding: 15px 30px;
+}
+.modal-body .ngx-datatable{
+		background-color: beige;
+}
+
+.modal-title {
+		background-color: #878787;
+		color: #fff;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		padding: 10px 20px;
+		}
+.row i {
+		padding: 0px 10px;
+}
+.container{
+		border: 2px;
+		color: rgb(0, 0, 0);
+		border-color: black;
+		border-radius: 5px;
+		background-color: beige;
+		padding-bottom: 10px;
+		}
