@@ -30,11 +30,7 @@
           </ng-template>
         </ngx-datatable-group-header> 
         <ngx-datatable-column name="Región" prop="region"></ngx-datatable-column>
-        <ngx-datatable-column [canAutoResize]="true" name="Grupo" [width]="240">
-            <ng-template let-row="row" let-value="value"  ngx-datatable-cell-template>
-                {{value}} <span [innerHTML]="row['barrio']"></span>
-             </ng-template>
-        </ngx-datatable-column>
+        <ngx-datatable-column prop="barrio" name="Grupo" [width]="240"></ngx-datatable-column>
 
 	  <ngx-datatable-column name="Hombres" [width]="60"></ngx-datatable-column>
 	  <ngx-datatable-column name="Mujeres" [width]="60"></ngx-datatable-column>

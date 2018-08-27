@@ -35,3 +35,29 @@
         flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
         /*overflow-y: auto;  adds scroll to this container*/
     }
+    .beige{
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        background-color: beige;
+        padding: 10px 10px
+    }
+    .row-a{
+        width: 100%;
+        background-color: #878787;
+        color: #fff;
+        border-top-left-radius: 5px;        
+        border-top-right-radius: 5px;
+        padding: 10px 10px;
+        }
+    .row-b{
+            width: 100%;
+            background-color: beige;
+            color: black;
+            border-top-left-radius: 5px;        
+            border-top-right-radius: 5px;
+            padding: 10px 10px;
+            }
+     .espacio span{
+                color: #878787;
+                padding: 10px 50px;
+            }
