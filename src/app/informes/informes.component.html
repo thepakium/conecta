@@ -80,7 +80,7 @@
           </ng-template>
         </ngx-datatable-group-header>
       <ngx-datatable-column name="Hora"></ngx-datatable-column>
-      <ngx-datatable-column name="Grupo" prop="barrio"></ngx-datatable-column>
+      <ngx-datatable-column name="Grupo" prop="grupo"></ngx-datatable-column>
       <ngx-datatable-column >
           <ng-template let-column="column" ngx-datatable-header-template>Detalle
           </ng-template>
@@ -115,7 +115,7 @@
                             <div class="col-5"><strong>Fundación</strong></div><div class="col-7">{{mensaje?.organizacion}}</div>
                         </div>
                         <div class="row">
-                            <div class="col-5"><strong>Grupo</strong></div><div class="col-7">{{mensaje?.barrio}}</div>
+                            <div class="col-5"><strong>Grupo</strong></div><div class="col-7">{{mensaje?.grupo}}</div>
                         </div>
                         <div class="row">
                             <div class="col-5"><strong>Mensajes Enviados</strong></div><div class="col-7">{{mensaje?.enviados}} de {{mensaje?.total}}</div>

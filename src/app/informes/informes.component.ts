@@ -218,7 +218,7 @@ export class InformesComponent implements OnInit {
         return texto.replace(/\#\#\(nombre\)/ig, quien.nombre.substring(0, 10) )
                     .replace(/\#\#\(apelli\)/ig, quien.apellidoP.substring(0, 10) )
                     .replace('#@', (quien.genero === 'Femenino') ? 'a' : 'o' )
-                    .replace(/\#\#\(barrio\)/ig, quien.barrio.substring(0, 10) )
+                    .replace(/\#\#\(grupo\)/ig, quien.grupo.substring(0, 10) )
                     .replace(/@\s/g, (quien.genero === 'Femenino') ? 'a ' : 'o ' );
       }
 

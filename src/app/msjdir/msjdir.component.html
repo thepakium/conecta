@@ -53,7 +53,7 @@
     <label for="mensaje">Escriba su mensaje:</label>&nbsp;
     <span class="badge badge badge-primary" placement="top" (click)="modificar('nombre')" [ngbTooltip]="InsertaNo" >Nombre</span>&nbsp; 
    
-    <span class="badge badge badge-warning" placement="top" (click)="modificar('barrio')" [ngbTooltip]="InsertaBa" >Grupo</span>&nbsp; 
+    <span class="badge badge badge-warning" placement="top" (click)="modificar('grupo')" [ngbTooltip]="InsertaBa" >Grupo</span>&nbsp; 
     <span class="badge badge badge-info" placement="top" (click)="modificar('at')" [ngbTooltip]="InsertaAt" >@</span>&nbsp; 
     <span class="badge badge badge-secondary" placement="top" (click)="modificar('firma')" [ngbTooltip]="InsertaFi" >Firma</span>
     <span class="badge badge badge-basic" placement="top" (click)="modificar('plantilla')" [ngbTooltip]="InsertarPLan" >Plantilla</span>
@@ -121,7 +121,7 @@
                         {{value}} <span [innerHTML]="row['genero']"></span>
                      </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="Grupo" prop='barrio' headerClass="textcentrado" cellClass="textcentrado"></ngx-datatable-column>
+                <ngx-datatable-column name="Grupo" prop='grupo' headerClass="textcentrado" cellClass="textcentrado"></ngx-datatable-column>
                 <ngx-datatable-column [canAutoResize]="true" name="Organización" prop='organizacion' ></ngx-datatable-column>
                 <ngx-datatable-column [canAutoResize]="true" name="Región" prop='region' ></ngx-datatable-column>
         </ngx-datatable>

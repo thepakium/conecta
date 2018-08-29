@@ -26,7 +26,7 @@ export class PerfilesComponent implements OnInit {
   private modalBorraRef: NgbModalRef;
   victima = new Victima;
   organizaciones = [];
-  barrios = [];
+  grupos = [];
   modifica = false;
 
   constructor(  private busquedaService: BusquedaService,
@@ -51,12 +51,12 @@ export class PerfilesComponent implements OnInit {
     this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.organizaciones = data );
   }
 
-  buscaBarrio( organizacion ) {
+  buscaGrupo( organizacion ) {
     if ( organizacion ) {
-      const datos = { tipo: 'barrio', usuario: this.logged , organizacion: organizacion };
-      this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.barrios = data );
+      const datos = { tipo: 'grupo', usuario: this.logged , organizacion: organizacion };
+      this.busquedaService.obtenerDatos(JSON.stringify(datos), data => this.grupos = data );
     } else {
-      this.barrios = [];
+      this.grupos = [];
     }
   }
 
@@ -103,8 +103,8 @@ export class PerfilesComponent implements OnInit {
       this.newUser.perfil = quien.perfil;
       this.newUser.mail = quien.mail;
       this.newUser.organizacion = quien.id_orgs;
-      this.newUser.barrios = quien.id_barrios ? quien.id_barrios.split(',') : [];
-      this.buscaBarrio( this.newUser.organizacion );
+      this.newUser.grupos = quien.id_grupos ? quien.id_grupos.split(',') : [];
+      this.buscaGrupo( this.newUser.organizacion );
     } else {
       this.modifica = false;
     }
@@ -115,7 +115,7 @@ export class PerfilesComponent implements OnInit {
   ingresaUsuario() {
     if( this.newUser && this.newUser.perfil === 'admin' ) {
       this.newUser.organizacion = null;
-      this.newUser.barrios = [];  
+      this.newUser.grupos = [];
     }
     const datos = { tipo: this.modifica ? 'modifica' : 'registra', usuario: this.logged, cliente: this.newUser , modelo: 'p' };
     this.busquedaService.ingresaDatos( JSON.stringify(datos) , data => {

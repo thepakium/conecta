@@ -21,8 +21,8 @@ export class Usuario {
     fechaNacimiento: Date;
     organizacion: string;
     firma: string;
-    barrio: string;
-    id_barrio: number;
+    grupo: string;
+    id_grupo: number;
     activo: boolean;
   }
 
@@ -36,7 +36,7 @@ export class Username {
     mail: string;
     perfil: string;
     organizacion: string;
-    barrios: any;
+    grupos: any;
   }
 
 export class Categoria {
@@ -52,7 +52,7 @@ export class Victima {
 
 export class Mensaje {
   organizacion: string;
-  barrio: string;
+  grupo: string;
   enviados: number;
   total: number;
   programado: string;

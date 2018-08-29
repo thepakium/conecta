@@ -23,7 +23,7 @@
       <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
         <div style="padding-left:35px;">
           <div><strong>{{row.nm_orgs}}</strong></div>
-          <div>{{row.nm_barrios}}</div>
+          <div>{{row.nm_grupos}}</div>
         </div>
       </ng-template>
     </ngx-datatable-row-detail>
@@ -128,20 +128,20 @@
                     [multiple]="false"
                     placeholder="Seleccione organizacion"
                     [(ngModel)]="newUser.organizacion"  
-                    (ngModelChange)="buscaBarrio($event)" >
+                    (ngModelChange)="buscaGrupo($event)" >
                 </ng-select>
           </div>
           <div class="col-sm-8">
-                <label for="barrio">Seleccione Grupo:</label>
+                <label for="grupo">Seleccione Grupo:</label>
                 <ng-select [searchable]="true" 
-                    [items]="barrios" required
+                    [items]="grupos" required
                     bindLabel="nombre"
                     bindValue="id"
-                    id="barrio"
-                    name="barrio"
+                    id="grupo"
+                    name="grupo"
                     [multiple]="true"
-                    placeholder="Seleccione barrio"
-                    [(ngModel)]="newUser.barrios" >
+                    placeholder="Seleccione grupo"
+                    [(ngModel)]="newUser.grupos" >
                   </ng-select>
           </div>
         </div>

@@ -30,7 +30,7 @@
           </ng-template>
         </ngx-datatable-group-header> 
         <ngx-datatable-column name="Región" prop="region"></ngx-datatable-column>
-        <ngx-datatable-column prop="barrio" name="Grupo" [width]="240"></ngx-datatable-column>
+        <ngx-datatable-column prop="grupo" name="Grupo" [width]="240"></ngx-datatable-column>
 
 	  <ngx-datatable-column name="Hombres" [width]="60"></ngx-datatable-column>
 	  <ngx-datatable-column name="Mujeres" [width]="60"></ngx-datatable-column>
@@ -39,7 +39,7 @@
 		<ng-template ngx-datatable-cell-template let-row="row">
 		  
 		  <button #btnElement class="btn btn-link" (click)="gestiona(gestionaModal, row.id)"[ngbTooltip]="Editar"><i class="fa fa-pencil"></i></button>&nbsp;
-		  <button #btnElement class="btn btn-link"  (click)="borrar(row.id, row.barrio, 'barrio',eliminaModal)"[ngbTooltip]="Borrar"><i class="fa fa-trash"></i></button>
+		  <button #btnElement class="btn btn-link"  (click)="borrar(row.id, row.grupo, 'grupo',eliminaModal)"[ngbTooltip]="Borrar"><i class="fa fa-trash"></i></button>
 		</ng-template>
 		
 		<ngx-datatable-footer>
@@ -87,7 +87,7 @@
 				  <ngx-datatable-column name="Organización" prop="organizacion"></ngx-datatable-column>
           <ngx-datatable-column [canAutoResize]="true" name="Grupo">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                  {{value}} <span [innerHTML]="row['barrio']"></span>
+                  {{value}} <span [innerHTML]="row['grupo']"></span>
                </ng-template>
           </ngx-datatable-column>
 				 
@@ -178,20 +178,20 @@
                       [multiple]="false"
                       placeholder="Seleccione organizacion"
                       [(ngModel)]="organizacion"  
-                      (ngModelChange)="buscaBarrio($event)" >
+                      (ngModelChange)="buscaGrupo($event)" >
                   </ng-select>
             </div>
             <div class="col-sm-4">
-                  <label for="barrio">Seleccione Grupo:</label>
+                  <label for="grupo">Seleccione Grupo:</label>
                   <ng-select [searchable]="true" 
-                      [items]="barrios" required
+                      [items]="grupos" required
                       bindLabel="nombre"
                       bindValue="id"
-                      id="barrio"
-                      name="barrio"
+                      id="grupo"
+                      name="grupo"
                       [multiple]="false"
-                      placeholder="Seleccione barrio"
-                      [(ngModel)]="newUser.id_barrio" >
+                      placeholder="Seleccione grupo"
+                      [(ngModel)]="newUser.id_grupo" >
                     </ng-select>
             </div>
           </div>

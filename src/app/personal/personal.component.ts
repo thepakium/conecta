@@ -21,7 +21,7 @@ export class PersonalComponent implements OnInit {
   organizaciones = [];
   organizacion: number;
   generos = ['Masculino', 'Femenino','Otro'];
-  barrios = [];
+  grupos = [];
   newUser = new Usuario;
   loadingIndicator = true;
   victima = new Victima;
@@ -30,7 +30,7 @@ export class PersonalComponent implements OnInit {
   private modalIngresaRef: NgbModalRef;
   modifica = false;
   ref: any;
-  barrio: any;
+  grupo: any;
 
   constructor(  private busquedaService: BusquedaService ,
                 private toastr: ToastrService,
@@ -69,9 +69,9 @@ export class PersonalComponent implements OnInit {
     );
   }
 
-  buscarUsuarios( barrio ) {
+  buscarUsuarios( grupo ) {
     this.usuarios = [];
-    const datos = { tipo: 'usuario', usuario: this.logged , barrio: barrio };
+    const datos = { tipo: 'usuario', usuario: this.logged, grupo: grupo };
     this.busquedaService.obtenerDatos( JSON.stringify(datos) ,
                 data => { this.usuarios = data;
                           setTimeout(() => { this.loadingIndicator = false; }, 1500);
@@ -126,20 +126,20 @@ export class PersonalComponent implements OnInit {
     this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.organizaciones = data );
   }
 
-  buscaBarrio( organizacion ) {
+  buscaGrupo( organizacion ) {
     if ( organizacion ) {
-      const datos = { tipo: 'barrio', usuario: this.logged , organizacion: organizacion };
-      this.busquedaService.obtenerDatos( JSON.stringify(datos) , data => this.barrios = data );
+      const datos = { tipo: 'grupo', usuario: this.logged , organizacion: organizacion };
+      this.busquedaService.obtenerDatos(JSON.stringify(datos), data => this.grupos = data );
     } else {
-      this.barrios = [];
-      this.newUser.id_barrio = null;
+      this.grupos = [];
+      this.newUser.id_grupo = null;
     }
   }
 
-  gestiona(content = null , barrio = null ) {
-    if ( barrio ) { this.barrio = barrio; }
+  gestiona(content = null, grupo = null ) {
+    if (grupo) { this.grupo = grupo; }
     if ( content ) { this.ref = content; }
-    this.buscarUsuarios( this.barrio );
+    this.buscarUsuarios(this.grupo );
     this.modalGestionRef = this.modalService.open( this.ref, { size: 'lg' });
   }
 
@@ -159,7 +159,7 @@ export class PersonalComponent implements OnInit {
     if ( dato ) {
       this.newUser = dato;
       this.organizacion = dato.id_organizacion;
-      this.buscaBarrio( this.organizacion );
+      this.buscaGrupo( this.organizacion );
       this.modifica = true;
     } else {
       this.newUser = new Usuario;
