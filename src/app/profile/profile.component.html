@@ -16,8 +16,7 @@
         <button type="button" class="btn btn-link btn-block"><i class="fa fa-user-circle-o" style="font-size:150px;color:#672146;;"></i></button>
     </div>
     <div class="col-sm-6">
-    <h1>{{logged.nombre}} <b> {{logged.apellido}}</b></h1> <p></p>
-    <h3>
+    <h2>{{logged.nombre}} <b> {{logged.apellido}}</b></h2> <p></p>
         
         <p *ngFor="let c of cantidades;" > Mensajes {{c.estado}}s este mes {{c.valor}}</p>
             <p *ngIf="cantidades?.length == 0"> Sin Mensajes creados este mes</p>
@@ -29,13 +28,13 @@
             <div class="espacio">Cuota SMS disponibles :<span>""comprados - enviados""</span></div>
 
 
-    </h3>   
+
     </div>
     
 
-   <button type="button" class="btn btn-link btn-block">Cambiar Contraseña</button>
-   <button type="button" class="btn btn-link btn-block">Cambiar Firma</button>
-   <button type="button" class="btn btn-link btn-block">Crear Meta</button>
+   <button type="button" *ngIf="logged.perfil=='admin'" class="btn btn-link btn-block">Cambiar Contraseña</button>
+   <button type="button" *ngIf="logged.perfil=='admin'" class="btn btn-link btn-block">Cambiar Firma</button>
+   <button type="button" *ngIf="logged.perfil=='admin'" class="btn btn-link btn-block">Crear Meta</button>
 </div>
 </div>
 </div>

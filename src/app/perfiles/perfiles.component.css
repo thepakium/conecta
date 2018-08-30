@@ -16,11 +16,7 @@ html {
         padding: 20px 25px;
     }
     
-    .bottom {
-        
-        flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
-        /*overflow-y: auto;  adds scroll to this container*/
-    }
+
     .modal-title {
         background-color: #878787;
         color: #fff;
@@ -39,11 +35,7 @@ html {
         background-color: beige;
         padding-bottom: 10px;
         }
-        .bottom {
-        
-            flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
-            /*overflow-y: auto;  adds scroll to this container*/
-        }
+
         .button #btnElement{
             padding: 50px 50px;
         }

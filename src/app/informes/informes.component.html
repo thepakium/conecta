@@ -72,14 +72,14 @@
       >
 	  <ngx-datatable-group-header [rowHeight]="50" #myGroupHeader >
           <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
-            <div style="padding-left:15px;">
+            <div style="text-align : center;">
               
-                <b>  {{group.value[0].fecha}}</b>
+                 {{group.value[0].fecha}}
                                    
             </div>
           </ng-template>
         </ngx-datatable-group-header>
-      <ngx-datatable-column name="Hora"></ngx-datatable-column>
+      <ngx-datatable-column name="Hora"[width]="35"></ngx-datatable-column>
       <ngx-datatable-column name="Grupo" prop="grupo"></ngx-datatable-column>
       <ngx-datatable-column >
           <ng-template let-column="column" ngx-datatable-header-template>Detalle
@@ -110,7 +110,7 @@
         <div class="modal-body">
             <div class="container">
                 <div class="beige row">
-                    <div class="col-7">
+                    <div class="col-9">
                         <div class="row">
                             <div class="col-5"><strong>Fundación</strong></div><div class="col-7">{{mensaje?.organizacion}}</div>
                         </div>
@@ -129,12 +129,14 @@
                         <div class="row">
                             <div class="col-5"><strong>Enviador</strong></div><div class="col-7" *ngFor="let x of (mensajes ? mensajes.slice(0,2): [])">{{x.enviador}}</div>
                         </div>
+                        <div class="row">
+                            <div class="col-5"><strong>Fecha de Redacción:</strong></div><div class="col-7" >{{mensaje?.fechaCreacion | date: 'dd/MM/yyyy'}} a las {{mensaje?.fechaCreacion | date: 'HH:mm'}} hrs.</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5"><strong>Fecha de Envio:</strong></div><div class="col-7" >{{mensaje?.fechaEnvio | date: 'dd/MM/yyyy'}} a las {{mensaje?.fechaEnvio | date: 'HH:mm'}} hrs.</div>
+                        </div>
                     </div>
-                    <div class="col-5">
-                        <div><strong> Fecha de Redaccion:</strong> {{mensaje?.fechaCreacion | date: 'dd/MM/yyyy HH:mm'}}</div>
-                        <div><strong>Fecha de Envio: </strong>    {{mensaje?.fechaEnvio | date: 'dd/MM/yyyy HH:mm'}}</div>
-                        <div class="border"><div ><strong>Mensaje:</strong></div><span>{{mensaje?.mensaje}}</span></div>
-                    </div>
+
                 </div>
             
             <div class=" beige row border">
@@ -146,8 +148,10 @@
                     <div class="col-4">{{mensaje.cliente}}</div>
                     <div class="col-4">{{mensaje.estado}}</div>
                     <div class="col-4">buen estado</div>
+                    <br>
+                    <div class="row border">
                     <div class="col-10">{{cambiarTexto(mensaje.body, mensaje)}}</div>
-                    <div class="col-10 font-weight-light font-italic">Recepcion: {{mensaje.fechaRecepcion | date: 'dd/MM/yyyy HH:mm'}}</div>
+                    <div class="col-10 font-weight-light font-italic">Recepción: {{mensaje.fechaRecepcion | date: 'dd/MM/yyyy HH:mm'}}</div></div>
             </div>
         </div>
         </div> <!-- close modal body -->  
