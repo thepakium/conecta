@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Usuario, Username, Victima } from 'src/app/share/models';
 import { ToastrService } from 'ngx-toastr';
 import { BusquedaService } from 'src/app/share/busqueda.service';
@@ -20,7 +20,7 @@ export class PersonalComponent implements OnInit {
   agrupaciones = [];
   organizaciones = [];
   organizacion: number;
-  generos = ['Masculino', 'Femenino','Otro'];
+  generos = ['Masculino', 'Femenino', 'Otro'];
   grupos = [];
   newUser = new Usuario;
   loadingIndicator = true;

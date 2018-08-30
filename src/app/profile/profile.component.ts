@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   logged: Username;
   loadingIndicator = true;
   cantidades: Dato[];
-  constructor(private router: Router,private busquedaService: BusquedaService) { }
+  constructor(private router: Router, private busquedaService: BusquedaService) { }
 
   ngOnInit() {
     this.logged = JSON.parse(localStorage.getItem('user'));
