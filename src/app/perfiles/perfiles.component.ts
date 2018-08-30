@@ -20,7 +20,7 @@ export class PerfilesComponent implements OnInit {
   logged: Username;
   usuarios: Username[] = [];
   loadingIndicator = true;
-  generos = ['Masculino', 'Femenino','Otro'];
+  generos = ['Masculino', 'Femenino', 'Otro'];
   perfiles = ['admin', 'user'];
   private modalGestionRef: NgbModalRef;
   private modalBorraRef: NgbModalRef;
@@ -92,7 +92,7 @@ export class PerfilesComponent implements OnInit {
   }
 
   gestiona(content , quien = null  ) {
-    if( quien ) {
+    if ( quien ) {
       this.modifica = true;
       this.newUser = new Username;
       this.newUser.id = quien.id;
@@ -113,7 +113,7 @@ export class PerfilesComponent implements OnInit {
   }
 
   ingresaUsuario() {
-    if( this.newUser && this.newUser.perfil === 'admin' ) {
+    if ( this.newUser && this.newUser.perfil === 'admin' ) {
       this.newUser.organizacion = null;
       this.newUser.grupos = [];
     }

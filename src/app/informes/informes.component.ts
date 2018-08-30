@@ -19,7 +19,7 @@ export class InformesComponent implements OnInit {
   logged: Username;
   loadingIndicator = true;
   mes: number;
-  
+
   filtroBusqueda: Filtro = new Filtro;
   meses = [ {id: 1, name: 'Enero'},
             {id: 2, name: 'Febrero'},
@@ -79,10 +79,10 @@ export class InformesComponent implements OnInit {
     legend: {
         display: true,
         position:	'right',
-        labels: { 
-          fontSize: 9, 
+        labels: {
+          fontSize: 9,
           fontColor: 'black'
-          } 
+          }
     }
   };
   datosMes: Dato;
@@ -156,10 +156,10 @@ export class InformesComponent implements OnInit {
   }
 
   exporta_mes() {
-    window.open(`http://www.ahoraconectados.cl/sms/export_repo_mes.php`, '_blank')
+    window.open(`http://www.ahoraconectados.cl/sms/export_repo_mes.php`, '_blank');
   }
   exporta_year() {
-    window.open(`http://www.ahoraconectados.cl/sms/export_repo_year.php`, '_blank')
+    window.open(`http://www.ahoraconectados.cl/sms/export_repo_year.php`, '_blank');
   }
 
   borrarFiltros() {

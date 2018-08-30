@@ -54,12 +54,13 @@ export class MsjdirComponent implements OnInit {
   constructor(    private toastr: ToastrService,
                   private busquedaService: BusquedaService  ) {
                   }
- 
+
   ngOnInit() {
           this.logged = JSON.parse(localStorage.getItem('user'));
           setTimeout(() => this.toastr.show('¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas!' +
                                             ' Con Conectados estás a un mensaje de distancia.' ,
-                                            'Bienvenid' + (this.logged.genero === 'Femenino' ? 'a ' : 'o ')  + this.logged.nombre),{"preventDuplicates": true,});
+                                            'Bienvenid' + (this.logged.genero === 'Femenino' ? 'a ' : 'o ')  + this.logged.nombre)
+                                            , { 'preventDuplicates': true});
           this.buscarCategoria( );
           this.buscarUsuario();
           this.buscarFiltros();
@@ -111,7 +112,8 @@ export class MsjdirComponent implements OnInit {
         this.mensaje = '';
       break;
       case 'plantilla':
-        this.mensaje = '##(nombre) bienvenid#@ a CONECTADOS desde este número te informaremos de las actividades de ##(grupo). Guarda este número en tu celular.  -Firma-';
+        this.mensaje = '##(nombre) bienvenid#@ a CONECTADOS desde este número te informaremos de las actividades de ##(grupo).' +
+                       ' Guarda este número en tu celular.  -Firma-';
       break;
     }
   }
@@ -222,7 +224,7 @@ export class MsjdirComponent implements OnInit {
 console.log(seleccionados);
     this.selected.splice(0, seleccionados.length);
     // this.selected.push(...seleccionados);
-	this.selected = [...seleccionados];
+    this.selected = [...seleccionados];
     this.newUsuarios = [...seleccionados];
   }
 
