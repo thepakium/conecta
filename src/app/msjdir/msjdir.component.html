@@ -49,13 +49,15 @@
       <div class="row"><strong>Paso 3 :  </strong ><i>  Escribe tu mensaje</i></div>
      
   <div class="form-group">
+    
     <label for="mensaje">Escriba su mensaje:</label>&nbsp;
     <span class="badge badge badge-primary" placement="top" (click)="modificar('nombre')" [ngbTooltip]="InsertaNo" >Nombre</span>&nbsp; 
-    <span class="badge badge badge-success" placement="top" (click)="modificar('apellido')" [ngbTooltip]="InsertaAp" >Apellido</span>&nbsp; 
-    <span class="badge badge badge-warning" placement="top" (click)="modificar('barrio')" [ngbTooltip]="InsertaBa" >Grupo</span>&nbsp; 
+   
+    <span class="badge badge badge-warning" placement="top" (click)="modificar('grupo')" [ngbTooltip]="InsertaBa" >Grupo</span>&nbsp; 
     <span class="badge badge badge-info" placement="top" (click)="modificar('at')" [ngbTooltip]="InsertaAt" >@</span>&nbsp; 
     <span class="badge badge badge-secondary" placement="top" (click)="modificar('firma')" [ngbTooltip]="InsertaFi" >Firma</span>
     <span class="badge badge badge-basic" placement="top" (click)="modificar('plantilla')" [ngbTooltip]="InsertarPLan" >Plantilla</span>
+    <span class="badge badge badge-primary" placement="top"  [ngbTooltip]="InsertaAp" >?</span>&nbsp; 
     <textarea rows="5" class="form-control" required maxlength="160" [(ngModel)]="mensaje" placeholder="Escriba Mensaje"></textarea>
      {{mensaje.length}} carácteres usados de {{ 160 - mensaje.length }} restantes    &nbsp;&nbsp; <span class="badge badge badge-danger"(click)="modificar('borrar')" [ngbTooltip]="Borrar" >Borrar</span> 
 
@@ -73,9 +75,9 @@
       <input type="datetime-local"  [(ngModel)]="fecha" />
     </div>
     <div class="alert alert-danger" [hidden]="(selected?.length>0)&&categoria&&mensaje" >
-      <span [hidden]="selected?.length>0"> Debe seleccionar Destinatarios<br></span>
-      <span [hidden]="categoria"> Debe seleccionar Categoria<br></span>
-      <span [hidden]="mensaje"> Debe escribir mensaje</span>
+      <span [hidden]="selected?.length>0"> Paso 1: Incompleto, Debe seleccionar destinatarios<br></span>
+      <span [hidden]="categoria"> Paso 2: Incompleto, Debe seleccionar categoria<br></span>
+      <span [hidden]="mensaje"> Paso 3: Incompleto,  Debe escribir mensaje</span>
     </div>
     </div>
 </div>
@@ -119,7 +121,7 @@
                         {{value}} <span [innerHTML]="row['genero']"></span>
                      </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="Grupo" prop='barrio' headerClass="textcentrado" cellClass="textcentrado"></ngx-datatable-column>
+                <ngx-datatable-column name="Grupo" prop='grupo' headerClass="textcentrado" cellClass="textcentrado"></ngx-datatable-column>
                 <ngx-datatable-column [canAutoResize]="true" name="Organización" prop='organizacion' ></ngx-datatable-column>
                 <ngx-datatable-column [canAutoResize]="true" name="Región" prop='region' ></ngx-datatable-column>
         </ngx-datatable>
@@ -157,19 +159,19 @@
     Insertar Plantilla Sugerida
  </ng-template>
 <ng-template #InsertaFi>
-    Insertar Firma Organización
+  Al incluir (firma) en el mensaje, esta será reemplazada por la firma configurada en el perfil del administrador. Si el mensaje es muy largo, no se incluirá la firma en el mensaje
  </ng-template>
 <ng-template #InsertaNo>
-    Insertar Comodín Nombre
+  Al incluir (nombre), este se reemplazará por el nombre de la persona correspondiente en cada mensaje enviado.
  </ng-template>
 <ng-template #InsertaAp>
-    Insertar Comodín Apellido
+  Al seleccionar una de estas palabras, se reemplazan automáticamente por el dato que aparezca en la lista, para modificar su firma diríjase al perfil del administrador.
  </ng-template>
 <ng-template #InsertaBa>
-    Insertar Comodín Grupo
+  Al incluir (grupo) se reemplazará por el nombre del grupo correspondiente en cada mensaje enviado
  </ng-template>
 <ng-template #InsertaAt>
-    Insertar Comodín '#@' para A/O según genero, Estimad#@ = Estimada o Estimado según género receptor
+  Al incluir (@) al final de una palabra se cambiará por la letra "a", "o" correspondiente a cada género 
  </ng-template>
 <ng-template #Borrar>
     Borrar Cuerpo del mensaje

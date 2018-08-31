@@ -9,16 +9,12 @@
         </i>{{this.logged.nombre}} <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/mensajes']"><i class="fa fa-comment-o">                 
+          <a class="nav-link active" [routerLink]="['/mensajes']"><i class="fa fa-comment-o">                 
         </i>Mensajes</a>
         </li>
-        <li class="nav-item"*ngIf="logged.perfil=='admin'">
+        <li class="nav-item">
           <a class="nav-link" [routerLink]="['/reportes']" data-toggle="dropdown"><i class="fa fa-area-chart">                 
         </i>Reportes</a>
-        <div class="dropdown-menu" >
-          <a class="dropdown-item" href="#"(click)='exporta_mes()' >Resumen Mensual</a>
-          <a class="dropdown-item" href="#"(click)='exporta_year()' >Reporte Anual</a>
-        </div>
         </li>
         <li class="nav-item"*ngIf="logged.perfil=='admin'">
           <a class="nav-link" [routerLink]="['/personas']"><i class="fa fa-user-circle-o">                 

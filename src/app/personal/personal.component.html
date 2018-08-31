@@ -21,7 +21,7 @@
     [groupExpansionDefault]="true"
     [limit]="50"
 		>
-	  <ngx-datatable-group-header [rowHeight]="150" #myGroupHeader >
+	  <ngx-datatable-group-header extra [rowHeight]="150" #myGroupHeader >
           <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
             <div style="padding-left:10px;">
                 <b> Organización: {{group.value[0].organizacion}}</b>
@@ -29,21 +29,17 @@
             </div>
           </ng-template>
         </ngx-datatable-group-header> 
-        <ngx-datatable-column name="Región"></ngx-datatable-column>
-        <ngx-datatable-column [canAutoResize]="true" name="Grupo">
-            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                {{value}} <span [innerHTML]="row['barrio']"></span>
-             </ng-template>
-        </ngx-datatable-column>
+        <ngx-datatable-column name="Región" prop="region"></ngx-datatable-column>
+        <ngx-datatable-column prop="grupo" name="Grupo" [width]="240"></ngx-datatable-column>
 
-	  <ngx-datatable-column name="Hombres" headerClass="textcentrado" [cellClass]="textcentrado"></ngx-datatable-column>
-	  <ngx-datatable-column name="Mujeres"></ngx-datatable-column>
-	  <ngx-datatable-column name="Total"></ngx-datatable-column>
+	  <ngx-datatable-column name="Hombres" [width]="60"></ngx-datatable-column>
+	  <ngx-datatable-column name="Mujeres" [width]="60"></ngx-datatable-column>
+	  <ngx-datatable-column name="Total" [width]="60"></ngx-datatable-column>
 	  <ngx-datatable-column name= "Funciones">
 		<ng-template ngx-datatable-cell-template let-row="row">
 		  
 		  <button #btnElement class="btn btn-link" (click)="gestiona(gestionaModal, row.id)"[ngbTooltip]="Editar"><i class="fa fa-pencil"></i></button>&nbsp;
-		  <button #btnElement class="btn btn-link"  (click)="borrar(row.id, row.barrio, 'barrio',eliminaModal)"[ngbTooltip]="Borrar"><i class="fa fa-trash"></i></button>
+		  <button #btnElement class="btn btn-link"  (click)="borrar(row.id, row.grupo, 'grupo',eliminaModal)"[ngbTooltip]="Borrar"><i class="fa fa-trash"></i></button>
 		</ng-template>
 		
 		<ngx-datatable-footer>
@@ -78,7 +74,7 @@
 
             <div>
 				<ngx-datatable
-					style="width: 90%"
+					style="width: 100%"
 					class="material"
 					[rows]="usuarios"
 					[columnMode]="'force'"
@@ -91,16 +87,19 @@
 				  <ngx-datatable-column name="Organización" prop="organizacion"></ngx-datatable-column>
           <ngx-datatable-column [canAutoResize]="true" name="Grupo">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                  {{value}} <span [innerHTML]="row['barrio']"></span>
+                  {{value}} <span [innerHTML]="row['grupo']"></span>
                </ng-template>
           </ngx-datatable-column>
-				  <ngx-datatable-column name="Género" prop="genero"></ngx-datatable-column>
-				  <ngx-datatable-column name="Usuario"></ngx-datatable-column>
+				 
+          <ngx-datatable-column name="Nombre" prop="nombre"></ngx-datatable-column>
+          <ngx-datatable-column name="Apellido" prop="apellidoP"></ngx-datatable-column>
+          
 				  <ngx-datatable-column name="Teléfono">
             <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
               {{value}} <span [innerHTML]="row['telefono']"></span>
            </ng-template>
           </ngx-datatable-column>
+          <ngx-datatable-column name="Género" prop="genero"></ngx-datatable-column>
 				  <ngx-datatable-column name= "Funciones">
             <ng-template ngx-datatable-cell-template let-row="row">
               <button #btnElement class="btn btn-link" (click)="accion(ingresoModal,row)"><i class="fa fa-pencil"[ngbTooltip]="Editar"></i></button>
@@ -144,7 +143,7 @@
           </div>
           <div class="beige row">
             <div class="col-sm-4">
-                  <label for="genero">Genero:</label>
+                  <label for="genero">Género:</label>
                   <ng-select [searchable]="false" 
                     [items]="generos" required
                     [multiple]="false"
@@ -169,7 +168,7 @@
                   <input type="number" id="telefono" name="telefono" required class="form-control"[(ngModel)]="newUser.telefono" placeholder="Ingrese Telefono"  />
             </div>
             <div class="col-sm-4">
-                  <label for="organizacion">Seleccione Organizacion:</label>
+                  <label for="organizacion">Seleccione Organización:</label>
                   <ng-select [searchable]="true" 
                       [items]="organizaciones" required
                       bindLabel="nombre"
@@ -179,20 +178,20 @@
                       [multiple]="false"
                       placeholder="Seleccione organizacion"
                       [(ngModel)]="organizacion"  
-                      (ngModelChange)="buscaBarrio($event)" >
+                      (ngModelChange)="buscaGrupo($event)" >
                   </ng-select>
             </div>
             <div class="col-sm-4">
-                  <label for="barrio">Seleccione Barrio:</label>
+                  <label for="grupo">Seleccione Grupo:</label>
                   <ng-select [searchable]="true" 
-                      [items]="barrios" required
+                      [items]="grupos" required
                       bindLabel="nombre"
                       bindValue="id"
-                      id="barrio"
-                      name="barrio"
+                      id="grupo"
+                      name="grupo"
                       [multiple]="false"
-                      placeholder="Seleccione barrio"
-                      [(ngModel)]="newUser.id_barrio" >
+                      placeholder="Seleccione grupo"
+                      [(ngModel)]="newUser.id_grupo" >
                     </ng-select>
             </div>
           </div>
@@ -200,7 +199,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-success" [disabled]="!userForm.valid" (click)="ingresaUsuario()"  >Guardar</button>      
-      <button type="button" class="btn btn-light" (click)="cancelo()">Cancelar</button>
+      <button type="button" class="btn btn-danger" (click)="cancelo()">Cancelar</button>
     </div>
   </ng-template>
 

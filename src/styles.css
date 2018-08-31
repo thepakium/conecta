@@ -76,8 +76,8 @@
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
 		text-size-adjust: 100%;
-		text-align: center;
-		-webkit-text-fill-color: #fff 
+		text-align: left;
+		-webkit-text-fill-color: #fff;
 		}
 	.datatable-body {
 			background-color: beige;
@@ -87,6 +87,12 @@
 	.datatable-header-cell {
 		text-align: center !important;
 	}
+	.datatable-header-cell #myTable {
+		text-align: right!important;
+	}
+	.datatable-group-header{
+		text-align: left !important;
+	}
 	.datatable-body-cell {
-		text-align: center !important;
+		text-align: center!important;
 	}

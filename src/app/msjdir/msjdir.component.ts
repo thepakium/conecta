@@ -54,12 +54,13 @@ export class MsjdirComponent implements OnInit {
   constructor(    private toastr: ToastrService,
                   private busquedaService: BusquedaService  ) {
                   }
- 
+
   ngOnInit() {
           this.logged = JSON.parse(localStorage.getItem('user'));
           setTimeout(() => this.toastr.show('¡Trabajemos por reforzar los Vínculos y reconstruir la confianza entre las personas!' +
                                             ' Con Conectados estás a un mensaje de distancia.' ,
-                                            'Bienvenid' + (this.logged.genero === 'Femenino' ? 'a ' : 'o ')  + this.logged.nombre),{"preventDuplicates": true,});
+                                            'Bienvenid' + (this.logged.genero === 'Femenino' ? 'a ' : 'o ')  + this.logged.nombre)
+                                            , { 'preventDuplicates': true});
           this.buscarCategoria( );
           this.buscarUsuario();
           this.buscarFiltros();
@@ -98,7 +99,7 @@ export class MsjdirComponent implements OnInit {
       case 'apellido':
         this.mensaje += '##(apelli)';
       break;
-      case 'barrio':
+      case 'grupo':
         this.mensaje += '##(grupo)';
       break;
       case 'at':
@@ -111,7 +112,8 @@ export class MsjdirComponent implements OnInit {
         this.mensaje = '';
       break;
       case 'plantilla':
-        this.mensaje = '##(nombre) bienvenid#@ a CONECTADOS desde este número te informaremos de las actividades de ##(grupo). Guarda este número en tu celular.  -Firma-';
+        this.mensaje = '##(nombre) bienvenid#@ a CONECTADOS desde este número te informaremos de las actividades de ##(grupo).' +
+                       ' Guarda este número en tu celular.  -Firma-';
       break;
     }
   }
@@ -121,7 +123,7 @@ export class MsjdirComponent implements OnInit {
     this.cambio = this.limpiarCaracteres(this.mensaje.replace(/\#\#\(nombre\)/ig, this.selected[this.c2].nombre.substring(0, 10) )
             .replace(/\#\#\(apelli\)/ig, this.selected[this.c2].apellidoP.substring(0, 10) )
             .replace('#@', (this.selected[this.c2].genero === 'Femenino') ? 'a' : 'o' )
-            .replace(/\#\#\(grupo\)/ig, this.selected[this.c2].barrio.substring(0, 10) )
+            .replace(/\#\#\(grupo\)/ig, this.selected[this.c2].grupo.substring(0, 10) )
             .replace(/\-firma\-/ig, this.selected[this.c2].firma )
             .replace(/@\s/g, (this.selected[this.c2].genero === 'Femenino') ? 'a' : 'o' ));
   }
@@ -179,10 +181,10 @@ export class MsjdirComponent implements OnInit {
               }
             });
             break;
-          case 'barrio':
+          case 'grupo':
             this.ocultaSubFiltro = false;
             this.usuarios.forEach( quien => {
-              if ( quien.barrio === event.nombre ) {
+              if (quien.grupo === event.nombre ) {
               this.selected.push( quien );
               this.subselected.push( quien );
               }
@@ -222,7 +224,7 @@ export class MsjdirComponent implements OnInit {
 console.log(seleccionados);
     this.selected.splice(0, seleccionados.length);
     // this.selected.push(...seleccionados);
-	this.selected = [...seleccionados];
+    this.selected = [...seleccionados];
     this.newUsuarios = [...seleccionados];
   }
 

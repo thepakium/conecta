@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   estado = 'btn btn-primary float-top-s';
   logged: Username;
   cuota: any;
-  showMenu: string = '';
+  showMenu = '';
   public cuota$: Observable<Number>;
 
   constructor(  private router: Router,

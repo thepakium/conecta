@@ -72,15 +72,15 @@
       >
 	  <ngx-datatable-group-header [rowHeight]="50" #myGroupHeader >
           <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
-            <div style="padding-left:15px;">
+            <div style="text-align : center;">
               
-                <b>  {{group.value[0].fecha}}</b>
+                 {{group.value[0].fecha}}
                                    
             </div>
           </ng-template>
         </ngx-datatable-group-header>
-      <ngx-datatable-column name="Hora"></ngx-datatable-column>
-      <ngx-datatable-column name="Barrio"></ngx-datatable-column>
+      <ngx-datatable-column name="Hora"[width]="35"></ngx-datatable-column>
+      <ngx-datatable-column name="Grupo" prop="grupo"></ngx-datatable-column>
       <ngx-datatable-column >
           <ng-template let-column="column" ngx-datatable-header-template>Detalle
           </ng-template>
@@ -90,7 +90,7 @@
           </ng-template>
       </ngx-datatable-column>
       
-      <ngx-datatable-column name="Categoria" [width]="240"></ngx-datatable-column>
+      <ngx-datatable-column name="Categoría" prop="categoria"[width]="240"></ngx-datatable-column>
       <ngx-datatable-column name="Mensaje" [width]="240" >
 	  <ng-template let-value="value" ngx-datatable-cell-template>
               <div>{{value}} </div>  </ng-template>
@@ -109,46 +109,51 @@
         <h2 class="modal-title" id="detalleModalLabel">Detalle del Mensaje </h2>
         <div class="modal-body">
             <div class="container">
-                <div class="row">
-                    <div class="col-7">
+                <div class="beige row">
+                    <div class="col-9">
                         <div class="row">
-                            <div class="col-5">Fundación</div><div class="col-7">{{mensaje?.organizacion}}</div>
+                            <div class="col-5"><strong>Fundación</strong></div><div class="col-7">{{mensaje?.organizacion}}</div>
                         </div>
                         <div class="row">
-                            <div class="col-5">Barrio</div><div class="col-7">{{mensaje?.barrio}}</div>
+                            <div class="col-5"><strong>Grupo</strong></div><div class="col-7">{{mensaje?.grupo}}</div>
                         </div>
                         <div class="row">
-                            <div class="col-5">Mensajes Enviados</div><div class="col-7">{{mensaje?.enviados}} de {{mensaje?.total}}</div>
+                            <div class="col-5"><strong>Mensajes Enviados</strong></div><div class="col-7">{{mensaje?.enviados}} de {{mensaje?.total}}</div>
                         </div>
                         <div class="row">
-                            <div class="col-5">Programado</div><div class="col-7">{{mensaje?.programado}}</div>
+                            <div class="col-5"><strong>Programado</strong></div><div class="col-7">{{mensaje?.programado}}</div>
                         </div>
                         <div class="row">
-                            <div class="col-5">Categoría</div><div class="col-7">{{mensaje?.categoria}}</div>
+                            <div class="col-5"><strong>Categoría</strong></div><div class="col-7">{{mensaje?.categoria}}</div>
                         </div>
                         <div class="row">
-                            <div class="col-5">Enviador</div><div class="col-7" *ngFor="let x of (mensajes ? mensajes.slice(0,2): [])">{{x.enviador}}</div>
+                            <div class="col-5"><strong>Enviador</strong></div><div class="col-7" *ngFor="let x of (mensajes ? mensajes.slice(0,2): [])">{{x.enviador}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5"><strong>Fecha de Redacción:</strong></div><div class="col-7" >{{mensaje?.fechaCreacion | date: 'dd/MM/yyyy'}} a las {{mensaje?.fechaCreacion | date: 'HH:mm'}} hrs.</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5"><strong>Fecha de Envio:</strong></div><div class="col-7" >{{mensaje?.fechaEnvio | date: 'dd/MM/yyyy'}} a las {{mensaje?.fechaEnvio | date: 'HH:mm'}} hrs.</div>
                         </div>
                     </div>
-                    <div class="col-5">
-                        <div>Fecha de Redaccion: {{mensaje?.fechaCreacion | date: 'dd/MM/yyyy HH:mm'}}</div>
-                        <div>Fecha de Envio:     {{mensaje?.fechaEnvio | date: 'dd/MM/yyyy HH:mm'}}</div>
-                        <div class="border"><div >Mensaje:</div><span>{{mensaje?.mensaje}}</span></div>
-                    </div>
+
                 </div>
+            
+            <div class=" beige row border">
+                <div class="col-4"><strong>Destinatario</strong></div>
+                <div class="col-4"><strong>Estado envio</strong></div>
+                <div class="col-4"><strong>Celular</strong></div>
             </div>
-            <div class="row border">
-                <div class="col">Destinatario</div>
-                <div class="col">Estado envio</div>
-                <div class="col">Celular</div>
-            </div>
-            <div class="row border" *ngFor="let mensaje of mensajes" >
+            <div class="beige row border" *ngFor="let mensaje of mensajes" >
                     <div class="col-4">{{mensaje.cliente}}</div>
                     <div class="col-4">{{mensaje.estado}}</div>
                     <div class="col-4">buen estado</div>
-                    <div class="col-12">{{cambiarTexto(mensaje.body, mensaje)}}</div>
-                    <div class="col-12 font-weight-light font-italic">Recepcion: {{mensaje.fechaRecepcion | date: 'dd/MM/yyyy HH:mm'}}</div>
+                    <br>
+                    <div class="row border">
+                    <div class="col-10">{{cambiarTexto(mensaje.body, mensaje)}}</div>
+                    <div class="col-10 font-weight-light font-italic">Recepción: {{mensaje.fechaRecepcion | date: 'dd/MM/yyyy HH:mm'}}</div></div>
             </div>
+        </div>
         </div> <!-- close modal body -->  
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
