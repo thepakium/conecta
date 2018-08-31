@@ -17,7 +17,8 @@
         bindLabel="etiqueta"
         [clearable]=false
         placeholder="Seleccione destinatarios"
-        (change)='filtrar($event)' >
+        (change)='filtrar($event)'
+         [(ngModel)]="filtro" >
       </ng-select>
       <ng-select [searchable]="true" class="input-group-append col-6"
       [items]="subfiltros" [hidden]="ocultaSubFiltro"
@@ -30,6 +31,8 @@
     
   </div>
   <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#usersModal" >{{selected.length}} usuarios seleccionados</button>
+   &nbsp;&nbsp;
+  <span class="badge badge badge-danger" (click)="modificar('limpiar')" [ngbTooltip]="Limpiar">Borrar</span>
   </div><p></p>
   <div class="container" > 
       <div class="row"><strong>Paso 2 :  </strong ><i>  Selecciona una categoría</i></div>
@@ -176,3 +179,6 @@
 <ng-template #Borrar>
     Borrar Cuerpo del mensaje
  </ng-template>
+<ng-template #Limpiar>
+  Borrar destinatarios
+</ng-template>

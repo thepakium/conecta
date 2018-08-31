@@ -43,6 +43,7 @@ export class MsjdirComponent implements OnInit {
                           nombre: 'Femenino',
                           etiqueta: 'Solo Mujeres'
                         }];
+  filtro: Filtro;
   subfiltro: Filtro = this.subfiltros[0];
   selected: Usuario[] = [];
   subselected: Usuario[] = [];
@@ -110,6 +111,13 @@ export class MsjdirComponent implements OnInit {
       break;
       case 'borrar':
         this.mensaje = '';
+        break;
+      case 'limpiar':
+        this.selected.splice(0, this.selected.length);
+        this.subselected.splice(0, this.subselected.length);
+        this.subfiltro = this.subfiltros[0];
+        this.filtro = null;
+        this.ocultaSubFiltro = true;
       break;
       case 'plantilla':
         this.mensaje = this.categoria ? this.categoria.plantilla : '';
@@ -220,7 +228,7 @@ export class MsjdirComponent implements OnInit {
   }
 
   onSelect({ seleccionados }) {
-console.log(seleccionados);
+// console.log(seleccionados);
     this.selected.splice(0, seleccionados.length);
     // this.selected.push(...seleccionados);
     this.selected = [...seleccionados];
