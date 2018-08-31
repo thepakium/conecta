@@ -24,7 +24,7 @@
         <div class="espacio" *ngIf="logged.perfil=='user'">Firma :<span>""user.firma""</span></div>
         <div class="espacio" *ngIf="logged.perfil=='user'">Meta :<span>{{logged.meta}}</span></div>
         <div class="espacio" *ngIf="logged.perfil=='user'">Contrato :<span>{{logged.contrato}}</span></div>
-        <div class="espacio" *ngIf="logged.perfil=='user'">Mensajes Comprados :<span>""sms comprados""</span></div>
+        <div class="espacio" *ngIf="logged.perfil=='user'">Mensajes Comprados :<span *ngFor="let c of compras">{{c.cantidad}} el {{c.cuando}}</span></div>
         <div class="espacio" *ngIf="logged.perfil=='user'">Cuota SMS disponibles :<span>""comprados - enviados""</span></div>
 
 
