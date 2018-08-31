@@ -21,7 +21,7 @@
   </div>
 </div>
 <div class="row">
-   <button type="button" class="btn btn-link btn-block">Cambiar Contraseña</button>
+   <button type="button" class="btn btn-link btn-block" (click)="muestraModal(claveModal)" >Cambiar Contraseña</button>
    <button type="button" class="btn btn-link btn-block">Cambiar Firma</button>
    <button type="button" class="btn btn-link btn-block">Crear Meta</button>
 
@@ -29,4 +29,31 @@
 </div>
 </div>
 </body>
-   
+
+
+<ng-template #claveModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Modifica Contraseña</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #userForm="ngForm"  novalidate>
+        <div class="row">
+            <div class="col-6 offset-3">
+                  <label for="clave">Ingrese Clave Original</label>
+                  <input type="password" required class="form-control" id="antigua" name="antigua" [(ngModel)]="cambio.antigua" placeholder="Ingrese Clave Original"/>
+                  <label for="clave">Ingrese Nueva Clave</label>
+                  <input type="password" required class="form-control" id="clave" name="clave" [(ngModel)]="cambio.nueva" placeholder="Ingrese Nueva Clave"/>
+                  <label for="reclave">Reingrese Nueva Clave</label>
+                  <input type="text" required class="form-control" id="reclave" name="reclave" [(ngModel)]="cambio.repite" placeholder="Reingrese Nueva Clave"/>
+            </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="elimina()"  >Modifica</button>      
+      <button type="button" class="btn btn-light" (click)="d('Cross click')">Cancelar</button>
+    </div>
+  </ng-template> 
