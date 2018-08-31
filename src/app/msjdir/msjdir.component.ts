@@ -112,8 +112,7 @@ export class MsjdirComponent implements OnInit {
         this.mensaje = '';
       break;
       case 'plantilla':
-        this.mensaje = '##(nombre) bienvenid#@ a CONECTADOS desde este número te informaremos de las actividades de ##(grupo).' +
-                       ' Guarda este número en tu celular.  -Firma-';
+        this.mensaje = this.categoria ? this.categoria.plantilla : '';
       break;
     }
   }
