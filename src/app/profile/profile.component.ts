@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   cantidades: Dato[];
   cambio = {} as Clave;
   compras = [] as Compra[];
+  firmas = [] as Firma[];
   private modalGestionRef: NgbModalRef;
   private modal: NgbActiveModal;
   public cuota$: Observable<Number>;
@@ -31,6 +32,7 @@ export class ProfileComponent implements OnInit {
     this.buscarprofile();
     this.buscarCompras();
     this.buscarCuota();
+    this.buscarFirmas();
   }
 
   muestraModal( content ) {
@@ -55,7 +57,7 @@ export class ProfileComponent implements OnInit {
     const datos = { tipo: 'firmas', usuario: this.logged };
     this.busquedaService.obtenerDatos(JSON.stringify(datos),
       data => {
-      this.cantidades = data;
+        this.firmas = data;
         setTimeout(() => { this.loadingIndicator = false; }, 1500);
       }
     );
@@ -88,6 +90,11 @@ interface Dato {
 interface Compra {
   cantidad: number;
   cuando: Date;
+}
+
+interface Firma {
+  grupo: string;
+  firma: string;
 }
 
 interface Clave {

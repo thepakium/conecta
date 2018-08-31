@@ -21,11 +21,11 @@
         <p *ngFor="let c of cantidades;" > Mensajes {{c.estado}}s este mes {{c.valor}}</p>
         <p *ngIf="cantidades?.length == 0"> Sin Mensajes creados este mes</p>
         <div class="espacio">Perfil      :<span> {{logged.perfil}} </span></div>
-        <div class="espacio" *ngIf="logged.perfil=='user'">Firma :<span>""user.firma""</span></div>
+        <div class="espacio" *ngFor="let f of firmas">Firma {{f.grupo}}:<span>{{f.firma}}</span></div>
         <div class="espacio" *ngIf="logged.perfil=='user'">Meta :<span>{{logged.meta}}</span></div>
         <div class="espacio" *ngIf="logged.perfil=='user'">Contrato :<span>{{logged.contrato}}</span></div>
         <div class="espacio" *ngIf="logged.perfil=='user'">Mensajes Comprados :<span *ngFor="let c of compras">{{c.cantidad}} el {{c.cuando}}</span></div>
-        <div class="espacio" *ngIf="logged.perfil=='user'">Cuota SMS disponibles :<span>""comprados - enviados""</span></div>
+        <div class="espacio" *ngIf="logged.perfil=='user'">Cuota SMS disponibles :<span>{{(cuota$ | async) }}</span></div>
 
 
 
