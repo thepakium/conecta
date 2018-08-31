@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   cantidades: Dato[];
   cambio = {} as Clave;
   private modalGestionRef: NgbModalRef;
-  private chan: NgbActiveModal;
+  private modal: NgbActiveModal;
 
   constructor(  private router: Router,
                 private busquedaService: BusquedaService,
@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
   }
 
   cerrar() {
-    const d = this.chan.close;
+    const d = this.modal.close;
   }
 
   buscarprofile() {

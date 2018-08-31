@@ -21,11 +21,11 @@
         <p *ngFor="let c of cantidades;" > Mensajes {{c.estado}}s este mes {{c.valor}}</p>
         <p *ngIf="cantidades?.length == 0"> Sin Mensajes creados este mes</p>
         <div class="espacio">Perfil      :<span> {{logged.perfil}} </span></div>
-        <div class="espacio">Firma :<span>""user.firma""</span></div>
-        <div class="espacio">Meta :<span>""user.meta""</span></div>
-        <div class="espacio">Contrato :<span>""duracion contrato""</span></div>
-        <div class="espacio">Mensajes Comprados :<span>""sms comprados""</span></div>
-        <div class="espacio">Cuota SMS disponibles :<span>""comprados - enviados""</span></div>
+        <div class="espacio" *ngIf="logged.perfil=='user'">Firma :<span>""user.firma""</span></div>
+        <div class="espacio" *ngIf="logged.perfil=='user'">Meta :<span>{{logged.meta}}</span></div>
+        <div class="espacio" *ngIf="logged.perfil=='user'">Contrato :<span>{{logged.contrato}}</span></div>
+        <div class="espacio" *ngIf="logged.perfil=='user'">Mensajes Comprados :<span>""sms comprados""</span></div>
+        <div class="espacio" *ngIf="logged.perfil=='user'">Cuota SMS disponibles :<span>""comprados - enviados""</span></div>
 
 
 
@@ -33,7 +33,7 @@
     
 
    <button type="button" class="btn btn-link btn-block" (click)="muestraModal(claveModal)" >Cambiar Contraseña</button>
-   <button type="button" *ngIf="logged.perfil=='admin'" class="btn btn-link btn-block">Crear Meta</button>
+<!--   <button type="button" *ngIf="logged.perfil=='admin'" class="btn btn-link btn-block">Crear Meta</button>  -->
 </div>
 </div>
 </div>
