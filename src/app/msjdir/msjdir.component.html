@@ -6,14 +6,14 @@
 <div class="col-10">
     <div class="bottom">
 <H2><i class="fa fa-comment-o"></i>   <strong> ENVIAR </strong>SMS</H2>
-<div class="col-12 m-auto" >
+<div class="col-12" >
   <div class="container" >     
       <div class="row"><strong>Paso 1 :  </strong ><i>  Escoge a tu destinatario</i></div>
         
   <label for="destinatario">Buscar Persona /// Seleccionar listado  :</label>
-  <div class="input-group mb-3">
+  <div class="input-group">
     <ng-select [searchable]="true" class="col-6"
-        [items]="filtros" required
+
         bindLabel="etiqueta"
         [clearable]=false
         placeholder="Seleccione destinatarios"
@@ -28,12 +28,12 @@
         (change)='subfiltrar($event)'
 		[(ngModel)]="subfiltro" >
     </ng-select>
-    
   </div>
   <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#usersModal" >{{selected.length}} usuarios seleccionados</button>
    &nbsp;&nbsp;
   <span class="badge badge badge-danger" (click)="modificar('limpiar')" [ngbTooltip]="Limpiar">Borrar</span>
   </div><p></p>
+
   <div class="container" > 
       <div class="row"><strong>Paso 2 :  </strong ><i>  Selecciona una categoría</i></div>
         

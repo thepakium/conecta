@@ -29,9 +29,13 @@
 .centrado{
 	text-align: center
 }
+.izq{
+	text-align: left;
+	align-items: left;
+	background-color: blue
+}
 .textcentrado{
 	text-align: center !important;
-	background-color: blue
 }
 .speech-bubble{	
 	border-top-color: beige;
