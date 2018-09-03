@@ -1,154 +1,126 @@
 <app-header></app-header>
 <body>
-    <div class="col-2">
-        <div class="bottom"><app-sidemenu></app-sidemenu></div>
+  <div class="col-2">
+    <div class="bottom">
+      <app-sidemenu></app-sidemenu>
     </div>
-    <div class="col-10">
-        <div class="bottom">
-<div>
-  <button type="button" class="btn btn-warning" (click)="gestiona(ingresoModal)">Agregar nuevo Administrador</button>
-  <ngx-datatable
-    #myTable
-		style="width: 80%"
-		class="material expandable"
-    [rows]="usuarios"
+  </div>
+  <div class="col-10">
+    <div class="bottom">
+      <div>
+        <button type="button" class="btn btn-warning" (click)="gestiona(ingresoModal)">Agregar nuevo Administrador</button>
+        <ngx-datatable #myTable style="width: 80%" class="material expandable" [rows]="usuarios" [headerHeight]="40" [footerHeight]="50"
+          [rowHeight]="40" [loadingIndicator]="loadingIndicator" [limit]="50">
+          <ngx-datatable-row-detail [rowHeight]="70" #myDetailRow>
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+              <div style="padding-left:35px;">
+                <div>
+                  <strong>{{row.nm_orgs}}</strong>
+                </div>
+                <div>{{row.nm_grupos}}</div>
+              </div>
+            </ng-template>
+          </ngx-datatable-row-detail>
 
-		[headerHeight]="40"
-		[footerHeight]="50"
-		[rowHeight]="40"
-    [loadingIndicator]="loadingIndicator"
-    [limit]="50"
-		>
-	  <ngx-datatable-row-detail [rowHeight]="70" #myDetailRow >
-      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-        <div style="padding-left:35px;">
-          <div><strong>{{row.nm_orgs}}</strong></div>
-          <div>{{row.nm_grupos}}</div>
-        </div>
-      </ng-template>
-    </ngx-datatable-row-detail>
-     
-    <ngx-datatable-column
-       name=""
-      [width]="50"
-      [resizeable]="false"
-      [sortable]="false"
-      [draggable]="false"
-      [canAutoResize]="false">
-      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-        <a *ngIf="row.perfil != 'admin'"
-          href="javascript:void(0)"
-          [class.datatable-icon-right]="!expanded"
-          [class.datatable-icon-down]="expanded"
-          title="Mostrar Grupos asociados"
-          (click)="toggleExpandRow(row)">
-        </a>
-      </ng-template>
-    </ngx-datatable-column>
-	  <ngx-datatable-column name="Administrador" prop="usuario" [width]="220"></ngx-datatable-column>
+          <ngx-datatable-column name="" [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+              <a *ngIf="row.perfil != 'admin'" href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
+                title="Mostrar Grupos asociados" (click)="toggleExpandRow(row)">
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Administrador" prop="usuario" [width]="220"></ngx-datatable-column>
 
-    <ngx-datatable-column name="Usuario" prop="username"></ngx-datatable-column>
-    <ngx-datatable-column name="Mail"[width]="240"></ngx-datatable-column>
-	  <ngx-datatable-column name="Perfil" [width]="70"></ngx-datatable-column>
-	  <ngx-datatable-column name="Funciones">
-		<ng-template ngx-datatable-cell-template let-row="row">
-		  
-		  <button #btnElement class="btn btn-link" (click)="gestiona(ingresoModal, row)"><i class="fa fa-pencil"></i></button>&nbsp;
-		  <button #btnElement class="btn btn-link"  (click)="borrar(row,eliminaModal)"><i class="fa fa-trash"></i></button>
-		</ng-template>
-		
-	  </ngx-datatable-column>
-	</ngx-datatable>
+          <ngx-datatable-column name="Usuario" prop="username"></ngx-datatable-column>
+          <ngx-datatable-column name="Mail" [width]="240"></ngx-datatable-column>
+          <ngx-datatable-column name="Perfil" [width]="70"></ngx-datatable-column>
+          <ngx-datatable-column name="Funciones">
+            <ng-template ngx-datatable-cell-template let-row="row">
 
-</div>
-</div>
-</div>
+              <button #btnElement class="btn btn-link" (click)="gestiona(ingresoModal, row)">
+                <i class="fa fa-pencil"></i>
+              </button>&nbsp;
+              <button #btnElement class="btn btn-link" (click)="borrar(row,eliminaModal)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </ng-template>
+
+          </ngx-datatable-column>
+        </ngx-datatable>
+
+      </div>
+    </div>
+  </div>
 </body>
+
 <ng-template #ingresoModal let-c="close" let-d="dismiss">
   <div class="modal-header">
-      <div class="row"><i class="fa fa-user"></i><strong>{{modifica?'Modifica':'Ingresa'}}   </strong><i>  Usuario</i></div>
+    <div class="row">
+      <i class="fa fa-user"></i>
+      <strong>{{modifica?'Modifica':'Ingresa'}} </strong>
+      <i> Usuario</i>
+    </div>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <form #userForm="ngForm"  novalidate>
+    <form #userForm="ngForm" novalidate>
       <div class="beige row">
-          <div class="col-sm-4">
-                <label for="nombre">Nombre</label>
-                <input type="text" required class="form-control" id="nombre" name="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"/>
-                <!-- <div class="alert alert-danger" [hidden]="nombre">Valor Requerido</div> -->
-          </div>
-          <div class="col-sm-4">
-                <label for="apellido">Apellido</label>
-                <input  type="text" required class="form-control" id="apellido" name="apellido" [(ngModel)]="newUser.apellido" placeholder="Ingrese Apellido"/> 
-          </div>
-          <div class="col-sm-4">
-                <label for="username">Username</label>
-                <input  type="text" required class="form-control" id="username" name="username" [(ngModel)]="newUser.username" placeholder="Ingrese Username"/> 
-          </div>
+        <div class="col-sm-4">
+          <label for="nombre">Nombre</label>
+          <input type="text" required class="form-control" id="nombre" name="nombre" [(ngModel)]="newUser.nombre" placeholder="Ingrese nombre"
+          />
+          <!-- <div class="alert alert-danger" [hidden]="nombre">Valor Requerido</div> -->
         </div>
-        <div class="beige row">
-          <div class="col-sm-4">
-                <label for="género">Genero:</label>
-                <ng-select [searchable]="false" 
-                  [items]="generos" required
-                  [multiple]="false"
-                  [(ngModel)]="newUser.genero"
-                  id="genero"
-                  name="genero"
-                  placeholder="Seleccione genero" >
-                </ng-select>
-            </div>
-            <div class="col-sm-4">
-                  <label for="mail">Mail:</label>
-                  <input  type="text" id="mail" name="mail" email class="form-control"[(ngModel)]="newUser.mail" placeholder="Ingrese Mail"/> 
-            </div>
-            <div class="col-sm-4">
-              <label for="genero">Perfil:</label>
-              <ng-select [searchable]="false" 
-                [items]="perfiles" required
-                [multiple]="false"
-                [(ngModel)]="newUser.perfil"
-                id="perfil"
-                name="perfil"
-                placeholder="Seleccione perfil" >
-              </ng-select>
-            </div>
+        <div class="col-sm-4">
+          <label for="apellido">Apellido</label>
+          <input type="text" required class="form-control" id="apellido" name="apellido" [(ngModel)]="newUser.apellido" placeholder="Ingrese Apellido"
+          />
         </div>
-        <div *ngIf="newUser.perfil == 'user'" class="beige row">
-          <div class="col-sm-4">
-                <label for="organizacion">Seleccione Organizacion:</label>
-                <ng-select [searchable]="true" 
-                    [items]="organizaciones" required
-                    bindLabel="nombre"
-                    bindValue="id"
-                    id="organizacion"
-                    name="organizacion"
-                    [multiple]="false"
-                    placeholder="Seleccione organizacion"
-                    [(ngModel)]="newUser.organizacion"  
-                    (ngModelChange)="buscaGrupo($event)" >
-                </ng-select>
-          </div>
-          <div class="col-sm-8">
-                <label for="grupo">Seleccione Grupo:</label>
-                <ng-select [searchable]="true" 
-                    [items]="grupos" required
-                    bindLabel="nombre"
-                    bindValue="id"
-                    id="grupo"
-                    name="grupo"
-                    [multiple]="true"
-                    placeholder="Seleccione grupo"
-                    [(ngModel)]="newUser.grupos" >
-                  </ng-select>
-          </div>
+        <div class="col-sm-4">
+          <label for="username">Username</label>
+          <input type="text" required class="form-control" id="username" name="username" [(ngModel)]="newUser.username" placeholder="Ingrese Username"
+          />
         </div>
-      </form>
+      </div>
+      <div class="beige row">
+        <div class="col-sm-4">
+          <label for="género">Genero:</label>
+          <ng-select [searchable]="false" [items]="generos" required [multiple]="false" [(ngModel)]="newUser.genero" id="genero" name="genero"
+            placeholder="Seleccione genero">
+          </ng-select>
+        </div>
+        <div class="col-sm-4">
+          <label for="mail">Mail:</label>
+          <input type="text" id="mail" name="mail" email class="form-control" [(ngModel)]="newUser.mail" placeholder="Ingrese Mail"
+          />
+        </div>
+        <div class="col-sm-4">
+          <label for="genero">Perfil:</label>
+          <ng-select [searchable]="false" [items]="perfiles" required [multiple]="false" [(ngModel)]="newUser.perfil" id="perfil" name="perfil"
+            placeholder="Seleccione perfil">
+          </ng-select>
+        </div>
+      </div>
+      <div *ngIf="newUser.perfil == 'user'" class="beige row">
+        <div class="col-sm-4">
+          <label for="organizacion">Seleccione Organizacion:</label>
+          <ng-select [searchable]="true" [items]="organizaciones" required bindLabel="nombre" bindValue="id" id="organizacion" name="organizacion"
+            [multiple]="false" placeholder="Seleccione organizacion" [(ngModel)]="newUser.organizacion" (ngModelChange)="buscaGrupo($event)">
+          </ng-select>
+        </div>
+        <div class="col-sm-8">
+          <label for="grupo">Seleccione Grupo:</label>
+          <ng-select [searchable]="true" [items]="grupos" required bindLabel="nombre" bindValue="id" id="grupo" name="grupo" [multiple]="true"
+            placeholder="Seleccione grupo" [(ngModel)]="newUser.grupos">
+          </ng-select>
+        </div>
+      </div>
+    </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-success" [disabled]="!userForm.valid" (click)="ingresaUsuario()"  >Guardar</button>      
+    <button type="button" class="btn btn-success" [disabled]="!userForm.valid" (click)="ingresaUsuario()">Guardar</button>
     <button type="button" class="btn btn-danger" (click)="d('Cross click')">Cancelar</button>
   </div>
 

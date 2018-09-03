@@ -118,7 +118,8 @@ export class MsjdirComponent implements OnInit {
         this.subfiltro = this.subfiltros[0];
         this.filtro = null;
         this.ocultaSubFiltro = true;
-      break;
+        this.newUsuarios = [...this.usuarios];
+        break;
       case 'plantilla':
         this.mensaje = this.categoria ? this.categoria.plantilla : '';
       break;

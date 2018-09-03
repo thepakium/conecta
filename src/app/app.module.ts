@@ -23,6 +23,7 @@ import { ChartsModule } from 'ng2-charts';
 import { PerfilesComponent } from './perfiles/perfiles.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { OrganizacionesComponent } from './organizaciones/organizaciones.component';
 
 
 // AoT requires an exported function for factories
@@ -46,6 +47,9 @@ const appRoutes: Routes = [
     path: 'reportes', canActivate: [AuthGuard],    component: InformesComponent
   },
   {
+    path: 'organizaciones', canActivate: [AuthGuard], component: OrganizacionesComponent
+  },
+  {
     path: 'perfiles', canActivate: [AuthGuard],    component: PerfilesComponent
   },
   {
@@ -67,6 +71,7 @@ const appRoutes: Routes = [
     InformesComponent,
     PerfilesComponent,
     ProfileComponent,
+    OrganizacionesComponent,
     SidemenuComponent,
 
   ],

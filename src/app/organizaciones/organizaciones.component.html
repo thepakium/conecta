@@ -1,0 +1,90 @@
+<app-header></app-header>
+<body>
+  <div class="col-2">
+    <div class="bottom">
+      <app-sidemenu></app-sidemenu>
+    </div>
+  </div>
+  <div class="col-10">
+    <div class="bottom">
+      <div>
+        <button type="button" class="btn btn-warning" (click)="gestiona(ingresoModal)">Agregar nueva Organización</button>
+        <ngx-datatable #myTable style="width: 80%" class="material expandable" [rows]="organizaciones" [headerHeight]="40" [footerHeight]="50"
+          [rowHeight]="40" [loadingIndicator]="loadingIndicator" [limit]="50">
+          
+          <ngx-datatable-column name="Nombre" [width]="220" ></ngx-datatable-column>
+          <ngx-datatable-column name="Contrato" ></ngx-datatable-column>
+          <ngx-datatable-column name="SMS" prop="SMS" [width]="240" ></ngx-datatable-column>
+          <ngx-datatable-column name="Funciones">
+            <ng-template ngx-datatable-cell-template let-row="row">
+
+              <button #btnElement class="btn btn-link" title="agregar saldo" (click)="gestiona(ingresoModal, row)">
+                <i class="fa fa-plus"></i>
+              </button>&nbsp;
+              <button #btnElement class="btn btn-link" title="editar organización" (click)="gestiona(ingresoModal, row)">
+                <i class="fa fa-pencil"></i>
+              </button>&nbsp;
+              <button #btnElement class="btn btn-link" title="eliminar organización" (click)="borrar(row,eliminaModal)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </ng-template>
+
+          </ngx-datatable-column>
+        </ngx-datatable>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+<ng-template #eliminaModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Confirmación</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <h5>Seguro desea eliminar a {{victima?.quien}}</h5>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="elimina()">Eliminar</button>
+    <button type="button" class="btn btn-danger" (click)="d('Cross click')">Cancelar</button>
+  </div>
+</ng-template>
+
+<ng-template #ingresoModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <div class="row">
+      <i class="fa fa-user"></i>
+      <strong>{{modifica?'Modifica':'Ingresa'}} </strong>
+      <i> Organización</i>
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #orgForm="ngForm" novalidate>
+      <div class="beige row">
+        <div class="col-sm-6">
+          <label for="nombre">Nombre</label>
+          <input type="text" required class="form-control" id="nombre" name="nombre" [(ngModel)]="newOrg.organizacion" placeholder="Ingrese nombre"
+          />
+          <!-- <div class="alert alert-danger" [hidden]="nombre">Valor Requerido</div> -->
+        </div>
+        <div class="col-sm-6">
+          <label for="contrato">Caducidad de Contrato</label>
+          <input type="date" required class="form-control" id="contrato" name="contrato" [(ngModel)]="newOrg.contrato" placeholder="Ingrese caducidad de contrato"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" [disabled]="!orgForm.valid" (click)="ingresaOrg()">Guardar</button>
+    <button type="button" class="btn btn-danger" (click)="d('Cross click')">Cancelar</button>
+  </div>
+</ng-template>

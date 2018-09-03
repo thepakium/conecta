@@ -20,7 +20,10 @@
           <a class="nav-link" [routerLink]="['/personas']"><i class="fa fa-user-circle-o">                 
         </i>Personas</a>
         </li>
-
+        <li class="nav-item"*ngIf="logged.perfil=='admin'">
+          <a class="nav-link" [routerLink]="['/organizaciones']"><i class="fa fa-sitemap">                 
+        </i>Orgs.</a>
+        </li>
         <li class="nav-item" *ngIf="logged.perfil=='admin'">
           <a class="nav-link" [routerLink]="['/perfiles']"><i class="fa fa-vcard-o">                 
         </i>Perfiles</a>

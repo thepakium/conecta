@@ -39,6 +39,12 @@ export class Username {
     grupos: any;
   }
 
+export class Organizacion {
+    organizacion: string;
+    id: number;
+    contrato: Date;
+  }
+
 export class Categoria {
     nombre: string;
     id: number;
